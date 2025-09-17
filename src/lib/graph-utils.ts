@@ -164,6 +164,35 @@ export const getConnectedMajorIds = (universityId: string, allNodes: Map<string,
   return Array.from(connectedMajors);
 };
 
+// Enhanced utility functions for the new breadcrumb system
+export const getAllUniversities = (allNodes: Map<string, ExtendedGraphNode>): ExtendedGraphNode[] => {
+  return Array.from(allNodes.values()).filter(node => node.type === 'university');
+};
+
+export const getAvailableMajorsForUniversity = (
+  universityId: string, 
+  allNodes: Map<string, ExtendedGraphNode>
+): ExtendedGraphNode[] => {
+  const connectedMajorIds = getConnectedMajorIds(universityId, allNodes);
+  return Array.from(allNodes.values()).filter(
+    node => node.type === 'major' && connectedMajorIds.includes(node.id)
+  );
+};
+
+export const getAllMajors = (allNodes: Map<string, ExtendedGraphNode>): ExtendedGraphNode[] => {
+  return Array.from(allNodes.values()).filter(node => node.type === 'major');
+};
+
+// Get engineering programs offered by a specific university
+export const getEngineeringProgramsForUniversity = (
+  universityId: string, 
+  allNodes: Map<string, ExtendedGraphNode>
+): ExtendedGraphNode[] => {
+  return Array.from(allNodes.values()).filter(
+    node => node.type === 'program' && node.universityId === universityId
+  );
+};
+
 // Navigation helpers for breadcrumbs
 export interface BreadcrumbItem {
   id: string;

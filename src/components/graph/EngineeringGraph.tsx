@@ -129,7 +129,7 @@ const EngineeringGraph: React.FC<EngineeringGraphProps> = ({
 
     // Create new simulation
     const simulation = d3.forceSimulation(nodesCopy)
-      .force('link', d3.forceLink(links).id((d: any) => d.id).distance(120).strength(0.6))
+      .force('link', d3.forceLink(links).id((d: d3.SimulationNodeDatum) => (d as ExtendedGraphNode).id).distance(120).strength(0.6))
       .force('charge', d3.forceManyBody().strength(-400))
       .force('center', d3.forceCenter(width / 2, height / 2))
       .force('collision', d3.forceCollide().radius(40))
@@ -154,7 +154,8 @@ const EngineeringGraph: React.FC<EngineeringGraphProps> = ({
 
   // Setup zoom behavior
   useEffect(() => {
-    if (!svgRef.current) return;
+    const svgElement = svgRef.current;
+    if (!svgElement) return;
 
     const zoom = d3.zoom<SVGSVGElement, unknown>()
       .scaleExtent([0.1, 4])
@@ -162,10 +163,10 @@ const EngineeringGraph: React.FC<EngineeringGraphProps> = ({
         setTransform(event.transform);
       });
 
-    d3.select(svgRef.current).call(zoom);
+    d3.select(svgElement).call(zoom);
 
     return () => {
-      d3.select(svgRef.current).on('.zoom', null);
+      d3.select(svgElement).on('.zoom', null);
     };
   }, []);
 

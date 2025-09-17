@@ -2,7 +2,7 @@
 
 import React from 'react';
 import EngineeringGraph from '@/components/graph/EngineeringGraph';
-import Breadcrumbs from '@/components/ui/Breadcrumbs-simple';
+import BreadcrumbsEnhanced from '@/components/ui/BreadcrumbsEnhanced';
 import Header from '@/components/ui/Header';
 import InfoPanel from '@/components/ui/InfoPanel';
 import { useGraphState } from '@/hooks/useGraph';
@@ -29,7 +29,7 @@ export default function Home() {
         onSearchChange={updateSearchTerm} 
       />
       <div className="flex-grow flex flex-col min-h-0">
-        <Breadcrumbs 
+        <BreadcrumbsEnhanced 
           viewState={viewState}
           allNodes={allNodes}
           onNavigateHome={navigateToHome}

@@ -143,13 +143,34 @@ export const useGraphState = () => {
         selectUniversity(nodeId);
         break;
       case 'major':
-        selectMajor(nodeId, viewState.selectedUniversityId || undefined);
+        // If no university is selected, we need to find a university that offers programs for this major
+        let universityIdForMajor = viewState.selectedUniversityId;
+        if (!universityIdForMajor) {
+          // Find first university that has programs connected to this major
+          for (const [, graphNode] of graphData.nodes) {
+            if (graphNode.type === 'program' && graphNode.arcadiaMajorIds?.includes(nodeId)) {
+              universityIdForMajor = graphNode.universityId || null;
+              break;
+            }
+          }
+        }
+        selectMajor(nodeId, universityIdForMajor || undefined);
         break;
       case 'program':
+        // When clicking on a program, update both university and program selection
+        if (node.universityId) {
+          setViewState(prev => ({
+            ...prev,
+            mode: 'university-focused',
+            selectedUniversityId: node.universityId!,
+            selectedMajorId: nodeId,
+            expandedUniversities: new Set([node.universityId!]),
+          }));
+        }
         setSelectedNodeId(nodeId);
         break;
     }
-  }, [graphData.nodes, viewState.selectedUniversityId, selectUniversity, selectMajor]);
+  }, [graphData.nodes, viewState.selectedUniversityId, selectUniversity, selectMajor, setViewState]);
 
   return {
     // State
