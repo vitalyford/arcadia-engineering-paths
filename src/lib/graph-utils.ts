@@ -114,6 +114,11 @@ export const createInitialViewState = (): GraphViewState => ({
 
 // Utility functions for graph operations
 export const isNodeVisible = (node: ExtendedGraphNode, viewState: GraphViewState): boolean => {
+  // Never show major nodes in the graph - they're now shown in the MajorSelector component
+  if (node.type === 'major') {
+    return false;
+  }
+
   // Search filtering
   if (viewState.searchTerm) {
     const searchLower = viewState.searchTerm.toLowerCase();
@@ -129,20 +134,16 @@ export const isNodeVisible = (node: ExtendedGraphNode, viewState: GraphViewState
   // View mode filtering
   switch (viewState.mode) {
     case 'overview':
-      // Show only universities and Arcadia majors
-      return node.type === 'university' || node.type === 'major';
+      // Show only universities (majors are now in the MajorSelector)
+      return node.type === 'university';
     
     case 'university-focused':
-      // Show ALL universities, programs from selected university, and all Arcadia majors
+      // Show ALL universities and programs from selected university
       if (node.type === 'university') {
         return true; // Show all universities, not just the selected one
       }
       if (node.type === 'program') {
         return node.universityId === viewState.selectedUniversityId;
-      }
-      if (node.type === 'major') {
-        // Show all Arcadia majors (they should always be visible)
-        return true;
       }
       return false;
     

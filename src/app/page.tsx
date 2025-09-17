@@ -5,6 +5,7 @@ import EngineeringGraph from '@/components/graph/EngineeringGraph';
 import BreadcrumbsEnhanced from '@/components/ui/BreadcrumbsEnhanced';
 import Header from '@/components/ui/Header';
 import InfoPanel from '@/components/ui/InfoPanel';
+import MajorSelector from '@/components/ui/MajorSelector';
 import { useGraphState } from '@/hooks/useGraph';
 
 export default function Home() {
@@ -48,6 +49,10 @@ export default function Home() {
             />
           </div>
           <div className="w-96 bg-gray-800 rounded-lg shadow-xl min-h-0 flex flex-col">
+            <MajorSelector 
+              selectedMajorId={viewState.selectedMajorId}
+              onMajorClick={selectMajor}
+            />
             <InfoPanel selectedNode={selectedNode} />
           </div>
         </div>
