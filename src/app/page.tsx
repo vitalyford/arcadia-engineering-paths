@@ -1,48 +1,53 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import EngineeringGraph from '@/components/graph/EngineeringGraph';
-import Breadcrumbs from '@/components/ui/Breadcrumbs';
+import Breadcrumbs from '@/components/ui/Breadcrumbs-simple';
 import Header from '@/components/ui/Header';
 import InfoPanel from '@/components/ui/InfoPanel';
-import { ArcadiaMajor, PartnerUniversity, PartnerProgram } from '@/data/engineering-paths';
-
-type GraphNode = (ArcadiaMajor | PartnerUniversity | PartnerProgram) & { 
-  x: number; 
-  y: number; 
-  type: 'major' | 'university' | 'program';
-  universityId?: string;
-};
+import { useGraphState } from '@/hooks/useGraph';
 
 export default function Home() {
-  const [selectedNode, setSelectedNode] = useState<GraphNode | null>(null);
-  const [searchTerm, setSearchTerm] = useState<string>('');
-
-  const handleNodeSelect = (node: (ArcadiaMajor | PartnerUniversity | PartnerProgram) & { x?: number; y?: number, type?: string } | null) => {
-    if (node === null) {
-      setSelectedNode(null);
-    } else {
-      // Convert the node to GraphNode format
-      const graphNode: GraphNode = {
-        ...node,
-        x: node.x || Math.random() * 1200,
-        y: node.y || Math.random() * 800,
-        type: node.type as 'major' | 'university' | 'program'
-      };
-      setSelectedNode(graphNode);
-    }
-  };
+  const {
+    viewState,
+    selectedNode,
+    visibleNodes,
+    visibleEdges,
+    allNodes,
+    navigateToHome,
+    selectUniversity,
+    selectMajor,
+    switchUniversity,
+    updateSearchTerm,
+    handleNodeClick,
+  } = useGraphState();
 
   return (
-    <main className="flex min-h-screen flex-col bg-gray-900">
-      <Header searchTerm={searchTerm} onSearchChange={setSearchTerm} />
-      <div className="flex-grow flex flex-col w-full">
-        <Breadcrumbs selectedNode={selectedNode} onNodeSelect={handleNodeSelect} />
-        <div className="flex-grow flex w-full px-6 py-4 gap-6">
-          <div className="flex-1 bg-gray-800 rounded-lg p-4 shadow-xl">
-            <EngineeringGraph selectedNode={selectedNode} onNodeClick={setSelectedNode} searchTerm={searchTerm} />
+    <main className="h-screen flex flex-col bg-gray-900 overflow-hidden">
+      <Header 
+        searchTerm={viewState.searchTerm} 
+        onSearchChange={updateSearchTerm} 
+      />
+      <div className="flex-grow flex flex-col min-h-0">
+        <Breadcrumbs 
+          viewState={viewState}
+          allNodes={allNodes}
+          onNavigateHome={navigateToHome}
+          onSelectUniversity={selectUniversity}
+          onSelectMajor={selectMajor}
+          onSwitchUniversity={switchUniversity}
+        />
+        <div className="flex-grow flex min-h-0 px-6 py-4 gap-6">
+          <div className="flex-1 bg-gray-800 rounded-lg p-4 shadow-xl min-h-0">
+            <EngineeringGraph 
+              visibleNodes={visibleNodes}
+              visibleEdges={visibleEdges}
+              selectedNodeId={selectedNode?.id || null}
+              onNodeClick={handleNodeClick}
+              viewState={viewState}
+            />
           </div>
-          <div className="w-96 bg-gray-800 rounded-lg shadow-xl">
+          <div className="w-96 bg-gray-800 rounded-lg shadow-xl min-h-0 flex flex-col">
             <InfoPanel selectedNode={selectedNode} />
           </div>
         </div>

@@ -10,9 +10,11 @@ export interface NodeProps {
   type: 'major' | 'university' | 'program';
   onClick: () => void;
   selected: boolean;
+  onDrag?: (nodeId: string, newX: number, newY: number) => void;
+  onDragEnd?: (nodeId: string) => void;
 }
 
-const Node: React.FC<NodeProps> = ({ name, x, y, type, onClick, selected }) => {
+const Node: React.FC<NodeProps> = ({ id, name, x, y, type, onClick, selected, onDrag, onDragEnd }) => {
   const ref = React.useRef<SVGGElement>(null);
 
   React.useEffect(() => {
@@ -28,13 +30,16 @@ const Node: React.FC<NodeProps> = ({ name, x, y, type, onClick, selected }) => {
           .on('drag', function(event) {
             // Update the transform directly
             d3.select(this).attr('transform', `translate(${event.x}, ${event.y})`);
+            // Notify parent component of new position
+            onDrag?.(id, event.x, event.y);
           })
           .on('end', function() {
-            // Optional: you can emit events here to update the simulation if needed
+            // Notify parent that drag ended
+            onDragEnd?.(id);
           })
       );
     }
-  }, []);
+  }, [id, onDrag, onDragEnd]);
 
   const getNodeColor = () => {
     switch (type) {
@@ -70,6 +75,41 @@ const Node: React.FC<NodeProps> = ({ name, x, y, type, onClick, selected }) => {
     return selected ? '#fbbf24' : '#374151';
   };
 
+  // Function to split text into two lines for better readability
+  const getTextLines = (text: string): [string, string] => {
+    if (text.length <= 14) {
+      return [text, ''];
+    }
+    
+    // Try to split at a space near the middle
+    const words = text.split(' ');
+    if (words.length === 1) {
+      // Single word - split at character limit
+      const mid = Math.ceil(text.length / 2);
+      return [text.substring(0, mid), text.substring(mid)];
+    }
+    
+    // Multiple words - find best split point
+    let firstLine = '';
+    let secondLine = '';
+    let totalLength = 0;
+    
+    for (let i = 0; i < words.length; i++) {
+      const wordWithSpace = words[i] + (i < words.length - 1 ? ' ' : '');
+      if (totalLength + wordWithSpace.length <= 14 || firstLine === '') {
+        firstLine += wordWithSpace;
+        totalLength += wordWithSpace.length;
+      } else {
+        secondLine = words.slice(i).join(' ');
+        break;
+      }
+    }
+    
+    return [firstLine.trim(), secondLine];
+  };
+
+  const [firstLine, secondLine] = getTextLines(name);
+
   return (
     <g ref={ref} transform={`translate(${x}, ${y})`} className="cursor-pointer group" onClick={onClick}>
       <circle 
@@ -82,16 +122,30 @@ const Node: React.FC<NodeProps> = ({ name, x, y, type, onClick, selected }) => {
         filter="url(#shadow)"
         className="transition-all duration-200 group-hover:stroke-white group-hover:stroke-4" 
       />
-      <text 
-        x="0" 
-        y={getNodeSize() + 25} 
-        textAnchor="middle" 
-        className="fill-white font-sans text-sm pointer-events-none select-none"
-        fontSize="12"
-        fontWeight="600"
-      >
-        {name.length > 12 ? name.substring(0, 12) + '...' : name}
-      </text>
+      <g className="node-text">
+        <text 
+          x="0" 
+          y={getNodeSize() + (secondLine ? 20 : 25)} 
+          textAnchor="middle" 
+          className="fill-white font-sans text-sm pointer-events-none select-none"
+          fontSize="12"
+          fontWeight="600"
+        >
+          {firstLine}
+        </text>
+        {secondLine && (
+          <text 
+            x="0" 
+            y={getNodeSize() + 35} 
+            textAnchor="middle" 
+            className="fill-white font-sans text-sm pointer-events-none select-none"
+            fontSize="12"
+            fontWeight="600"
+          >
+            {secondLine}
+          </text>
+        )}
+      </g>
       {/* Add a subtle glow effect when selected */}
       {selected && (
         <circle 
