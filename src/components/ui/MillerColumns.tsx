@@ -193,29 +193,7 @@ const MillerColumns: React.FC<MillerColumnsProps> = ({ searchTerm }) => {
                 </div>
               )}
 
-              {/* Matching Arcadia Majors */}
-              {matchingArcadiaMajors.length > 0 && (
-                <div className="bg-gray-800 rounded-lg p-4">
-                  <h4 className="text-lg font-semibold text-white mb-3">Recommended Arcadia Majors</h4>
-                  <div className="space-y-3">
-                    {matchingArcadiaMajors.map((major) => (
-                      <div key={major.id} className="border border-gray-600 rounded-lg p-3">
-                        <h5 className="font-medium text-cyan-400 mb-1">{major.name}</h5>
-                        <p className="text-gray-300 text-sm mb-2">{major.description}</p>
-                        {major.degreeTypes && (
-                          <div className="flex flex-wrap gap-1">
-                            {major.degreeTypes.map(degree => (
-                              <span key={degree} className="bg-cyan-600 text-white px-2 py-1 rounded text-xs">
-                                {degree}
-                              </span>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
+              {/* Matching Arcadia Majors moved to header as tags above */}
 
               {/* Program Requirements */}
               {selected.program.requirements.length > 0 && (
