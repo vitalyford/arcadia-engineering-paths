@@ -21,6 +21,13 @@ export interface PartnerUniversity {
     gpa: string;
     notes: string;
   };
+  specialFeatures: {
+    guaranteedAdmission: boolean;
+    programTypes: string[];
+    degreeInfo?: string;
+    coopRequired?: boolean;
+    uniqueStructure?: string;
+  };
 }
 
 export const arcadiaMajors: ArcadiaMajor[] = [
@@ -363,6 +370,13 @@ export const partnerUniversities: PartnerUniversity[] = [
       gpa: "N/A",
       notes: "No specific GPA mentioned, but a strong academic record is expected.",
     },
+    specialFeatures: {
+      guaranteedAdmission: true,
+      programTypes: ["3+3", "4+3"],
+      degreeInfo: "BS from Arcadia + BS from Drexel",
+      coopRequired: true,
+      uniqueStructure: "Includes 1 co-op (practicum) year out of the 3 years at Drexel"
+    },
   },
   {
     id: "university-of-pittsburgh",
@@ -382,6 +396,11 @@ export const partnerUniversities: PartnerUniversity[] = [
       gpa: "3.00 (3.50 for Bioengineering)",
       notes: "A GPA of 3.00 or higher in both prerequisite and overall GPA (3.50 for Bioengineering), with only grades of C or better eligible for transfer. At least two years of full-time study at Arcadia and a favorable recommendation from the program adviser are also required.",
     },
+    specialFeatures: {
+      guaranteedAdmission: true,
+      programTypes: ["3+2"],
+      degreeInfo: "BS from Arcadia + BS from University of Pittsburgh"
+    },
   },
   {
     id: "washington-university-in-st-louis",
@@ -398,6 +417,11 @@ export const partnerUniversities: PartnerUniversity[] = [
     requirements: {
       gpa: "3.25",
       notes: "A GPA of 3.25 or higher in both prerequisite and overall GPA, with only grades of C or better eligible for transfer. At least two years of full-time study at Arcadia and two letters of recommendation (including one from the program adviser) are required.",
+    },
+    specialFeatures: {
+      guaranteedAdmission: true,
+      programTypes: ["3+3", "4+3"],
+      degreeInfo: "BS from Arcadia + MS from Washington University"
     },
   },
   {
@@ -417,6 +441,12 @@ export const partnerUniversities: PartnerUniversity[] = [
     requirements: {
       gpa: "N/A",
       notes: "Students are encouraged to apply. No specific requirements mentioned.",
+    },
+    specialFeatures: {
+      guaranteedAdmission: false,
+      programTypes: ["2+1+1+1", "3+2"],
+      degreeInfo: "BS from Arcadia + BS from Dartmouth",
+      uniqueStructure: "2+1+1+1: 2 years at Arcadia, 1 at Dartmouth, 1 at Arcadia, 1 final at Dartmouth"
     },
   },
   {
@@ -441,6 +471,11 @@ export const partnerUniversities: PartnerUniversity[] = [
     requirements: {
       gpa: "3.30",
       notes: "A GPA of 3.30 or higher in both prerequisite and overall GPA. Each common required curriculum course must be taken at Arcadia with a grade of B or higher on the first attempt. Three letters of recommendation (program adviser, mathematics professor, and science professor) are also required. Students entering Arcadia after the 2017-2018 academic year are no longer eligible for guaranteed admission.",
+    },
+    specialFeatures: {
+      guaranteedAdmission: false,
+      programTypes: ["3+2"],
+      degreeInfo: "BS from Arcadia + BS from Columbia"
     },
   },
 ];

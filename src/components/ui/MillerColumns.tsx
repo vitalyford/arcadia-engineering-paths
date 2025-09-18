@@ -2,6 +2,8 @@
 
 import React, { useState, useMemo } from 'react';
 import { partnerUniversities, arcadiaMajors, PartnerUniversity, PartnerProgram } from '@/data/engineering-paths';
+import SpecialTag from './SpecialTag';
+import { getTooltipContent, getShortText } from '@/lib/tooltip-utils';
 
 interface MillerColumnsProps {
   searchTerm: string;
@@ -90,9 +92,45 @@ const MillerColumns: React.FC<MillerColumnsProps> = ({ searchTerm }) => {
                 selected.university?.id === university.id ? 'bg-blue-600 hover:bg-blue-500' : ''
               }`}
             >
-              <div className="flex items-center justify-between">
-                <div>
-                  <h3 className="font-medium text-white">{university.name}</h3>
+              <div className="flex items-start justify-between">
+                <div className="flex-1">
+                  <h3 className="font-medium text-white mb-1">{university.name}</h3>
+                  
+                  {/* Special Features Tags */}
+                  <div className="flex flex-wrap gap-1 mb-2">
+                    {university.specialFeatures.guaranteedAdmission && (
+                      <SpecialTag 
+                        type="guaranteed-admission" 
+                        text={getShortText('guaranteed-admission', 'Guaranteed Admission')}
+                        tooltip={getTooltipContent('guaranteed-admission', university)}
+                      />
+                    )}
+                    
+                    {university.specialFeatures.programTypes.length > 0 && (
+                      <SpecialTag 
+                        type="program-type" 
+                        text={university.specialFeatures.programTypes.join(' & ')}
+                        tooltip={getTooltipContent('program-type', university, university.specialFeatures.programTypes.join(' & '))}
+                      />
+                    )}
+                    
+                    {university.specialFeatures.coopRequired && (
+                      <SpecialTag 
+                        type="coop" 
+                        text="Co-op Required"
+                        tooltip={getTooltipContent('coop', university)}
+                      />
+                    )}
+                  </div>
+
+                  {/* Degree Info */}
+                  {university.specialFeatures.degreeInfo && (
+                    <p className="text-xs text-cyan-300 mb-1">
+                      {university.specialFeatures.degreeInfo}
+                    </p>
+                  )}
+                  
+                  {/* Program count and GPA */}
                   <p className="text-sm text-gray-400">
                     {university.programs.length} program{university.programs.length !== 1 ? 's' : ''}
                     {university.requirements.gpa !== 'N/A' && (
@@ -102,7 +140,7 @@ const MillerColumns: React.FC<MillerColumnsProps> = ({ searchTerm }) => {
                     )}
                   </p>
                 </div>
-                <span className="text-gray-400">→</span>
+                <span className="text-gray-400 ml-2 flex-shrink-0">→</span>
               </div>
             </div>
           ))}
@@ -214,6 +252,68 @@ const MillerColumns: React.FC<MillerColumnsProps> = ({ searchTerm }) => {
                       </li>
                     ))}
                   </ul>
+                </div>
+              )}
+
+              {/* Special Program Features */}
+              {selected.university?.specialFeatures && (
+                <div className="bg-gray-800 rounded-lg p-4">
+                  <h4 className="text-lg font-semibold text-white mb-3">Program Features</h4>
+                  
+                  {/* Guaranteed Admission */}
+                  <div className="mb-4">
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="text-gray-400 font-medium">Admission Type:</span>
+                      {selected.university.specialFeatures.guaranteedAdmission ? (
+                        <SpecialTag 
+                          type="guaranteed-admission" 
+                          text={getShortText('guaranteed-admission', 'Guaranteed Admission')}
+                          tooltip={getTooltipContent('guaranteed-admission', selected.university)}
+                        />
+                      ) : (
+                        <span className="text-orange-400">Application Required</span>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Program Types */}
+                  {selected.university.specialFeatures.programTypes.length > 0 && (
+                    <div className="mb-4">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="text-gray-400 font-medium">Program Structure:</span>
+                        <SpecialTag 
+                          type="program-type" 
+                          text={selected.university.specialFeatures.programTypes.join(' & ')}
+                          tooltip={getTooltipContent('program-type', selected.university, selected.university.specialFeatures.programTypes.join(' & '))}
+                        />
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Degree Information */}
+                  {selected.university.specialFeatures.degreeInfo && (
+                    <div className="mb-4">
+                      <span className="text-gray-400 font-medium">Degrees Earned: </span>
+                      <span className="text-cyan-300">{selected.university.specialFeatures.degreeInfo}</span>
+                    </div>
+                  )}
+
+                  {/* Co-op Information */}
+                  {selected.university.specialFeatures.coopRequired && (
+                    <div className="mb-4">
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="text-gray-400 font-medium">Co-op Requirement:</span>
+                        <SpecialTag 
+                          type="coop" 
+                          text="Required" 
+                          tooltip={getTooltipContent('coop', selected.university)}
+                        />
+                      </div>
+                      <p className="text-sm text-gray-300">
+                        Students complete 1 year of co-op (practicum) experience at a company during their time at the partner university.
+                      </p>
+                    </div>
+                  )}
                 </div>
               )}
 
