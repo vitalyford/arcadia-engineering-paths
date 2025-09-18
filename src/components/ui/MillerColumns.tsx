@@ -161,9 +161,11 @@ const MillerColumns: React.FC<MillerColumnsProps> = ({ searchTerm }) => {
         </div>
         <div className="flex-1 overflow-y-auto min-h-0" style={{ maxHeight: 'calc(100vh - 280px)' }}>
           {!selected.university ? (
-            <div className="p-4 text-center text-gray-400">
-              <div className="text-4xl mb-2 opacity-50">🎓</div>
-              <p>Select a university to view programs</p>
+            <div className="h-full flex items-center justify-center text-center text-gray-400">
+              <div>
+                <div className="text-4xl mb-2 opacity-50">🎓</div>
+                <p>Select a university to view programs</p>
+              </div>
             </div>
           ) : (
             filteredPrograms.map((program) => (
@@ -208,9 +210,11 @@ const MillerColumns: React.FC<MillerColumnsProps> = ({ searchTerm }) => {
         </div>
         <div className="flex-1 overflow-y-auto p-4 min-h-0" style={{ maxHeight: 'calc(100vh - 280px)' }}>
           {!selected.program ? (
-            <div className="text-center text-gray-400 mt-8">
-              <div className="text-4xl mb-2 opacity-50">📋</div>
-              <p>Select a program to view requirements</p>
+            <div className="h-full flex items-center justify-center text-center text-gray-400">
+              <div>
+                <div className="text-4xl mb-2 opacity-50">📋</div>
+                <p>Select a program to view requirements</p>
+              </div>
             </div>
           ) : (
             <div className="space-y-6">
