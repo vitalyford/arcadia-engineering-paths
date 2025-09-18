@@ -1,260 +1,34 @@
 import { ArcadiaMajor, PartnerUniversity, PartnerProgram } from '@/data/engineering-paths';
 
-// Core graph node interface - the primitive data type that flows through the system
-export interface GraphNode {
-  id: string;
-  name: string;
-  x: number;
-  y: number;
-  type: 'major' | 'university' | 'program';
-  universityId?: string; // For programs, links to their parent university
-}
+// Simplified utilities for Miller Columns interface
+// All graph and D3-related code has been removed
 
-// Extended node with optional metadata and D3 simulation properties
-export interface ExtendedGraphNode extends GraphNode {
-  description?: string;
-  courses?: string[];
-  requirements?: string[] | { gpa: string; notes: string };
-  programs?: PartnerProgram[];
-  arcadiaMajorIds?: string[];
-  degreeTypes?: string[];
-  // D3 simulation properties
-  fx?: number | null;
-  fy?: number | null;
-  vx?: number;
-  vy?: number;
-  index?: number;
-}
-
-// Graph view state - controls what's visible and how
-export interface GraphViewState {
-  mode: 'overview' | 'university-focused';
-  selectedUniversityId: string | null;
-  selectedMajorId: string | null;
-  expandedUniversities: Set<string>;
-  visibleNodeIds: Set<string>;
+export interface SearchState {
   searchTerm: string;
 }
 
-// Edge representation for connections between nodes
-export interface GraphEdge {
-  id: string;
-  sourceId: string;
-  targetId: string;
-  type: 'major-to-university' | 'university-to-program';
-}
-
-// Complete graph data structure
-export interface GraphData {
-  nodes: Map<string, ExtendedGraphNode>;
-  edges: Map<string, GraphEdge>;
-  viewState: GraphViewState;
-}
-
-// Graph operation results for UI feedback
-export interface GraphOperationResult {
-  success: boolean;
-  message?: string;
-  updatedNodes?: Set<string>;
-  updatedEdges?: Set<string>;
-}
-
-// Viewport and layout configuration
-export interface GraphLayout {
-  width: number;
-  height: number;
-  centerX: number;
-  centerY: number;
-  nodeSpacing: number;
-  clusterRadius: number;
-}
-
-// Factory functions for creating nodes from data sources
-export const createGraphNodeFromMajor = (major: ArcadiaMajor, x = 0, y = 0): ExtendedGraphNode => ({
-  id: major.id,
-  name: major.name,
-  x,
-  y,
-  type: 'major',
-  description: major.description,
-  courses: major.courses,
-  degreeTypes: major.degreeTypes,
-});
-
-export const createGraphNodeFromUniversity = (university: PartnerUniversity, x = 0, y = 0): ExtendedGraphNode => ({
-  id: university.id,
-  name: university.name,
-  x,
-  y,
-  type: 'university',
-  programs: university.programs,
-  requirements: university.requirements,
-});
-
-export const createGraphNodeFromProgram = (program: PartnerProgram, universityId: string, x = 0, y = 0): ExtendedGraphNode => ({
-  id: program.id,
-  name: program.name,
-  x,
-  y,
-  type: 'program',
-  universityId,
-  requirements: program.requirements,
-  arcadiaMajorIds: program.arcadiaMajorIds,
-});
-
-// Initial view state factory
-export const createInitialViewState = (): GraphViewState => ({
-  mode: 'overview',
-  selectedUniversityId: null,
-  selectedMajorId: null,
-  expandedUniversities: new Set(),
-  visibleNodeIds: new Set(),
-  searchTerm: '',
-});
-
-// Utility functions for graph operations
-export const isNodeVisible = (node: ExtendedGraphNode, viewState: GraphViewState): boolean => {
-  // Never show major nodes in the graph - they're now shown in the MajorSelector component
-  if (node.type === 'major') {
-    return false;
-  }
-
-  // Search filtering
-  if (viewState.searchTerm) {
-    const searchLower = viewState.searchTerm.toLowerCase();
-    const nameMatch = node.name.toLowerCase().includes(searchLower);
-    const descriptionMatch = node.description?.toLowerCase().includes(searchLower);
-    const coursesMatch = node.courses?.some(course => course.toLowerCase().includes(searchLower));
-    
-    if (!nameMatch && !descriptionMatch && !coursesMatch) {
-      return false;
-    }
-  }
-
-  // View mode filtering
-  switch (viewState.mode) {
-    case 'overview':
-      // Show only universities (majors are now in the MajorSelector)
-      return node.type === 'university';
-    
-    case 'university-focused':
-      // Show ALL universities and programs from selected university
-      if (node.type === 'university') {
-        return true; // Show all universities, not just the selected one
-      }
-      if (node.type === 'program') {
-        return node.universityId === viewState.selectedUniversityId;
-      }
-      return false;
-    
-    default:
-      return true;
-  }
-};
-
-export const getConnectedMajorIds = (universityId: string, allNodes: Map<string, ExtendedGraphNode>): string[] => {
-  const connectedMajors = new Set<string>();
+// Helper function to filter universities by search term
+export function filterUniversities(universities: PartnerUniversity[], searchTerm: string): PartnerUniversity[] {
+  if (!searchTerm) return universities;
   
-  // Find all programs for this university
-  for (const node of allNodes.values()) {
-    if (node.type === 'program' && node.universityId === universityId && node.arcadiaMajorIds) {
-      node.arcadiaMajorIds.forEach(majorId => connectedMajors.add(majorId));
-    }
-  }
-  
-  return Array.from(connectedMajors);
-};
-
-// Enhanced utility functions for the new breadcrumb system
-export const getAllUniversities = (allNodes: Map<string, ExtendedGraphNode>): ExtendedGraphNode[] => {
-  return Array.from(allNodes.values()).filter(node => node.type === 'university');
-};
-
-export const getAvailableMajorsForUniversity = (
-  universityId: string, 
-  allNodes: Map<string, ExtendedGraphNode>
-): ExtendedGraphNode[] => {
-  const connectedMajorIds = getConnectedMajorIds(universityId, allNodes);
-  return Array.from(allNodes.values()).filter(
-    node => node.type === 'major' && connectedMajorIds.includes(node.id)
+  return universities.filter(university =>
+    university.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    university.programs.some(program =>
+      program.name.toLowerCase().includes(searchTerm.toLowerCase())
+    )
   );
-};
-
-export const getAllMajors = (allNodes: Map<string, ExtendedGraphNode>): ExtendedGraphNode[] => {
-  return Array.from(allNodes.values()).filter(node => node.type === 'major');
-};
-
-// Get engineering programs offered by a specific university
-export const getEngineeringProgramsForUniversity = (
-  universityId: string, 
-  allNodes: Map<string, ExtendedGraphNode>
-): ExtendedGraphNode[] => {
-  return Array.from(allNodes.values()).filter(
-    node => node.type === 'program' && node.universityId === universityId
-  );
-};
-
-// Navigation helpers for breadcrumbs
-export interface BreadcrumbItem {
-  id: string;
-  name: string;
-  type: 'home' | 'university' | 'major';
-  clickable: boolean;
 }
 
-export const generateBreadcrumbs = (viewState: GraphViewState, allNodes: Map<string, ExtendedGraphNode>): BreadcrumbItem[] => {
-  const breadcrumbs: BreadcrumbItem[] = [
-    { id: 'home', name: 'Home', type: 'home', clickable: true }
-  ];
-
-  if (viewState.selectedUniversityId) {
-    const university = allNodes.get(viewState.selectedUniversityId);
-    if (university) {
-      breadcrumbs.push({
-        id: university.id,
-        name: university.name,
-        type: 'university',
-        clickable: true
-      });
-    }
-  }
-
-  if (viewState.selectedMajorId) {
-    const major = allNodes.get(viewState.selectedMajorId);
-    if (major) {
-      breadcrumbs.push({
-        id: major.id,
-        name: major.name,
-        type: 'major',
-        clickable: true
-      });
-    }
-  }
-
-  return breadcrumbs;
-};
-
-// Position calculation utilities for force-directed layout
-export const calculateClusterPosition = (
-  centerX: number,
-  centerY: number,
-  index: number,
-  total: number,
-  radius: number
-): { x: number; y: number } => {
-  if (total === 1) {
-    return { x: centerX, y: centerY };
-  }
+// Helper function to filter programs by search term
+export function filterPrograms(programs: PartnerProgram[], searchTerm: string): PartnerProgram[] {
+  if (!searchTerm) return programs;
   
-  const angle = (2 * Math.PI * index) / total;
-  return {
-    x: centerX + Math.cos(angle) * radius,
-    y: centerY + Math.sin(angle) * radius
-  };
-};
+  return programs.filter(program =>
+    program.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+}
 
-export const calculateNodeDistance = (node1: GraphNode, node2: GraphNode): number => {
-  const dx = node1.x - node2.x;
-  const dy = node1.y - node2.y;
-  return Math.sqrt(dx * dx + dy * dy);
-};
+// Helper function to get matching Arcadia majors for a program
+export function getMatchingArcadiaMajors(program: PartnerProgram, majors: ArcadiaMajor[]): ArcadiaMajor[] {
+  return majors.filter(major => program.arcadiaMajorIds.includes(major.id));
+}

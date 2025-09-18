@@ -61,13 +61,18 @@ const MillerColumns: React.FC<MillerColumnsProps> = ({ searchTerm }) => {
   };
 
   return (
-    <div className="h-full flex bg-gray-800 rounded-lg overflow-hidden">
+    <div className="h-full flex bg-gray-800 rounded-lg overflow-hidden shadow-xl">
       {/* Column 1: Universities */}
       <div className="w-1/3 border-r border-gray-700 flex flex-col">
-        <div className="bg-gray-700 px-4 py-3 border-b border-gray-600">
+        <div className="bg-gray-700 px-4 py-3 border-b border-gray-600 flex items-center justify-between">
           <h2 className="text-lg font-semibold text-white flex items-center">
             🏛️ Universities ({filteredUniversities.length})
           </h2>
+          {searchTerm && (
+            <span className="text-xs bg-blue-600 text-white px-2 py-1 rounded">
+              Filtered
+            </span>
+          )}
         </div>
         <div className="flex-1 overflow-y-auto">
           {filteredUniversities.map((university) => (
@@ -99,10 +104,15 @@ const MillerColumns: React.FC<MillerColumnsProps> = ({ searchTerm }) => {
 
       {/* Column 2: Programs */}
       <div className="w-1/3 border-r border-gray-700 flex flex-col">
-        <div className="bg-gray-700 px-4 py-3 border-b border-gray-600">
+        <div className="bg-gray-700 px-4 py-3 border-b border-gray-600 flex items-center justify-between">
           <h2 className="text-lg font-semibold text-white flex items-center">
             🎓 Programs {selected.university ? `(${filteredPrograms.length})` : ''}
           </h2>
+          {selected.university && searchTerm && (
+            <span className="text-xs bg-blue-600 text-white px-2 py-1 rounded">
+              Filtered
+            </span>
+          )}
         </div>
         <div className="flex-1 overflow-y-auto">
           {!selected.university ? (
@@ -221,6 +231,31 @@ const MillerColumns: React.FC<MillerColumnsProps> = ({ searchTerm }) => {
                   </ul>
                 </div>
               )}
+
+              {/* Quick Stats */}
+              <div className="bg-gray-800 rounded-lg p-4">
+                <h4 className="text-lg font-semibold text-white mb-3">Quick Stats</h4>
+                <div className="grid grid-cols-2 gap-4 text-sm">
+                  <div>
+                    <span className="text-gray-400">Total Programs:</span>
+                    <p className="text-white font-medium">{selected.university?.programs.length}</p>
+                  </div>
+                  <div>
+                    <span className="text-gray-400">Required GPA:</span>
+                    <p className="text-white font-medium">
+                      {selected.university?.requirements.gpa || 'Not specified'}
+                    </p>
+                  </div>
+                  <div>
+                    <span className="text-gray-400">Matching Majors:</span>
+                    <p className="text-white font-medium">{matchingArcadiaMajors.length}</p>
+                  </div>
+                  <div>
+                    <span className="text-gray-400">Requirements:</span>
+                    <p className="text-white font-medium">{selected.program.requirements.length}</p>
+                  </div>
+                </div>
+              </div>
             </div>
           )}
         </div>
