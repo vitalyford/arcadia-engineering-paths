@@ -14,8 +14,8 @@ export default function Home() {
         searchTerm={searchTerm} 
         onSearchChange={updateSearchTerm} 
       />
-      <div className="flex-grow flex flex-col min-h-0">
-        <div className="flex-grow px-6 py-6">
+      <div className="flex-1 flex flex-col min-h-0">
+        <div className="flex-1 px-6 py-6 min-h-0">
           <MillerColumns searchTerm={searchTerm} />
         </div>
       </div>

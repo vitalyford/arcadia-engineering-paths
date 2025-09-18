@@ -61,10 +61,10 @@ const MillerColumns: React.FC<MillerColumnsProps> = ({ searchTerm }) => {
   };
 
   return (
-    <div className="h-full flex bg-gray-800 rounded-lg overflow-hidden shadow-xl">
+    <div className="w-full h-full flex bg-gray-800 rounded-lg overflow-hidden shadow-xl" style={{ height: 'calc(100vh - 200px)' }}>
       {/* Column 1: Universities */}
-      <div className="w-1/3 border-r border-gray-700 flex flex-col">
-        <div className="bg-gray-700 px-4 py-3 border-b border-gray-600 flex items-center justify-between">
+      <div className="w-1/3 border-r border-gray-700 flex flex-col h-full">
+        <div className="bg-gray-700 px-4 py-3 border-b border-gray-600 flex items-center justify-between flex-shrink-0">
           <h2 className="text-lg font-semibold text-white flex items-center">
             🏛️ Universities ({filteredUniversities.length})
           </h2>
@@ -74,7 +74,7 @@ const MillerColumns: React.FC<MillerColumnsProps> = ({ searchTerm }) => {
             </span>
           )}
         </div>
-        <div className="flex-1 overflow-y-auto">
+        <div className="flex-1 overflow-y-auto min-h-0" style={{ maxHeight: 'calc(100vh - 280px)' }}>
           {filteredUniversities.map((university) => (
             <div
               key={university.id}
@@ -103,8 +103,8 @@ const MillerColumns: React.FC<MillerColumnsProps> = ({ searchTerm }) => {
       </div>
 
       {/* Column 2: Programs */}
-      <div className="w-1/3 border-r border-gray-700 flex flex-col">
-        <div className="bg-gray-700 px-4 py-3 border-b border-gray-600 flex items-center justify-between">
+      <div className="w-1/3 border-r border-gray-700 flex flex-col h-full">
+        <div className="bg-gray-700 px-4 py-3 border-b border-gray-600 flex items-center justify-between flex-shrink-0">
           <h2 className="text-lg font-semibold text-white flex items-center">
             🎓 Programs {selected.university ? `(${filteredPrograms.length})` : ''}
           </h2>
@@ -114,7 +114,7 @@ const MillerColumns: React.FC<MillerColumnsProps> = ({ searchTerm }) => {
             </span>
           )}
         </div>
-        <div className="flex-1 overflow-y-auto">
+        <div className="flex-1 overflow-y-auto min-h-0" style={{ maxHeight: 'calc(100vh - 280px)' }}>
           {!selected.university ? (
             <div className="p-4 text-center text-gray-400">
               <div className="text-4xl mb-2 opacity-50">🎓</div>
@@ -155,13 +155,13 @@ const MillerColumns: React.FC<MillerColumnsProps> = ({ searchTerm }) => {
       </div>
 
       {/* Column 3: Details */}
-      <div className="flex-1 flex flex-col bg-gray-750">
-        <div className="bg-gray-700 px-4 py-3 border-b border-gray-600">
+      <div className="flex-1 flex flex-col bg-gray-750 h-full">
+        <div className="bg-gray-700 px-4 py-3 border-b border-gray-600 flex-shrink-0">
           <h2 className="text-lg font-semibold text-white flex items-center">
             📋 Details
           </h2>
         </div>
-        <div className="flex-1 overflow-y-auto p-4">
+        <div className="flex-1 overflow-y-auto p-4 min-h-0" style={{ maxHeight: 'calc(100vh - 280px)' }}>
           {!selected.program ? (
             <div className="text-center text-gray-400 mt-8">
               <div className="text-4xl mb-2 opacity-50">📋</div>
