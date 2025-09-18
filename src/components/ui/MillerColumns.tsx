@@ -33,9 +33,16 @@ const MillerColumns: React.FC<MillerColumnsProps> = ({ searchTerm }) => {
   const filteredPrograms = useMemo(() => {
     if (!selected.university) return [];
     if (!searchTerm) return selected.university.programs;
-    return selected.university.programs.filter(program =>
-      program.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    return selected.university.programs.filter(program => {
+      // Check program name
+      const matchesProgramName = program.name.toLowerCase().includes(searchTerm.toLowerCase());
+      // Check related majors
+      const matchesRelatedMajor = program.arcadiaMajorIds.some(majorId => {
+        const major = arcadiaMajors.find(m => m.id === majorId);
+        return major && major.name.toLowerCase().includes(searchTerm.toLowerCase());
+      });
+      return matchesProgramName || matchesRelatedMajor;
+    });
   }, [selected.university, searchTerm]);
 
   // Get Arcadia majors that match the selected program
