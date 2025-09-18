@@ -1,3 +1,34 @@
+export interface Course {
+  code: string;
+  name: string;
+  credits: number;
+  note?: string;
+}
+
+export interface CourseOption {
+  courses: Course[];
+  selectCount: number; // How many courses to select from this group
+  note?: string;
+}
+
+export interface RequirementCategory {
+  id: string;
+  name: string;
+  description: string;
+  courses?: Course[];
+  courseOptions?: CourseOption[];
+  totalCredits?: number;
+  note?: string;
+}
+
+export interface PreEngineeringRequirements {
+  categories: RequirementCategory[];
+  totalTechnicalCredits: number;
+  nonTechnicalCredits: number;
+  majorRequirements: string;
+  transferRequirements: string;
+}
+
 export interface ArcadiaMajor {
   id: string;
   name: string;
@@ -479,3 +510,78 @@ export const partnerUniversities: PartnerUniversity[] = [
     },
   },
 ];
+
+export const preEngineeringRequirements: PreEngineeringRequirements = {
+  categories: [
+    {
+      id: "mathematics",
+      name: "Mathematics",
+      description: "Five required mathematics courses providing the foundation for engineering studies",
+      courses: [
+        { code: "MA 201", name: "Calculus I", credits: 4 },
+        { code: "MA 202", name: "Calculus II", credits: 4 },
+        { code: "MA 203", name: "Calculus III", credits: 4 },
+        { code: "MA 221", name: "Linear Algebra", credits: 4 },
+        { code: "MA 352", name: "Differential Equations", credits: 4 }
+      ],
+      totalCredits: 20
+    },
+    {
+      id: "chemistry",
+      name: "Chemistry", 
+      description: "Two chemistry courses - one from each sequence",
+      courseOptions: [
+        {
+          courses: [
+            { code: "CH 101", name: "General Chemistry I", credits: 4 },
+            { code: "CH 111", name: "Conceptual Chemistry I", credits: 4 }
+          ],
+          selectCount: 1,
+          note: "Choose one introductory chemistry course"
+        },
+        {
+          courses: [
+            { code: "CH 102", name: "General Chemistry II", credits: 4 },
+            { code: "CH 112", name: "Conceptual Chemistry II", credits: 4 }
+          ],
+          selectCount: 1,
+          note: "Choose the corresponding second-semester course"
+        }
+      ],
+      totalCredits: 8,
+      note: "*CH 101/102 sequence required by PITT, highly recommended otherwise"
+    },
+    {
+      id: "physics",
+      name: "Physics",
+      description: "Two physics courses covering fundamental concepts",
+      courses: [
+        { code: "PH 211", name: "Conceptual Physics I", credits: 4 },
+        { code: "PH 212", name: "Conceptual Physics II", credits: 4 }
+      ],
+      totalCredits: 8
+    },
+    {
+      id: "computer-science",
+      name: "Computer Science",
+      description: "One computer science course with lab component",
+      courses: [
+        { code: "CS 101", name: "Problem-Solving with Algorithms and Programming I (with CS 101L Lab)", credits: 4 }
+      ],
+      totalCredits: 4
+    },
+    {
+      id: "economics",
+      name: "Economics",
+      description: "One economics course covering macroeconomic principles",
+      courses: [
+        { code: "EC 210", name: "Principles of Macroeconomics", credits: 4 }
+      ],
+      totalCredits: 4
+    }
+  ],
+  totalTechnicalCredits: 44,
+  nonTechnicalCredits: 28,
+  majorRequirements: "All students must satisfy the requirements for a major, typically Mathematics, Computer Science, Data Science, or Chemistry at Arcadia University, as well as those of the Undergraduate Curriculum. However, students accepted into an engineering program after three years need fulfill only those parts of the Undergraduate Curriculum required for transfer students entering with 57 or more credits.",
+  transferRequirements: "These courses should include 3 different academic disciplines, two courses from the same department, and at least one should be a non-introductory course."
+};
