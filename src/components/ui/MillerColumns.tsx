@@ -117,7 +117,7 @@ const MillerColumns: React.FC<MillerColumnsProps> = ({ searchTerm }) => {
                     {university.specialFeatures.coopRequired && (
                       <SpecialTag 
                         type="coop" 
-                        text="Co-op Required"
+                        text="Co-op"
                         tooltip={getTooltipContent('coop', university)}
                       />
                     )}
