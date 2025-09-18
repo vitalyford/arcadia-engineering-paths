@@ -70,7 +70,7 @@ const MillerColumns: React.FC<MillerColumnsProps> = ({ searchTerm }) => {
   };
 
   return (
-    <div className="w-full h-full flex bg-gray-800 rounded-lg overflow-hidden shadow-xl" style={{ height: 'calc(100vh - 200px)' }}>
+    <div className="w-full h-full flex bg-gray-800 rounded-lg overflow-hidden shadow-xl">
       {/* Column 1: Universities */}
       <div className="w-1/3 border-r border-gray-700 flex flex-col h-full">
         <div className="bg-gray-700 px-4 py-3 border-b border-gray-600 flex items-center justify-between flex-shrink-0">
