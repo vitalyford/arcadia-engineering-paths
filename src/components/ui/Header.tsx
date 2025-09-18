@@ -15,7 +15,7 @@ const Header: React.FC<HeaderProps> = ({ searchTerm, onSearchChange, activeView,
         <div className="flex justify-between items-center mb-4">
           <div>
             <h1 className="text-4xl font-extrabold text-white">Arcadia Engineering Pathways</h1>
-            <p className="text-gray-400 mt-1">Your guide to dual-degree engineering programs.</p>
+            <p className="text-gray-400 mt-1">Your guide to dual-degree engineering programs</p>
           </div>
           <div className="flex items-center space-x-4">
             <div className="relative">
