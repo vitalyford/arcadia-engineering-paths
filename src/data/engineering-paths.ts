@@ -64,7 +64,7 @@ export interface PartnerUniversity {
 export const arcadiaMajors: ArcadiaMajor[] = [
   {
     id: "mathematics",
-    name: "Mathematics",
+    name: "Math",
     description: "A strong foundation in mathematical principles, preparing students for advanced engineering studies.",
     degreeTypes: ["B.A.", "B.S."],
     courses: [
@@ -89,7 +89,7 @@ export const arcadiaMajors: ArcadiaMajor[] = [
   },
   {
     id: "computer-science",
-    name: "Computer Science",
+    name: "CS",
     description: "Focuses on programming, algorithms, and data structures, essential for many engineering disciplines.",
     degreeTypes: ["B.A.", "B.S."],
     courses: [
@@ -123,7 +123,7 @@ export const arcadiaMajors: ArcadiaMajor[] = [
   },
   {
     id: "chemistry",
-    name: "Chemistry",
+    name: "Chem",
     description: "Provides a background in chemical sciences, crucial for chemical and biomedical engineering.",
     degreeTypes: ["B.S."],
     courses: [
