@@ -129,6 +129,13 @@ const MillerColumns: React.FC<MillerColumnsProps> = ({ searchTerm }) => {
                       {university.specialFeatures.degreeInfo}
                     </p>
                   )}
+
+                  {/* Unique Structure Info */}
+                  {university.specialFeatures.uniqueStructure && (
+                    <p className="text-xs text-green-300 mb-1">
+                      {university.specialFeatures.uniqueStructure}
+                    </p>
+                  )}
                   
                   {/* Program count and GPA */}
                   <p className="text-sm text-gray-400">
@@ -316,6 +323,14 @@ const MillerColumns: React.FC<MillerColumnsProps> = ({ searchTerm }) => {
                       <p className="text-sm text-gray-300">
                         Students complete 1 year of co-op (practicum) experience at a company during their time at the partner university.
                       </p>
+                    </div>
+                  )}
+
+                  {/* Unique Structure Information */}
+                  {selected.university.specialFeatures.uniqueStructure && (
+                    <div className="mb-4">
+                      <span className="text-gray-400 font-medium">Special Feature: </span>
+                      <span className="text-green-300">{selected.university.specialFeatures.uniqueStructure}</span>
                     </div>
                   )}
                 </div>

@@ -452,7 +452,8 @@ export const partnerUniversities: PartnerUniversity[] = [
     specialFeatures: {
       guaranteedAdmission: true,
       programTypes: ["3+3", "4+3"],
-      degreeInfo: "BS from Arcadia + MS from Washington University"
+      degreeInfo: "BS from Arcadia + BS and MS from Washington University",
+      uniqueStructure: "Guarantees 50% discount on tuition including for international students"
     },
   },
   {
