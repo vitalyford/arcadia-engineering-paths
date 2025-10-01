@@ -21,12 +21,23 @@ export interface RequirementCategory {
   note?: string;
 }
 
+export interface AUCRequirement {
+  code: string;
+  name: string;
+  count: number;
+}
+
 export interface PreEngineeringRequirements {
   categories: RequirementCategory[];
   totalTechnicalCredits: number;
   nonTechnicalCredits: number;
   majorRequirements: string;
   transferRequirements: string;
+  aucRequirements?: {
+    acceleratedPrograms: AUCRequirement[];
+    acceleratedNote: string;
+    fourYearNote: string;
+  };
 }
 
 export interface ArcadiaMajor {
@@ -584,5 +595,21 @@ export const preEngineeringRequirements: PreEngineeringRequirements = {
   totalTechnicalCredits: 44,
   nonTechnicalCredits: 28,
   majorRequirements: "All students must satisfy the requirements for a major, typically Mathematics, Computer Science, Data Science, or Chemistry at Arcadia University, as well as those of the Undergraduate Curriculum. However, students accepted into an engineering program after three years need fulfill only those parts of the Undergraduate Curriculum required for transfer students entering with 57 or more credits.",
-  transferRequirements: "These courses should include 3 different academic disciplines, two courses from the same department, and at least one should be a non-introductory course."
+  transferRequirements: "These courses should include 3 different academic disciplines, two courses from the same department, and at least one should be a non-introductory course.",
+  aucRequirements: {
+    acceleratedPrograms: [
+      { code: "GE/GR", name: "Global Connections Experience / Reflection", count: 1 },
+      { code: "IL", name: "Integrative Learning Experiences", count: 1 },
+      { code: "SC", name: "Senior Capstone", count: 1 },
+      { code: "CE", name: "Creative Expressions", count: 1 },
+      { code: "CL", name: "Cultural Legacies", count: 1 },
+      { code: "SS", name: "Self and Society", count: 1 },
+      { code: "NPL", name: "Natural and Physical World with Lab", count: 1 },
+      { code: "QRM", name: "Quantitative Reasoning Mathematics", count: 1 },
+      { code: "W", name: "Writing", count: 1 },
+      { code: "CABR", name: "Combatting Anti-Black Racism", count: 1 }
+    ],
+    acceleratedNote: "Students in 3+2 and 3+3 programs need to complete only these reduced AUC requirements during their time at Arcadia.",
+    fourYearNote: "Students who decide to stay at Arcadia for 4 years must complete the full AUC requirements as required for all Arcadia students."
+  }
 };

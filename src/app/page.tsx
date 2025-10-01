@@ -24,7 +24,7 @@ export default function Home() {
             <MillerColumns searchTerm={searchTerm} />
           </div>
         ) : (
-          <div className="flex-1 px-6 py-6 min-h-0 overflow-auto">
+          <div className="flex-1 px-6 pb-6 min-h-0 overflow-auto">
             <PreEngineeringRequirements />
           </div>
         )}
