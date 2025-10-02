@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { preEngineeringRequirements, RequirementCategory, Course, CourseOption } from '@/data/engineering-paths';
+import { getArcadiaCourseUrl, extractCourseCode, getArcadiaAucUrls } from '@/lib/semester-utils';
 
 const PreEngineeringRequirements: React.FC = () => {
   const [activeSection, setActiveSection] = useState('overview');
@@ -103,20 +104,51 @@ const PreEngineeringRequirements: React.FC = () => {
       [category]: !prev[category]
     }));
   };
-  const renderCourse = (course: Course, index: number) => (
-    <div key={index} className="flex justify-between items-center p-3 bg-gray-700 rounded-lg">
-      <div className="flex-1">
-        <span className="font-medium text-cyan-300">{course.code}</span>
-        <span className="ml-2 text-gray-300">{course.name}</span>
-        {course.note && (
-          <div className="text-sm text-yellow-300 mt-1">{course.note}</div>
-        )}
+
+  const handleCourseClick = (courseCode: string) => {
+    const cleanCode = extractCourseCode(courseCode);
+    if (cleanCode) {
+      const url = getArcadiaCourseUrl(cleanCode);
+      window.open(url, '_blank', 'noopener,noreferrer');
+    }
+  };
+
+  const handleAucClick = (aucCode: string) => {
+    const urls = getArcadiaAucUrls(aucCode);
+    // Open all URLs (most will be one, GE/GR will open two tabs)
+    urls.forEach(url => {
+      window.open(url, '_blank', 'noopener,noreferrer');
+    });
+  };
+
+  const renderCourse = (course: Course, index: number) => {
+    const cleanCode = extractCourseCode(course.code);
+    const isClickable = !!cleanCode;
+
+    return (
+      <div key={index} className="flex justify-between items-center p-3 bg-gray-700 rounded-lg">
+        <div className="flex-1">
+          {isClickable ? (
+            <button
+              onClick={() => handleCourseClick(course.code)}
+              className="font-medium text-cyan-300 hover:text-cyan-200 hover:underline transition-colors cursor-pointer"
+            >
+              {course.code}
+            </button>
+          ) : (
+            <span className="font-medium text-cyan-300">{course.code}</span>
+          )}
+          <span className="ml-2 text-gray-300">{course.name}</span>
+          {course.note && (
+            <div className="text-sm text-yellow-300 mt-1">{course.note}</div>
+          )}
+        </div>
+        <span className="text-sm bg-gray-600 px-2 py-1 rounded text-gray-300">
+          {course.credits} credits
+        </span>
       </div>
-      <span className="text-sm bg-gray-600 px-2 py-1 rounded text-gray-300">
-        {course.credits} credits
-      </span>
-    </div>
-  );
+    );
+  };
 
   const renderCourseOption = (option: CourseOption, index: number) => (
     <div key={index} className="bg-gray-700 rounded-lg p-4 border-l-4 border-yellow-400">
@@ -124,17 +156,31 @@ const PreEngineeringRequirements: React.FC = () => {
         Choose {option.selectCount} course{option.selectCount > 1 ? 's' : ''} from:
       </div>
       <div className="space-y-2">
-        {option.courses.map((course, courseIndex) => (
-          <div key={courseIndex} className="flex justify-between items-center p-2 bg-gray-600 rounded">
-            <div>
-              <span className="font-medium text-cyan-300">{course.code}</span>
-              <span className="ml-2 text-gray-300">{course.name}</span>
+        {option.courses.map((course, courseIndex) => {
+          const cleanCode = extractCourseCode(course.code);
+          const isClickable = !!cleanCode;
+
+          return (
+            <div key={courseIndex} className="flex justify-between items-center p-2 bg-gray-600 rounded">
+              <div>
+                {isClickable ? (
+                  <button
+                    onClick={() => handleCourseClick(course.code)}
+                    className="font-medium text-cyan-300 hover:text-cyan-200 hover:underline transition-colors cursor-pointer"
+                  >
+                    {course.code}
+                  </button>
+                ) : (
+                  <span className="font-medium text-cyan-300">{course.code}</span>
+                )}
+                <span className="ml-2 text-gray-300">{course.name}</span>
+              </div>
+              <span className="text-sm bg-gray-500 px-2 py-1 rounded text-gray-300">
+                {course.credits} credits
+              </span>
             </div>
-            <span className="text-sm bg-gray-500 px-2 py-1 rounded text-gray-300">
-              {course.credits} credits
-            </span>
-          </div>
-        ))}
+          );
+        })}
       </div>
       {option.note && (
         <div className="text-sm text-gray-400 mt-2 italic">{option.note}</div>
@@ -297,6 +343,14 @@ const PreEngineeringRequirements: React.FC = () => {
         </div>
         {expandedCategories.technical && (
           <div className="space-y-6">
+            <div className="bg-cyan-900/40 border border-cyan-500 rounded-lg p-3">
+              <div className="flex items-start">
+                <span className="text-cyan-400 text-xl mr-2">💡</span>
+                <div className="text-cyan-100 text-sm leading-relaxed">
+                  <strong>Tip:</strong> Click on any course code to view course details and check availability.
+                </div>
+              </div>
+            </div>
             {preEngineeringRequirements.categories.map(renderCategory)}
           </div>
         )}
@@ -386,15 +440,24 @@ const PreEngineeringRequirements: React.FC = () => {
                   <p className="text-gray-300 text-sm mb-4">
                     {preEngineeringRequirements.aucRequirements.acceleratedNote}
                   </p>
+                  <div className="bg-cyan-900/40 border border-cyan-500 rounded-lg p-3 mb-4">
+                    <div className="flex items-start">
+                      <span className="text-cyan-400 text-xl mr-2">💡</span>
+                      <div className="text-cyan-100 text-sm leading-relaxed">
+                        <strong>Tip:</strong> Many courses satisfy multiple AUC requirements. Click on an AUC code below to see available courses for that requirement.
+                      </div>
+                    </div>
+                  </div>
                   <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
                     {preEngineeringRequirements.aucRequirements.acceleratedPrograms.map((req, index) => (
-                      <div 
-                        key={index} 
-                        className="bg-gradient-to-br from-blue-600 to-blue-700 p-3 rounded-lg text-center hover:from-blue-500 hover:to-blue-600 transition-all duration-200 shadow-lg"
+                      <button
+                        key={index}
+                        onClick={() => handleAucClick(req.code)}
+                        className="bg-gradient-to-br from-blue-600 to-blue-700 p-3 rounded-lg text-center hover:from-blue-500 hover:to-blue-600 transition-all duration-200 shadow-lg cursor-pointer transform hover:scale-105"
                       >
                         <div className="text-blue-100 font-semibold text-sm">{req.code} (x{req.count})</div>
                         <div className="text-blue-200 text-xs mt-1 leading-tight">{req.name}</div>
-                      </div>
+                      </button>
                     ))}
                   </div>
                 </div>
