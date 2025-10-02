@@ -13,10 +13,11 @@ export const getTooltipContent = (
       if (!programText) return '';
       
       const tooltips: { [key: string]: string } = {
-        '3+2': '3 years at Arcadia + 2 years at partner university',
-        '4+3': '4 years at Arcadia + 3 years at partner university', 
-        '3+3': '3 years at Arcadia + 3 years at partner university',
-        '2+1+1+1': '2 years at Arcadia, 1 at partner university, 1 at Arcadia, 1 final at partner university'
+        '3+2': '3 years at Arcadia + 2 years at partner university\n(Reduced AUCs apply - only 10)',
+        '4+2': '4 years at Arcadia + 2 years at partner university\n(All AUCs apply - 20+)',
+        '4+3': '4 years at Arcadia + 3 years at partner university\n(All AUCs apply - 20+)', 
+        '3+3': '3 years at Arcadia + 3 years at partner university\n(Reduced AUCs apply - only 10)',
+        '2+1+1+1': '2 years at Arcadia + 1 year at partner\n+ 1 year at Arcadia + 1 final year at partner\n(All AUCs apply - 20+)'
       };
       
       // Handle multiple program types
@@ -26,7 +27,7 @@ export const getTooltipContent = (
       if (descriptions.length === 0) return programText;
       if (descriptions.length === 1) return descriptions[0];
       
-      return descriptions.join(' • ');
+      return descriptions.map(desc => `• ${desc}`).join('\n\n');
     
     case 'coop':
       if (university.name === 'Drexel University') {
