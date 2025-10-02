@@ -440,7 +440,7 @@ export const partnerUniversities: PartnerUniversity[] = [
     },
     specialFeatures: {
       guaranteedAdmission: true,
-      programTypes: ["3+2"],
+      programTypes: ["3+2", "4+2"],
       degreeInfo: "BS from Arcadia + BS from University of Pittsburgh"
     },
   },
@@ -517,7 +517,7 @@ export const partnerUniversities: PartnerUniversity[] = [
     },
     specialFeatures: {
       guaranteedAdmission: false,
-      programTypes: ["3+2"],
+      programTypes: ["3+2", "4+2"],
       degreeInfo: "BS from Arcadia + BS from Columbia"
     },
   },
