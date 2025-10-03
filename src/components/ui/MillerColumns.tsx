@@ -136,6 +136,13 @@ const MillerColumns: React.FC<MillerColumnsProps> = ({ searchTerm }) => {
                       {university.specialFeatures.uniqueStructure}
                     </p>
                   )}
+
+                  {/* Drexel-specific Intent to Enroll reminder */}
+                  {university.id === 'drexel-university' && (
+                    <p className="text-xs text-blue-300 mb-1 font-medium">
+                      📋 Requires an &quot;Intent to Enroll form&quot; during 2nd year
+                    </p>
+                  )}
                   
                   {/* Program count and GPA */}
                   <p className="text-sm text-gray-400">
@@ -235,6 +242,21 @@ const MillerColumns: React.FC<MillerColumnsProps> = ({ searchTerm }) => {
                 </p>
               </div>
 
+              {/* Important Requirement - Intent to Enroll (Drexel Only) */}
+              {selected.university?.id === 'drexel-university' && (
+                <div className="bg-blue-900/60 border-l-4 border-blue-400 rounded-lg p-4 shadow-md mb-4">
+                  <div className="flex items-start gap-3">
+                    <div className="text-2xl flex-shrink-0">📋</div>
+                    <div>
+                      <h4 className="text-lg font-semibold text-blue-200 mb-2">Important: Intent to Enroll Form Required</h4>
+                      <p className="text-gray-200 text-sm leading-relaxed">
+                        Students must submit an <span className="text-blue-300 font-semibold">Intent to Enroll form</span> during their <span className="text-blue-300 font-semibold">second year</span> to inform the Drexel College of Engineering of their intent to transfer and indicate their engineering program of interest.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
+
               {/* University Requirements */}
               {selected.university?.requirements && (
                 <div className="bg-gray-800 rounded-lg p-4">
@@ -245,7 +267,12 @@ const MillerColumns: React.FC<MillerColumnsProps> = ({ searchTerm }) => {
                       <span className="text-white">{selected.university.requirements.gpa}</span>
                     </div>
                   )}
-                  <p className="text-gray-300 text-sm">{selected.university.requirements.notes}</p>
+                  {selected.university.id !== 'drexel-university' && (
+                    <p className="text-gray-300 text-sm">{selected.university.requirements.notes}</p>
+                  )}
+                  {selected.university.id === 'drexel-university' && (
+                    <p className="text-gray-300 text-sm">No specific GPA mentioned, but a strong academic record is expected.</p>
+                  )}
                 </div>
               )}
 

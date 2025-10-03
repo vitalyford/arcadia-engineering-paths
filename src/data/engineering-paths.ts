@@ -410,7 +410,7 @@ export const partnerUniversities: PartnerUniversity[] = [
     ],
     requirements: {
       gpa: "N/A",
-      notes: "No specific GPA mentioned, but a strong academic record is expected.",
+      notes: "No specific GPA mentioned, but a strong academic record is expected. Students must submit an Intent to Enroll form during their second year to inform the Drexel College of Engineering of their intent to transfer and indicate their engineering program of interest.",
     },
     specialFeatures: {
       guaranteedAdmission: true,
