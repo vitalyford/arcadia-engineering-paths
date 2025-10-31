@@ -436,7 +436,7 @@ export const partnerUniversities: PartnerUniversity[] = [
     ],
     requirements: {
       gpa: "3.00 (3.50 for Bioengineering)",
-      notes: "A GPA of 3.00 or higher in both prerequisite and overall GPA (3.50 for Bioengineering), with only grades of C or better eligible for transfer. At least two years of full-time study at Arcadia and a favorable recommendation from the program adviser are also required.",
+      notes: "A GPA of 3.00 or higher in both prerequisite and overall GPA (3.50 for Bioengineering), with only grades of C or better eligible for transfer. At least two years of full-time study at Arcadia and a favorable recommendation from the program adviser are also required.\n\nThe University of Pittsburgh provides a code to waive the admission fee for dual degree programs. Please contact Arcadia's engineering program liaison to request this code.",
     },
     specialFeatures: {
       guaranteedAdmission: true,
@@ -458,7 +458,7 @@ export const partnerUniversities: PartnerUniversity[] = [
     ],
     requirements: {
       gpa: "3.25",
-      notes: "A GPA of 3.25 or higher in both prerequisite and overall GPA, with only grades of C or better eligible for transfer. At least two years of full-time study at Arcadia and two letters of recommendation (including one from the program adviser) are required.",
+      notes: "A GPA of 3.25 or higher in both prerequisite and overall GPA, with only grades of C or better eligible for transfer. At least two years of full-time study at Arcadia and two letters of recommendation (including one from the program adviser) are required.\n\nApplications open in December each year, and students should apply only after Fall semester grades appear on their transcript. For more information, including the online application, scholarship details, merit scholarship opportunities, and letters of recommendation guidelines, visit: https://engineering.washu.edu/academics/dual-degree-program/application.html",
     },
     specialFeatures: {
       guaranteedAdmission: true,

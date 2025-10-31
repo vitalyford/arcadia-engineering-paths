@@ -268,7 +268,33 @@ const MillerColumns: React.FC<MillerColumnsProps> = ({ searchTerm }) => {
                     </div>
                   )}
                   {selected.university.id !== 'drexel-university' && (
-                    <p className="text-gray-300 text-sm">{selected.university.requirements.notes}</p>
+                    <div className="text-gray-300 text-sm whitespace-pre-line">
+                      {selected.university.requirements.notes.split('\n').map((line, idx, array) => {
+                        const urlRegex = /(https?:\/\/[^\s]+)/g;
+                        const parts = line.split(urlRegex);
+                        return (
+                          <span key={idx}>
+                            {parts.map((part, i) => {
+                              if (part.match(urlRegex)) {
+                                return (
+                                  <a
+                                    key={i}
+                                    href={part}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-cyan-400 hover:text-cyan-300 underline"
+                                  >
+                                    {part}
+                                  </a>
+                                );
+                              }
+                              return <span key={i}>{part}</span>;
+                            })}
+                            {idx < array.length - 1 && <br />}
+                          </span>
+                        );
+                      })}
+                    </div>
                   )}
                   {selected.university.id === 'drexel-university' && (
                     <p className="text-gray-300 text-sm">No specific GPA mentioned, but a strong academic record is expected.</p>
