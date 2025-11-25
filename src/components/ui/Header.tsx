@@ -4,8 +4,8 @@ import React from 'react';
 interface HeaderProps {
   searchTerm: string;
   onSearchChange: (term: string) => void;
-  activeView: 'pathways' | 'requirements';
-  onViewChange: (view: 'pathways' | 'requirements') => void;
+  activeView: 'pathways' | 'requirements' | 'compare';
+  onViewChange: (view: 'pathways' | 'requirements' | 'compare') => void;
 }
 
 const Header: React.FC<HeaderProps> = ({ searchTerm, onSearchChange, activeView, onViewChange }) => {
@@ -37,33 +37,41 @@ const Header: React.FC<HeaderProps> = ({ searchTerm, onSearchChange, activeView,
             </div>
           </div>
         </div>
-        
+
         {/* Navigation Tabs */}
         <div className="flex space-x-1 bg-gray-700 rounded-lg p-1">
           <button
             onClick={() => onViewChange('pathways')}
-            className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${
-              activeView === 'pathways'
-                ? 'bg-cyan-600 text-white shadow-sm'
-                : 'text-gray-300 hover:text-white hover:bg-gray-600'
-            }`}
+            className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${activeView === 'pathways'
+              ? 'bg-cyan-600 text-white shadow-sm'
+              : 'text-gray-300 hover:text-white hover:bg-gray-600'
+              }`}
           >
             Engineering Pathways
           </button>
           <button
             onClick={() => onViewChange('requirements')}
-            className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${
-              activeView === 'requirements'
-                ? 'bg-cyan-600 text-white shadow-sm'
-                : 'text-gray-300 hover:text-white hover:bg-gray-600'
-            }`}
+            className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${activeView === 'requirements'
+              ? 'bg-cyan-600 text-white shadow-sm'
+              : 'text-gray-300 hover:text-white hover:bg-gray-600'
+              }`}
           >
             Arcadia Course Requirements
+          </button>
+          <button
+            onClick={() => onViewChange('compare')}
+            className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${activeView === 'compare'
+              ? 'bg-cyan-600 text-white shadow-sm'
+              : 'text-gray-300 hover:text-white hover:bg-gray-600'
+              }`}
+          >
+            Compare Programs
           </button>
         </div>
       </div>
     </header>
   );
 };
+
 
 export default Header;
