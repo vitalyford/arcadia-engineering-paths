@@ -70,6 +70,10 @@ export interface PartnerUniversity {
     coopRequired?: boolean;
     uniqueStructure?: string;
   };
+  downloadableForm?: {
+    name: string;
+    path: string;
+  };
 }
 
 export const arcadiaMajors: ArcadiaMajor[] = [
@@ -81,7 +85,7 @@ export const arcadiaMajors: ArcadiaMajor[] = [
     courses: [
       // Common Curriculum (28 credits)
       "MA 201 Calculus I",
-      "MA 202 Calculus II", 
+      "MA 202 Calculus II",
       "MA 203 Calculus III",
       "MA 221 Linear Algebra",
       "MA 225 Writing Mathematics: A Transition to Higher Mathematics",
@@ -92,7 +96,7 @@ export const arcadiaMajors: ArcadiaMajor[] = [
       "Two Mathematics electives at the 300 level",
       // B.S. Requirements (28 additional credits)
       "MA 302 Introduction to Analysis",
-      "MA 322 Abstract Algebra I", 
+      "MA 322 Abstract Algebra I",
       "MA 341 Probability",
       "Three Mathematics electives at the 300 level",
       "PH 211 Conceptual Physics I"
@@ -162,7 +166,7 @@ export const arcadiaMajors: ArcadiaMajor[] = [
       "MA 202 Calculus II",
       // Biochemistry Concentration (optional)
       "BI 101 General Biology I",
-      "BI 102 General Biology II", 
+      "BI 102 General Biology II",
       "BI 204 Genetics",
       "BI 325 Cell Biology",
       "BI 333 Molecular Biology"
@@ -175,242 +179,112 @@ export const partnerUniversities: PartnerUniversity[] = [
     id: "drexel-university",
     name: "Drexel University",
     programs: [
-      { 
-        id: "architectural", 
-        name: "Architectural Engineering", 
-        arcadiaMajorIds: ["mathematics"], 
+      {
+        id: "architectural",
+        name: "Architectural Engineering",
+        arcadiaMajorIds: ["mathematics", "computer-science"],
         requirements: [
-          // Foundation Engineering Courses Required for All Majors
-          "MATH 121 Calculus 1 — 4 credits",
-          "MATH 122 Calculus 2 — 4 credits", 
-          "MATH 200 Multivariate Calculus — 4 credits",
-          "ECE 231/CAEE 231/MATH201 Linear Algebra — 3-4 credits",
-          "ECE 232/CAEE 232/MATH210 Differential Equations — 3-4 credits",
-          "PHYS 101 Fundamentals of Physics I — 4 credits",
-          "PHYS 102 Fundamentals of Physics II — 4 credits",
-          "CHEM 101 General Chemistry I — 3.5 credits",
-          "ENGR 111 Engineering Design & Data Analysis — 3 credits",
-          "ENGR 131 Programming for Engineers (Programming in Python) — 3 credits",
-          "ENGL 101 English Composition I — 3 credits",
-          "ENGL 102 English Composition II — 3 credits",
-          "ENGL 103 English Composition III — 3 credits",
-          "At least 12 credits of General Education Elective credits (non-technical)",
-          // Architectural Engineering Specific Requirements
-          "CHEM 102 General Chemistry 2 — 4.5 credits",
-          "PHYS 201 Fundamentals of Physics III — 4 credits",
-          "BIO 141 Essential Biology — 4.5 credits",
-          "MEM 202 Statics — 3 credits",
-          "MEM 238 Dynamics — 4 credits",
-          "3 credits Free Electives in any subject (excluding remedial/preparatory courses)"
-        ] 
+          "CS 222 Introduction to Data Science with Python (with CS 222L Lab)",
+          "CH 102 General Chemistry II (with CH 102L Lab)",
+          "BI 101 General Biology I (with BI 101L Lab)",
+          "PH 331 Engineering Mechanics",
+          "3 credits Free Electives in any subject (excluding MATH 100, MATH 110, MATH 117)"
+        ]
       },
-      { 
-        id: "chemical", 
-        name: "Chemical Engineering", 
-        arcadiaMajorIds: ["chemistry", "mathematics"], 
+      {
+        id: "chemical",
+        name: "Chemical Engineering",
+        arcadiaMajorIds: ["chemistry", "mathematics"],
         requirements: [
-          // Foundation Engineering Courses Required for All Majors
-          "MATH 121 Calculus 1 — 4 credits",
-          "MATH 122 Calculus 2 — 4 credits", 
-          "MATH 200 Multivariate Calculus — 4 credits",
-          "ECE 231/CAEE 231/MATH201 Linear Algebra — 3-4 credits",
-          "ECE 232/CAEE 232/MATH210 Differential Equations — 3-4 credits",
-          "PHYS 101 Fundamentals of Physics I — 4 credits",
-          "PHYS 102 Fundamentals of Physics II — 4 credits",
-          "CHEM 101 General Chemistry I — 3.5 credits",
-          "ENGR 111 Engineering Design & Data Analysis — 3 credits",
-          "ENGR 131 Programming for Engineers (Programming in Python) — 3 credits",
-          "ENGL 101 English Composition I — 3 credits",
-          "ENGL 102 English Composition II — 3 credits",
-          "ENGL 103 English Composition III — 3 credits",
-          "At least 12 credits of General Education Elective credits (non-technical)",
-          // Chemical Engineering Specific Requirements
-          "CHEM 102 General Chemistry 2 — 4.5 credits",
-          "CHEM 241 Organic Chemistry I — 4 credits",
-          "CHEM 242 Organic Chemistry II — 4 credits",
-          "BIO Elective — 3-4.5 credits (BIO 100, BIO 101, BIO 122, or BIO 141)",
-          "6 credits Engineering/Science Electives (200-499): ACCT, AE, BIO, BLAW, BMES, BUSN, CAEE, CHEM, CIVE, CMGT, CS, CT, ECE, ECEC, ECEE, ECEP, ECES, ECON, EET, EGMT, ENSS, ENVE, ENVS, FDSC, FIN GEO, INDE, INFO, INTB, MATE, MATH, MEM (except MEM 310), MET MGMT, MIS, MKTG, NFS, ORGB, OPM, PBHL, PENG, PHYS, SE, or CHE 399-380, CHE 1399, CHE T480, ENGR 370, or courses approved by CHE advisor",
-          "6 credits Engineering/Science Electives (300-499): AE, BIO, BMES, CAEE, CHEM, CIVE, CMGT, CS, CT, ECE, ECEC, ECEE, ECEP, ECES, EET, EGMT, ENSS, ENVE, ENVS, FDSC, GEO INDE, INFO, MATE, MATH, MEM (except MEM 310), MET, NFS, PBHL, PENG, PHYS, SE, or CHE 360, CHE 373, CHE 452, CHE 460, CHE 399-480, CHE 1399, CHE T480, CHEM 230, CHEM 231 [WI], CHEM 243, ENGR 370, or courses approved by CHE advisor"
-        ] 
+          "CS 222 Introduction to Data Science with Python (with CS 222L Lab)",
+          "CH 102 General Chemistry II (with CH 102L Lab)",
+          "CH 201 Organic Chemistry I (with CH 201L Lab)",
+          "CH 202 Organic Chemistry II (with CH 202L Lab)",
+          "BIO Elective (BI 101, BI 102, or BI 2xx level course)",
+          "6 credits Engineering/Science Electives (200-499 level): Biology, Chemistry, Mathematics, Computer Science, Physics, or courses approved by engineering advisor",
+          "6 credits Engineering/Science Electives (300-499 level): Biology, Chemistry, Mathematics, Computer Science, Physics, or courses approved by engineering advisor"
+        ]
       },
-      { 
-        id: "civil", 
-        name: "Civil Engineering", 
-        arcadiaMajorIds: ["mathematics"], 
+      {
+        id: "civil",
+        name: "Civil Engineering",
+        arcadiaMajorIds: ["mathematics", "computer-science"],
         requirements: [
-          // Foundation Engineering Courses Required for All Majors
-          "MATH 121 Calculus 1 — 4 credits",
-          "MATH 122 Calculus 2 — 4 credits", 
-          "MATH 200 Multivariate Calculus — 4 credits",
-          "ECE 231/CAEE 231/MATH201 Linear Algebra — 3-4 credits",
-          "ECE 232/CAEE 232/MATH210 Differential Equations — 3-4 credits",
-          "PHYS 101 Fundamentals of Physics I — 4 credits",
-          "PHYS 102 Fundamentals of Physics II — 4 credits",
-          "CHEM 101 General Chemistry I — 3.5 credits",
-          "ENGR 111 Engineering Design & Data Analysis — 3 credits",
-          "ENGR 131 Programming for Engineers (Programming in Python) — 3 credits",
-          "ENGL 101 English Composition I — 3 credits",
-          "ENGL 102 English Composition II — 3 credits",
-          "ENGL 103 English Composition III — 3 credits",
-          "At least 12 credits of General Education Elective credits (non-technical)",
-          // Civil Engineering Specific Requirements
-          "CHEM 102 General Chemistry 2 — 4.5 credits",
-          "PHYS 201 Fundamentals of Physics III — 4 credits",
-          "BIO 141 Essential Biology — 4.5 credits",
-          "MEM 202 Statics — 3 credits",
-          "MEM 238 Dynamics — 4 credits",
-          "6 credits Free Electives in any subject (excluding remedial/preparatory courses)"
-        ] 
+          "CS 222 Introduction to Data Science with Python (with CS 222L Lab)",
+          "CH 102 General Chemistry II (with CH 102L Lab)",
+          "BI 101 General Biology I (with BI 101L Lab)",
+          "PH 331 Engineering Mechanics",
+          "6 credits Free Electives in any subject (excluding MATH 100, MATH 110)"
+        ]
       },
-      { 
-        id: "computer", 
-        name: "Computer Engineering", 
-        arcadiaMajorIds: ["computer-science", "mathematics"], 
+      {
+        id: "computer",
+        name: "Computer Engineering",
+        arcadiaMajorIds: ["computer-science", "mathematics"],
         requirements: [
-          // Foundation Engineering Courses Required for All Majors
-          "MATH 121 Calculus 1 — 4 credits",
-          "MATH 122 Calculus 2 — 4 credits", 
-          "MATH 200 Multivariate Calculus — 4 credits",
-          "ECE 231/CAEE 231/MATH201 Linear Algebra — 3-4 credits",
-          "ECE 232/CAEE 232/MATH210 Differential Equations — 3-4 credits",
-          "PHYS 101 Fundamentals of Physics I — 4 credits",
-          "PHYS 102 Fundamentals of Physics II — 4 credits",
-          "CHEM 101 General Chemistry I — 3.5 credits",
-          "ENGR 111 Engineering Design & Data Analysis — 3 credits",
-          "ENGR 131 Programming for Engineers (Programming in Python) — 3 credits",
-          "ENGL 101 English Composition I — 3 credits",
-          "ENGL 102 English Composition II — 3 credits",
-          "ENGL 103 English Composition III — 3 credits",
-          "At least 12 credits of General Education Elective credits (non-technical)",
-          // Computer Engineering Specific Requirements
-          "PHYS 201 Fundamentals of Physics III — 4 credits",
-          "ECE 105 Programming for Engineers 2 — 3 credits",
-          "CS 260 Data Structures — 3 credits",
-          "ECE 201 Foundations of Electric Circuits I — 4 credits",
-          "COM 230 Public Speaking — 3 credits OR COM 310 Technical Communication — 3 credits",
-          "27 credits Free Electives in any subject (excluding remedial/preparatory courses)"
-        ] 
+          "CS 222 Introduction to Data Science with Python (with CS 222L Lab)",
+          "CS 203 Data Structures and Algorithm Analysis (with CS 203L Lab)",
+          "PH 341 Electronic Circuit Analysis I",
+          "CM 110 Speech Communications OR CS 225 Research Writing",
+          "27 credits Free Electives in any subject (excluding MATH 100, MATH 110)"
+        ]
       },
-      { 
-        id: "electrical", 
-        name: "Electrical Engineering", 
-        arcadiaMajorIds: ["computer-science", "mathematics"], 
+      {
+        id: "electrical",
+        name: "Electrical Engineering",
+        arcadiaMajorIds: ["computer-science", "mathematics"],
         requirements: [
-          // Foundation Engineering Courses Required for All Majors
-          "MATH 121 Calculus 1 — 4 credits",
-          "MATH 122 Calculus 2 — 4 credits", 
-          "MATH 200 Multivariate Calculus — 4 credits",
-          "ECE 231/CAEE 231/MATH201 Linear Algebra — 3-4 credits",
-          "ECE 232/CAEE 232/MATH210 Differential Equations — 3-4 credits",
-          "PHYS 101 Fundamentals of Physics I — 4 credits",
-          "PHYS 102 Fundamentals of Physics II — 4 credits",
-          "CHEM 101 General Chemistry I — 3.5 credits",
-          "ENGR 111 Engineering Design & Data Analysis — 3 credits",
-          "ENGR 131 Programming for Engineers (Programming in Python) — 3 credits",
-          "ENGL 101 English Composition I — 3 credits",
-          "ENGL 102 English Composition II — 3 credits",
-          "ENGL 103 English Composition III — 3 credits",
-          "At least 12 credits of General Education Elective credits (non-technical)",
-          // Electrical Engineering Specific Requirements
-          "PHYS 201 Fundamentals of Physics III — 4 credits",
-          "ECE 105 Programming for Engineers 2 — 3 credits",
-          "CS 260 Data Structures (Core Elective option) — 3 credits",
-          "ECE 201 Foundations of Electric Circuits I — 4 credits",
-          "COM 230 Public Speaking — 3 credits OR COM 310 Technical Communication — 3 credits",
-          "27 credits Free Electives in any subject (excluding remedial/preparatory courses)"
-        ] 
+          "CS 222 Introduction to Data Science with Python (with CS 222L Lab)",
+          "CS 203 Data Structures and Algorithm Analysis (with CS 203L Lab)",
+          "PH 341 Electronic Circuit Analysis I",
+          "CM 110 Speech Communications OR CS 225 Research Writing",
+          "27 credits Free Electives in any subject (excluding MA 100, MA 110, MA 117)"
+        ]
       },
-      { 
-        id: "environmental", 
-        name: "Environmental Engineering", 
-        arcadiaMajorIds: ["chemistry", "mathematics"], 
+      {
+        id: "environmental",
+        name: "Environmental Engineering",
+        arcadiaMajorIds: ["chemistry", "mathematics"],
         requirements: [
-          // Foundation Engineering Courses Required for All Majors
-          "MATH 121 Calculus 1 — 4 credits",
-          "MATH 122 Calculus 2 — 4 credits", 
-          "MATH 200 Multivariate Calculus — 4 credits",
-          "ECE 231/CAEE 231/MATH201 Linear Algebra — 3-4 credits",
-          "ECE 232/CAEE 232/MATH210 Differential Equations — 3-4 credits",
-          "PHYS 101 Fundamentals of Physics I — 4 credits",
-          "PHYS 102 Fundamentals of Physics II — 4 credits",
-          "CHEM 101 General Chemistry I — 3.5 credits",
-          "ENGR 111 Engineering Design & Data Analysis — 3 credits",
-          "ENGR 131 Programming for Engineers (Programming in Python) — 3 credits",
-          "ENGL 101 English Composition I — 3 credits",
-          "ENGL 102 English Composition II — 3 credits",
-          "ENGL 103 English Composition III — 3 credits",
-          "At least 12 credits of General Education Elective credits (non-technical)",
-          // Environmental Engineering Specific Requirements
-          "CHEM 102 General Chemistry 2 — 4.5 credits",
-          "CHEM 241 Organic Chemistry I — 4 credits",
-          "CHEM 242 Organic Chemistry II — 4 credits",
-          "PHYS 201 Fundamentals of Physics III — 4 credits",
-          "BIO 141 Essential Biology — 4.5 credits",
-          "6.0 credits Engineering/Science Electives (200-499): AE, BIO, BMES, CHE, CHEM, CIVE, CS, ECE, ECEP, ECEE, ECES, ECEC, GEO, ENVE, ENVS, INFO, MATE, MATH, MEM, PHYS, SE or courses approved by ENVE advisor",
-          "6.0 credits Engineering/Science Electives (300-499): AE, BIO, BMES, CHE, CHEM, CIVE, CS, ECE, ECEP, ECEE, ECES, ECEC, GEO, ENVE, ENVS, INFO, MATE, MATH, MEM, PHYS, SE, or PBHL305, PBHL 314, PBHL 317, PBHL 321, PBHL 350, PBHL 457 or courses approved by ENVE advisor"
-        ] 
+          "CS 222 Introduction to Data Science with Python (with CS 222L Lab)",
+          "CH 102 General Chemistry II (with CH 102L Lab)",
+          "CH 201 Organic Chemistry I (with CH 201L Lab)",
+          "CH 202 Organic Chemistry II (with CH 202L Lab)",
+          "PH 212 Physics II (with PH 212L Lab)",
+          "BI 101 General Biology I (with BI 101L Lab)",
+          "6 credits Engineering/Science Electives (200-499 level): Biology, Chemistry, Computer Science, Mathematics, Physics, or courses approved by ENVE advisor",
+          "6 credits Engineering/Science Electives (300-499 level): Biology, Chemistry, Computer Science, Mathematics, Physics, or courses approved by ENVE advisor"
+        ]
       },
-      { 
-        id: "materials-science", 
-        name: "Materials Science & Engineering", 
-        arcadiaMajorIds: ["chemistry", "mathematics"], 
+      {
+        id: "materials-science",
+        name: "Materials Science & Engineering",
+        arcadiaMajorIds: ["chemistry", "mathematics"],
         requirements: [
-          // Foundation Engineering Courses Required for All Majors
-          "MATH 121 Calculus 1 — 4 credits",
-          "MATH 122 Calculus 2 — 4 credits", 
-          "MATH 200 Multivariate Calculus — 4 credits",
-          "ECE 231/CAEE 231/MATH201 Linear Algebra — 3-4 credits",
-          "ECE 232/CAEE 232/MATH210 Differential Equations — 3-4 credits",
-          "PHYS 101 Fundamentals of Physics I — 4 credits",
-          "PHYS 102 Fundamentals of Physics II — 4 credits",
-          "CHEM 101 General Chemistry I — 3.5 credits",
-          "ENGR 111 Engineering Design & Data Analysis — 3 credits",
-          "ENGR 131 Programming for Engineers (Programming in Python) — 3 credits",
-          "ENGL 101 English Composition I — 3 credits",
-          "ENGL 102 English Composition II — 3 credits",
-          "ENGL 103 English Composition III — 3 credits",
-          "At least 12 credits of General Education Elective credits (non-technical)",
-          // Materials Science & Engineering Specific Requirements
-          "CHEM 102 General Chemistry 2 — 4.5 credits",
-          "CHEM 241 Organic Chemistry I — 4 credits",
-          "PHYS 201 Fundamentals of Physics III — 4 credits",
-          "BIO 107/108 Cells, Genetics & Physiology/Lab — 3/1 credits",
-          "6 credits Free Electives in any subject (excluding remedial/preparatory courses)"
-        ] 
+          "CS 222 Introduction to Data Science with Python (with CS 222L Lab)",
+          "CH 102 General Chemistry II (with CH 102L Lab)",
+          "CH 201 Organic Chemistry I (with CH 201L Lab)",
+          "BI 101 General Biology I (with BI 101L Lab)",
+          "6 credits Free Electives in any subject (excluding MA 100, MA 110, MA 117, CH 100)"
+        ]
       },
-      { 
-        id: "mechanical", 
-        name: "Mechanical Engineering", 
-        arcadiaMajorIds: ["mathematics"], 
+      {
+        id: "mechanical",
+        name: "Mechanical Engineering",
+        arcadiaMajorIds: ["mathematics", "computer-science", "chemistry"],
         requirements: [
-          // Foundation Engineering Courses Required for All Majors
-          "MATH 121 Calculus 1 — 4 credits",
-          "MATH 122 Calculus 2 — 4 credits", 
-          "MATH 200 Multivariate Calculus — 4 credits",
-          "ECE 231/CAEE 231/MATH201 Linear Algebra — 3-4 credits",
-          "ECE 232/CAEE 232/MATH210 Differential Equations — 3-4 credits",
-          "PHYS 101 Fundamentals of Physics I — 4 credits",
-          "PHYS 102 Fundamentals of Physics II — 4 credits",
-          "CHEM 101 General Chemistry I — 3.5 credits",
-          "ENGR 111 Engineering Design & Data Analysis — 3 credits",
-          "ENGR 131 Programming for Engineers (Programming in Python) — 3 credits",
-          "ENGL 101 English Composition I — 3 credits",
-          "ENGL 102 English Composition II — 3 credits",
-          "ENGL 103 English Composition III — 3 credits",
-          "At least 12 credits of General Education Elective credits (non-technical)",
-          // Mechanical Engineering Specific Requirements
-          "CHEM 102 General Chemistry 2 — 4.5 credits",
-          "PHYS 201 Fundamentals of Physics III — 4 credits",
-          "MEM 202 Statics — 3 credits",
-          "MEM 238 Dynamics — 4 credits",
-          "MATH Elective — 3-4 credits (MATH 291, MATH 300, MATH 321, MATH 322, or MATH 323)",
-          "6 credits Free Electives in any subject (excluding remedial/preparatory courses)"
-        ] 
+          "CS 222 Introduction to Data Science with Python (with CS 222L Lab)",
+          "CH 102 General Chemistry II (with CH 102L Lab)",
+          "PH 212 Physics II (with PH 212L Lab)",
+          "PH 331 Engineering Mechanics",
+          "MATH Elective (MATH 291, MATH 300, MATH 321, MATH 322, or MATH 323)",
+          "6 credits Free Electives in any subject (excluding MA 100, MA 110, MA 117, CH 100)"
+        ]
       },
     ],
     requirements: {
-      gpa: "N/A",
-      notes: "No specific GPA mentioned, but a strong academic record is expected. Students must submit an Intent to Enroll form during their second year to inform the Drexel College of Engineering of their intent to transfer and indicate their engineering program of interest.",
+      gpa: "3.0",
+      notes: "A minimum GPA of 3.0 is required. Students must submit an Intent to Enroll form during their second year to inform the Drexel College of Engineering of their intent to transfer and indicate their engineering program of interest.",
     },
     specialFeatures: {
       guaranteedAdmission: true,
@@ -419,6 +293,10 @@ export const partnerUniversities: PartnerUniversity[] = [
       coopRequired: true,
       uniqueStructure: "Includes 1 co-op (practicum) year out of the 3 years at Drexel"
     },
+    downloadableForm: {
+      name: "Intent to Enroll Form",
+      path: "/documents/Intent to Enroll Drexel.docx"
+    },
   },
   {
     id: "university-of-pittsburgh",
@@ -426,13 +304,13 @@ export const partnerUniversities: PartnerUniversity[] = [
     programs: [
       { id: "bioengineering", name: "Bioengineering", arcadiaMajorIds: ["chemistry", "mathematics"], requirements: ["BI 101 General Biology I", "BI 102 General Biology II", "BI 206 Human Physiology", "CH 201 Organic Chemistry I", "CH 202 Organic Chemistry II", "MA 341 Probability", "MA 342 Mathematical Statistics I", "PH 331 Engineering Mechanics", "Plus two elective courses in advanced life science, computer science, or mathematics."] },
       { id: "chemical-pitt", name: "Chemical Engineering", arcadiaMajorIds: ["chemistry", "mathematics"], requirements: ["CH 201 Organic Chemistry I", "CH 202 Organic Chemistry II", "CH 203 Equilibrium and Analysis", "CH 301 Physical Chemistry I", "CH 302 Physical Chemistry II", "CH 303 Biochemistry", "MA 341 Probability", "MA 342 Mathematical Statistics I", "PH 331 Engineering Mechanics", "Plus two elective courses in advanced life science, computer science, or mathematics."] },
-      { id: "civil-environmental-pitt", name: "Civil & Environmental Engineering", arcadiaMajorIds: ["mathematics", "chemistry"], requirements: ["MA 341 Probability", "MA 342 Mathematical Statistics I", "PH 325 Mathematical Physics", "PH 331 Engineering Mechanics", "PH 341 Electronic Circuit Analysis I", "ENGR 0131, 0141, 0151 (taken while at PITT)", "Plus one of the following: BI 101 General Biology I or PH 223 Essentials of Physical Geology."] },
+      { id: "civil-environmental-pitt", name: "Civil & Environmental Engineering", arcadiaMajorIds: ["mathematics", "chemistry", "computer-science"], requirements: ["MA 341 Probability", "MA 342 Mathematical Statistics I", "PH 325 Mathematical Physics", "PH 331 Engineering Mechanics", "PH 341 Electronic Circuit Analysis I", "ENGR 0131, 0141, 0151 (taken while at PITT)", "Plus one of the following: BI 101 General Biology I or PH 223 Essentials of Physical Geology."] },
       { id: "computer-pitt", name: "Computer Engineering", arcadiaMajorIds: ["computer-science", "mathematics"], requirements: ["EN 201 Thought and Expression II", "Plus two elective courses in advanced life science, computer science, or mathematics.", "Plus two elective courses in the arts and humanities."] },
       { id: "electrical-pitt", name: "Electrical Engineering", arcadiaMajorIds: ["computer-science", "mathematics"], requirements: ["MA 341 Probability", "MA 342 Mathematical Statistics I", "EN 201 Thought and Expression II", "Plus three elective courses in advanced life science, computer science, or mathematics.", "Plus one elective course in the arts and humanities."] },
       { id: "engineering-science-nano", name: "Engineering Science – Nanotechnology", arcadiaMajorIds: ["chemistry", "mathematics"], requirements: ["MATH 1560 Complex Variable (taken while at PITT)", "ENGR 0020 Materials Structures (taken while at PITT)", "MA 341 Probability", "MA 342 Mathematical Statistics I", "Plus three of the following: CH 201 Organic Chemistry I, CH 202 Organic Chemistry II, CH 301 Physical Chemistry I, CH 302 Physical Chemistry II, CH 303 Biochemistry, CH 305 Inorganic Chemistry."] },
-      { id: "industrial", name: "Industrial Engineering", arcadiaMajorIds: ["mathematics"], requirements: ["MA 341 Probability", "MA 342 Mathematical Statistics I", "PH 341 Electronic Circuit Analysis I", "Plus one course in public speaking, communications, or discussion.", "Plus two elective courses in advanced life science, computer science, or mathematics.", "PH 331 Engineering Mechanics."] },
+      { id: "industrial", name: "Industrial Engineering", arcadiaMajorIds: ["mathematics", "computer-science"], requirements: ["MA 341 Probability", "MA 342 Mathematical Statistics I", "PH 341 Electronic Circuit Analysis I", "Plus one course in public speaking, communications, or discussion.", "Plus two elective courses in advanced life science, computer science, or mathematics.", "PH 331 Engineering Mechanics."] },
       { id: "materials-science-pitt", name: "Materials Science & Engineering", arcadiaMajorIds: ["chemistry", "mathematics"], requirements: ["MA 341 Probability", "MA 342 Mathematical Statistics I", "PH 341 Electronic Circuit Analysis I", "PL 175 Introduction to Ethics", "ENGR 0131, 0141 (taken while at PITT)", "Plus one course in public speaking, communications, or discussion.", "PH 331 Engineering Mechanics."] },
-      { id: "mechanical-pitt", name: "Mechanical Engineering", arcadiaMajorIds: ["mathematics"], requirements: ["PH 331 Engineering Mechanics", "PH 341 Electronic Circuit Analysis I", "PL 175 Introduction to Ethics", "ENGR 0131, 0141, MEMS 1015 (taken while at PITT)", "Plus one course in public speaking, communications, or discussion."] },
+      { id: "mechanical-pitt", name: "Mechanical Engineering", arcadiaMajorIds: ["mathematics", "computer-science"], requirements: ["PH 331 Engineering Mechanics", "PH 341 Electronic Circuit Analysis I", "PL 175 Introduction to Ethics", "ENGR 0131, 0141, MEMS 1015 (taken while at PITT)", "Plus one course in public speaking, communications, or discussion."] },
     ],
     requirements: {
       gpa: "3.00 (3.50 for Bioengineering)",
@@ -453,7 +331,7 @@ export const partnerUniversities: PartnerUniversity[] = [
       { id: "computer-washu", name: "Computer Engineering", arcadiaMajorIds: ["computer-science", "mathematics"], requirements: ["CS 202 Problem-Solving with Algorithms and Programming II (with CS 202L Lab)"] },
       { id: "computer-science-washu", name: "Computer Science", arcadiaMajorIds: ["computer-science", "mathematics"], requirements: ["CS 202 Problem-Solving with Algorithms and Programming II (with CS 202L Lab)"] },
       { id: "electrical-washu", name: "Electrical Engineering", arcadiaMajorIds: ["computer-science", "mathematics"], requirements: [] },
-      { id: "mechanical-washu", name: "Mechanical Engineering", arcadiaMajorIds: ["mathematics"], requirements: ["One Physics course at 300 level"] },
+      { id: "mechanical-washu", name: "Mechanical Engineering", arcadiaMajorIds: ["mathematics", "computer-science"], requirements: ["One Physics course at 300 level"] },
       { id: "systems-science", name: "Systems Science and Engineering", arcadiaMajorIds: ["mathematics", "computer-science"], requirements: [] },
     ],
     requirements: {
@@ -471,15 +349,15 @@ export const partnerUniversities: PartnerUniversity[] = [
     id: "dartmouth-college",
     name: "Dartmouth College",
     programs: [
-        { id: "biomedical", name: "Biomedical Engineering", arcadiaMajorIds: ["chemistry", "mathematics"], requirements: [] },
-        { id: "biological", name: "Biological Engineering", arcadiaMajorIds: ["chemistry", "mathematics"], requirements: [] },
-        { id: "chemical-dartmouth", name: "Chemical Engineering", arcadiaMajorIds: ["chemistry", "mathematics"], requirements: [] },
-        { id: "computer-dartmouth", name: "Computer Engineering", arcadiaMajorIds: ["computer-science", "mathematics"], requirements: [] },
-        { id: "electrical-dartmouth", name: "Electrical Engineering", arcadiaMajorIds: ["computer-science", "mathematics"], requirements: [] },
-        { id: "energy", name: "Energy Engineering", arcadiaMajorIds: ["mathematics"], requirements: [] },
-        { id: "environmental-dartmouth", name: "Environmental Engineering", arcadiaMajorIds: ["chemistry", "mathematics"], requirements: [] },
-        { id: "materials-dartmouth", name: "Materials Engineering", arcadiaMajorIds: ["chemistry", "mathematics"], requirements: [] },
-        { id: "mechanical-dartmouth", name: "Mechanical Engineering", arcadiaMajorIds: ["mathematics"], requirements: [] },
+      { id: "biomedical", name: "Biomedical Engineering", arcadiaMajorIds: ["chemistry", "mathematics"], requirements: [] },
+      { id: "biological", name: "Biological Engineering", arcadiaMajorIds: ["chemistry", "mathematics"], requirements: [] },
+      { id: "chemical-dartmouth", name: "Chemical Engineering", arcadiaMajorIds: ["chemistry", "mathematics"], requirements: [] },
+      { id: "computer-dartmouth", name: "Computer Engineering", arcadiaMajorIds: ["computer-science", "mathematics"], requirements: [] },
+      { id: "electrical-dartmouth", name: "Electrical Engineering", arcadiaMajorIds: ["computer-science", "mathematics"], requirements: [] },
+      { id: "energy", name: "Energy Engineering", arcadiaMajorIds: ["mathematics"], requirements: [] },
+      { id: "environmental-dartmouth", name: "Environmental Engineering", arcadiaMajorIds: ["chemistry", "mathematics"], requirements: [] },
+      { id: "materials-dartmouth", name: "Materials Engineering", arcadiaMajorIds: ["chemistry", "mathematics"], requirements: [] },
+      { id: "mechanical-dartmouth", name: "Mechanical Engineering", arcadiaMajorIds: ["mathematics", "computer-science"], requirements: [] },
     ],
     requirements: {
       gpa: "N/A",
@@ -496,20 +374,20 @@ export const partnerUniversities: PartnerUniversity[] = [
     id: "columbia-university",
     name: "Columbia University",
     programs: [
-        { id: "applied-mathematics", name: "Applied Mathematics", arcadiaMajorIds: ["mathematics"], requirements: ["PH 324 Quantum Physics", "Plus one of the following: PH 325 Mathematical Physics, PH 331 Engineering Mechanics, PH 341 Electronic Circuit Analysis I"] },
-        { id: "applied-physics", name: "Applied Physics", arcadiaMajorIds: ["mathematics"], requirements: ["PH 324 Quantum Physics", "Plus one of the following: PH 325 Mathematical Physics, PH 331 Engineering Mechanics, PH 341 Electronic Circuit Analysis I"] },
-        { id: "biomedical-columbia", name: "Biomedical Engineering", arcadiaMajorIds: ["chemistry", "mathematics"], requirements: ["PH 324 Quantum Physics", "CH 102 General Chemistry II or CH 112 Conceptual Chemistry II", "BI 101 General Biology I", "BI 102 General Biology II", "ELEN E1201 Intro to Electrical Engineering (taken while at Columbia)"] },
-        { id: "chemical-columbia", name: "Chemical Engineering", arcadiaMajorIds: ["chemistry", "mathematics"], requirements: ["CH 102 General Chemistry II", "CH 112 Conceptual Chemistry II", "CH 201 Organic Chemistry I", "CH 202 Organic Chemistry II", "PH 325 Mathematical Physics"] },
-        { id: "civil-columbia", name: "Civil Engineering", arcadiaMajorIds: ["mathematics"], requirements: ["PH 331 Engineering Mechanics"] },
-        { id: "computer-columbia", name: "Computer Engineering", arcadiaMajorIds: ["computer-science", "mathematics"], requirements: ["MA 230 Discrete Structures", "ELEN 1201 Intro Electrical Engineering (taken while at Columbia)"] },
-        { id: "computer-science-columbia", name: "Computer Science", arcadiaMajorIds: ["computer-science", "mathematics"], requirements: ["CS 203 Data Structures and Algorithm Analysis (with CS 203L Lab)", "MA 230 Discrete Structures"] },
-        { id: "earth-environmental", name: "Earth and Environmental Engineering", arcadiaMajorIds: ["chemistry", "mathematics"], requirements: ["CH 102 General Chemistry II or CH 112 Conceptual Chemistry II", "MA 341 Probability", "MA 342 Mathematical Statistics I", "Plus one of the following: BI 101 General Biology I, CH 201 Organic Chemistry I, PH 324 Quantum Physics"] },
-        { id: "electrical-columbia", name: "Electrical Engineering", arcadiaMajorIds: ["computer-science", "mathematics"], requirements: ["PH 324 Quantum Physics", "CS 202 Problem-Solving with Algorithms and Programming II (with CS 202L Lab)", "ELEN 1201 Intro Electrical Engineering (taken while at Columbia)"] },
-        { id: "engineering-mechanics", name: "Engineering Mechanics", arcadiaMajorIds: ["mathematics"], requirements: ["PH 331 Engineering Mechanics"] },
-        { id: "engineering-management-systems", name: "Engineering Management Systems", arcadiaMajorIds: ["mathematics", "computer-science"], requirements: ["MA 341 Probability", "MA 342 Mathematical Statistics I", "CS 203 Data Structures and Algorithm Analysis (with CS 203L Lab)"] },
-        { id: "industrial-operations-research", name: "Industrial Engineering and Operations Research", arcadiaMajorIds: ["mathematics", "computer-science"], requirements: ["MA 341 Probability", "MA 342 Mathematical Statistics I", "CS 203 Data Structures and Algorithm Analysis (with CS 203L Lab)"] },
-        { id: "materials-science-columbia", name: "Materials Science and Engineering", arcadiaMajorIds: ["chemistry", "mathematics"], requirements: ["CH 102 General Chemistry II or CH 112 Conceptual Chemistry II", "PH 324 Quantum Physics"] },
-        { id: "mechanical-columbia", name: "Mechanical Engineering", arcadiaMajorIds: ["mathematics"], requirements: ["PH 331 Engineering Mechanics", "PH 324 Quantum Physics", "ELEN 1201 Intro Electrical Engineering (taken while at Columbia)"] },
+      { id: "applied-mathematics", name: "Applied Mathematics", arcadiaMajorIds: ["mathematics"], requirements: ["PH 324 Quantum Physics", "Plus one of the following: PH 325 Mathematical Physics, PH 331 Engineering Mechanics, PH 341 Electronic Circuit Analysis I"] },
+      { id: "applied-physics", name: "Applied Physics", arcadiaMajorIds: ["mathematics"], requirements: ["PH 324 Quantum Physics", "Plus one of the following: PH 325 Mathematical Physics, PH 331 Engineering Mechanics, PH 341 Electronic Circuit Analysis I"] },
+      { id: "biomedical-columbia", name: "Biomedical Engineering", arcadiaMajorIds: ["chemistry", "mathematics"], requirements: ["PH 324 Quantum Physics", "CH 102 General Chemistry II or CH 112 Conceptual Chemistry II", "BI 101 General Biology I", "BI 102 General Biology II", "ELEN E1201 Intro to Electrical Engineering (taken while at Columbia)"] },
+      { id: "chemical-columbia", name: "Chemical Engineering", arcadiaMajorIds: ["chemistry", "mathematics"], requirements: ["CH 102 General Chemistry II", "CH 112 Conceptual Chemistry II", "CH 201 Organic Chemistry I", "CH 202 Organic Chemistry II", "PH 325 Mathematical Physics"] },
+      { id: "civil-columbia", name: "Civil Engineering", arcadiaMajorIds: ["mathematics", "computer-science"], requirements: ["PH 331 Engineering Mechanics"] },
+      { id: "computer-columbia", name: "Computer Engineering", arcadiaMajorIds: ["computer-science", "mathematics"], requirements: ["MA 230 Discrete Structures", "ELEN 1201 Intro Electrical Engineering (taken while at Columbia)"] },
+      { id: "computer-science-columbia", name: "Computer Science", arcadiaMajorIds: ["computer-science", "mathematics"], requirements: ["CS 203 Data Structures and Algorithm Analysis (with CS 203L Lab)", "MA 230 Discrete Structures"] },
+      { id: "earth-environmental", name: "Earth and Environmental Engineering", arcadiaMajorIds: ["chemistry", "mathematics"], requirements: ["CH 102 General Chemistry II or CH 112 Conceptual Chemistry II", "MA 341 Probability", "MA 342 Mathematical Statistics I", "Plus one of the following: BI 101 General Biology I, CH 201 Organic Chemistry I, PH 324 Quantum Physics"] },
+      { id: "electrical-columbia", name: "Electrical Engineering", arcadiaMajorIds: ["computer-science", "mathematics"], requirements: ["PH 324 Quantum Physics", "CS 202 Problem-Solving with Algorithms and Programming II (with CS 202L Lab)", "ELEN 1201 Intro Electrical Engineering (taken while at Columbia)"] },
+      { id: "engineering-mechanics", name: "Engineering Mechanics", arcadiaMajorIds: ["mathematics"], requirements: ["PH 331 Engineering Mechanics"] },
+      { id: "engineering-management-systems", name: "Engineering Management Systems", arcadiaMajorIds: ["mathematics", "computer-science"], requirements: ["MA 341 Probability", "MA 342 Mathematical Statistics I", "CS 203 Data Structures and Algorithm Analysis (with CS 203L Lab)"] },
+      { id: "industrial-operations-research", name: "Industrial Engineering and Operations Research", arcadiaMajorIds: ["mathematics", "computer-science"], requirements: ["MA 341 Probability", "MA 342 Mathematical Statistics I", "CS 203 Data Structures and Algorithm Analysis (with CS 203L Lab)"] },
+      { id: "materials-science-columbia", name: "Materials Science and Engineering", arcadiaMajorIds: ["chemistry", "mathematics"], requirements: ["CH 102 General Chemistry II or CH 112 Conceptual Chemistry II", "PH 324 Quantum Physics"] },
+      { id: "mechanical-columbia", name: "Mechanical Engineering", arcadiaMajorIds: ["mathematics", "computer-science"], requirements: ["PH 331 Engineering Mechanics", "PH 324 Quantum Physics", "ELEN 1201 Intro Electrical Engineering (taken while at Columbia)"] },
     ],
     requirements: {
       gpa: "3.30",
@@ -540,7 +418,7 @@ export const preEngineeringRequirements: PreEngineeringRequirements = {
     },
     {
       id: "chemistry",
-      name: "Chemistry", 
+      name: "Chemistry",
       description: "Two chemistry courses - one from each sequence",
       courseOptions: [
         {
@@ -569,7 +447,7 @@ export const preEngineeringRequirements: PreEngineeringRequirements = {
       description: "Two physics courses covering fundamental concepts",
       courses: [
         { code: "PH 211", name: "Conceptual Physics I", credits: 4 },
-        { code: "PH 212", name: "Conceptual Physics II", credits: 4 }
+        { code: "PH 212", name: "Physics II", credits: 4 }
       ],
       totalCredits: 8
     },
