@@ -1,5 +1,6 @@
 
 import React from 'react';
+import Logo from './Logo';
 
 interface HeaderProps {
   searchTerm: string;
@@ -13,9 +14,12 @@ const Header: React.FC<HeaderProps> = ({ searchTerm, onSearchChange, activeView,
     <header className="w-full bg-gray-800 shadow-lg">
       <div className="container mx-auto p-4">
         <div className="flex justify-between items-center mb-4">
-          <div>
-            <h1 className="text-4xl font-extrabold text-white">Arcadia Engineering Pathways</h1>
-            <p className="text-gray-400 mt-1">Your guide to dual-degree engineering programs</p>
+          <div className="flex items-center gap-4">
+            <Logo className="w-14 h-14 shrink-0" />
+            <div>
+              <h1 className="text-4xl font-extrabold text-white">Arcadia Engineering Pathways</h1>
+              <p className="text-gray-400 mt-1">Your guide to dual-degree engineering programs</p>
+            </div>
           </div>
           {activeView === 'pathways' && (
             <div className="flex items-center space-x-4">
