@@ -52,7 +52,7 @@ const ComparisonCard: React.FC<ComparisonCardProps> = ({
                     <div className="flex items-center justify-between mb-1">
                         <span className="text-gray-400 text-sm font-medium">GPA Requirement</span>
                         {isLowestGPA && (
-                            <span className="text-xs bg-blue-600 text-white px-2 py-0.5 rounded-full font-semibold">
+                            <span className="text-xs bg-white text-gray-900 px-2 py-0.5 rounded-full font-semibold">
                                 ✓ Lowest
                             </span>
                         )}
@@ -62,9 +62,9 @@ const ComparisonCard: React.FC<ComparisonCardProps> = ({
                             </span>
                         )}
                     </div>
-                    <p className={`text-2xl font-bold ${isLowestGPA ? 'text-blue-400' :
-                            isHighestGPA ? 'text-amber-400' :
-                                'text-cyan-400'
+                    <p className={`text-2xl font-bold ${isLowestGPA ? 'text-white' :
+                        isHighestGPA ? 'text-amber-400' :
+                            'text-cyan-400'
                         }`}>
                         {gpaValue || 'Not specified'}
                     </p>
@@ -128,7 +128,7 @@ const ComparisonCard: React.FC<ComparisonCardProps> = ({
                     <div className="flex items-center justify-between mb-1">
                         <span className="text-gray-400 text-sm font-medium">Course Requirements</span>
                         {hasFewestRequirements && (
-                            <span className="text-xs bg-blue-600 text-white px-2 py-0.5 rounded-full font-semibold">
+                            <span className="text-xs bg-white text-gray-900 px-2 py-0.5 rounded-full font-semibold">
                                 ✓ Fewest
                             </span>
                         )}
@@ -138,9 +138,9 @@ const ComparisonCard: React.FC<ComparisonCardProps> = ({
                             </span>
                         )}
                     </div>
-                    <p className={`text-2xl font-bold ${hasFewestRequirements ? 'text-blue-400' :
-                            hasMostRequirements ? 'text-amber-400' :
-                                'text-purple-400'
+                    <p className={`text-2xl font-bold ${hasFewestRequirements ? 'text-white' :
+                        hasMostRequirements ? 'text-amber-400' :
+                            'text-purple-400'
                         }`}>
                         {program.requirements.length}
                     </p>

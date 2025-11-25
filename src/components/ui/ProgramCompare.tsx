@@ -98,7 +98,7 @@ const ProgramCompare: React.FC = () => {
                 {/* Selection Info */}
                 <div className="mt-3 flex items-center gap-4 text-sm">
                     <div className="flex items-center gap-2">
-                        <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                        <div className="w-3 h-3 bg-white rounded-full"></div>
                         <span className="text-gray-300">Best value</span>
                     </div>
                     <div className="flex items-center gap-2">
@@ -128,15 +128,15 @@ const ProgramCompare: React.FC = () => {
                                     <span className="font-semibold text-cyan-400">💡 Tip:</span> Compare programs from different universities to find the best fit
                                 </div>
                                 <div className="bg-gray-800 rounded-lg p-3 text-left">
-                                    <span className="font-semibold text-cyan-400">💡 Tip:</span> Look for blue badges to identify the easiest programs
+                                    <span className="font-semibold text-cyan-400">💡 Tip:</span> Look for white badges to identify the easiest programs
                                 </div>
                             </div>
                         </div>
                     </div>
                 ) : (
                     <div className={`grid gap-6 ${selectedPrograms.length === 1 ? 'grid-cols-1 max-w-2xl mx-auto' :
-                            selectedPrograms.length === 2 ? 'grid-cols-1 lg:grid-cols-2' :
-                                'grid-cols-1 lg:grid-cols-2 xl:grid-cols-3'
+                        selectedPrograms.length === 2 ? 'grid-cols-1 lg:grid-cols-2' :
+                            'grid-cols-1 lg:grid-cols-2 xl:grid-cols-3'
                         }`}>
                         {selectedPrograms.map((option, index) => (
                             <div
