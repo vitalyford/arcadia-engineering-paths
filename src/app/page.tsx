@@ -11,13 +11,21 @@ export default function Home() {
   const { searchTerm, updateSearchTerm } = useSearchState();
   const [activeView, setActiveView] = useState<'pathways' | 'requirements' | 'compare'>('pathways');
 
+  const handleViewChange = (view: 'pathways' | 'requirements' | 'compare') => {
+    setActiveView(view);
+    // Clear search term when switching away from pathways view
+    if (view !== 'pathways' && searchTerm) {
+      updateSearchTerm('');
+    }
+  };
+
   return (
     <main className="h-screen flex flex-col bg-gray-900 overflow-hidden">
       <Header
         searchTerm={searchTerm}
         onSearchChange={updateSearchTerm}
         activeView={activeView}
-        onViewChange={setActiveView}
+        onViewChange={handleViewChange}
       />
       <div className="flex-1 flex flex-col min-h-0">
         {activeView === 'pathways' ? (
