@@ -289,7 +289,7 @@ export const partnerUniversities: PartnerUniversity[] = [
     specialFeatures: {
       guaranteedAdmission: true,
       programTypes: ["3+3", "4+3"],
-      degreeInfo: "BS from Arcadia + BS from Drexel",
+      degreeInfo: "BA from Arcadia + BS from Drexel",
       coopRequired: true,
       uniqueStructure: "Includes 1 co-op (practicum) year out of the 3 years at Drexel"
     },
@@ -319,7 +319,7 @@ export const partnerUniversities: PartnerUniversity[] = [
     specialFeatures: {
       guaranteedAdmission: true,
       programTypes: ["3+2", "4+2"],
-      degreeInfo: "BS from Arcadia + BS from University of Pittsburgh"
+      degreeInfo: "BA from Arcadia + BS from University of Pittsburgh"
     },
   },
   {
@@ -341,7 +341,7 @@ export const partnerUniversities: PartnerUniversity[] = [
     specialFeatures: {
       guaranteedAdmission: true,
       programTypes: ["3+3", "4+3"],
-      degreeInfo: "BS from Arcadia + BS and MS from Washington University",
+      degreeInfo: "BA from Arcadia + BS and MS from Washington University",
       uniqueStructure: "Guarantees 50% discount on tuition including for international students"
     },
   },
@@ -366,7 +366,7 @@ export const partnerUniversities: PartnerUniversity[] = [
     specialFeatures: {
       guaranteedAdmission: false,
       programTypes: ["2+1+1+1", "3+2"],
-      degreeInfo: "BS from Arcadia + BS from Dartmouth",
+      degreeInfo: "BA from Arcadia + BS from Dartmouth",
       uniqueStructure: "2+1+1+1: 2 years at Arcadia, 1 at Dartmouth, 1 at Arcadia, 1 final at Dartmouth"
     },
   },
@@ -396,7 +396,7 @@ export const partnerUniversities: PartnerUniversity[] = [
     specialFeatures: {
       guaranteedAdmission: false,
       programTypes: ["3+2", "4+2"],
-      degreeInfo: "BS from Arcadia + BS from Columbia"
+      degreeInfo: "BA from Arcadia + BS from Columbia"
     },
   },
 ];
