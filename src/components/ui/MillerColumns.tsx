@@ -83,40 +83,39 @@ const MillerColumns: React.FC<MillerColumnsProps> = ({ searchTerm }) => {
             </span>
           )}
         </div>
-        <div className="flex-1 overflow-y-auto min-h-0" style={{ maxHeight: 'calc(100vh - 280px)' }}>
+        <div className="flex-1 overflow-y-auto min-h-0 custom-scrollbar" style={{ maxHeight: 'calc(100vh - 280px)' }}>
           {filteredUniversities.map((university) => (
             <div
               key={university.id}
               onClick={() => handleUniversitySelect(university)}
-              className={`px-4 py-3 cursor-pointer border-b border-gray-700 hover:bg-gray-600 transition-colors ${
-                selected.university?.id === university.id ? 'bg-blue-600 hover:bg-blue-500' : ''
-              }`}
+              className={`px-4 py-3 cursor-pointer border-b border-gray-700 hover:bg-gray-600 transition-colors ${selected.university?.id === university.id ? 'bg-blue-600 hover:bg-blue-500' : ''
+                }`}
             >
               <div className="flex items-start justify-between">
                 <div className="flex-1">
                   <h3 className="font-medium text-white mb-1">{university.name}</h3>
-                  
+
                   {/* Special Features Tags */}
                   <div className="flex flex-wrap gap-1 mb-2">
                     {university.specialFeatures.guaranteedAdmission && (
-                      <SpecialTag 
-                        type="guaranteed-admission" 
+                      <SpecialTag
+                        type="guaranteed-admission"
                         text={getShortText('guaranteed-admission', 'Guaranteed Admission')}
                         tooltip={getTooltipContent('guaranteed-admission', university)}
                       />
                     )}
-                    
+
                     {university.specialFeatures.programTypes.length > 0 && (
-                      <SpecialTag 
-                        type="program-type" 
+                      <SpecialTag
+                        type="program-type"
                         text={university.specialFeatures.programTypes.join(' & ')}
                         tooltip={getTooltipContent('program-type', university, university.specialFeatures.programTypes.join(' & '))}
                       />
                     )}
-                    
+
                     {university.specialFeatures.coopRequired && (
-                      <SpecialTag 
-                        type="coop" 
+                      <SpecialTag
+                        type="coop"
                         text="Co-op"
                         tooltip={getTooltipContent('coop', university)}
                       />
@@ -143,7 +142,7 @@ const MillerColumns: React.FC<MillerColumnsProps> = ({ searchTerm }) => {
                       📋 Requires an &quot;Intent to Enroll form&quot; during 2nd year
                     </p>
                   )}
-                  
+
                   {/* Program count and GPA */}
                   <p className="text-sm text-gray-400">
                     {university.programs.length} program{university.programs.length !== 1 ? 's' : ''}
@@ -173,7 +172,7 @@ const MillerColumns: React.FC<MillerColumnsProps> = ({ searchTerm }) => {
             </span>
           )}
         </div>
-        <div className="flex-1 overflow-y-auto min-h-0" style={{ maxHeight: 'calc(100vh - 280px)' }}>
+        <div className="flex-1 overflow-y-auto min-h-0 custom-scrollbar" style={{ maxHeight: 'calc(100vh - 280px)' }}>
           {!selected.university ? (
             <div className="h-full flex items-center justify-center text-center text-gray-400">
               <div>
@@ -186,9 +185,8 @@ const MillerColumns: React.FC<MillerColumnsProps> = ({ searchTerm }) => {
               <div
                 key={program.id}
                 onClick={() => handleProgramSelect(program)}
-                className={`px-4 py-3 cursor-pointer border-b border-gray-700 hover:bg-gray-600 transition-colors ${
-                  selected.program?.id === program.id ? 'bg-blue-600 hover:bg-blue-500' : ''
-                }`}
+                className={`px-4 py-3 cursor-pointer border-b border-gray-700 hover:bg-gray-600 transition-colors ${selected.program?.id === program.id ? 'bg-blue-600 hover:bg-blue-500' : ''
+                  }`}
               >
                 <div className="flex items-center justify-between">
                   <div>
@@ -197,12 +195,12 @@ const MillerColumns: React.FC<MillerColumnsProps> = ({ searchTerm }) => {
                       {program.arcadiaMajorIds.map((majorId) => {
                         const major = arcadiaMajors.find(m => m.id === majorId);
                         return major ? (
-                          <span
+                          <SpecialTag
                             key={majorId}
-                            className="text-xs bg-cyan-600 text-white px-2 py-1 rounded"
-                          >
-                            {major.name}
-                          </span>
+                            type="major"
+                            text={major.name}
+                            tooltip={getTooltipContent('major')}
+                          />
                         ) : null;
                       })}
                     </div>
@@ -222,7 +220,7 @@ const MillerColumns: React.FC<MillerColumnsProps> = ({ searchTerm }) => {
             Details
           </h2>
         </div>
-        <div className="flex-1 overflow-y-auto p-4 min-h-0" style={{ maxHeight: 'calc(100vh - 280px)' }}>
+        <div className="flex-1 overflow-y-auto p-4 min-h-0 custom-scrollbar" style={{ maxHeight: 'calc(100vh - 280px)' }}>
           {!selected.program ? (
             <div className="h-full flex items-center justify-center text-center text-gray-400">
               <div>
@@ -247,11 +245,23 @@ const MillerColumns: React.FC<MillerColumnsProps> = ({ searchTerm }) => {
                 <div className="bg-blue-900/60 border-l-4 border-blue-400 rounded-lg p-4 shadow-md mb-4">
                   <div className="flex items-start gap-3">
                     <div className="text-2xl flex-shrink-0">📋</div>
-                    <div>
+                    <div className="flex-1">
                       <h4 className="text-lg font-semibold text-blue-200 mb-2">Important: Intent to Enroll Form Required</h4>
-                      <p className="text-gray-200 text-sm leading-relaxed">
+                      <p className="text-gray-200 text-sm leading-relaxed mb-3">
                         Students must submit an <span className="text-blue-300 font-semibold">Intent to Enroll form</span> during their <span className="text-blue-300 font-semibold">second year</span> to inform the Drexel College of Engineering of their intent to transfer and indicate their engineering program of interest.
                       </p>
+                      {selected.university.downloadableForm && (
+                        <a
+                          href={selected.university.downloadableForm.path}
+                          download
+                          className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-medium px-4 py-2 rounded-lg transition-colors text-sm"
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                          </svg>
+                          Download {selected.university.downloadableForm.name}
+                        </a>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -323,14 +333,14 @@ const MillerColumns: React.FC<MillerColumnsProps> = ({ searchTerm }) => {
               {selected.university?.specialFeatures && (
                 <div className="bg-gray-800 rounded-lg p-4">
                   <h4 className="text-lg font-semibold text-white mb-3">Program Features</h4>
-                  
+
                   {/* Guaranteed Admission */}
                   <div className="mb-4">
                     <div className="flex items-center gap-2 mb-2">
                       <span className="text-gray-400 font-medium">Admission Type:</span>
                       {selected.university.specialFeatures.guaranteedAdmission ? (
-                        <SpecialTag 
-                          type="guaranteed-admission" 
+                        <SpecialTag
+                          type="guaranteed-admission"
                           text={getShortText('guaranteed-admission', 'Guaranteed Admission')}
                           tooltip={getTooltipContent('guaranteed-admission', selected.university)}
                         />
@@ -345,8 +355,8 @@ const MillerColumns: React.FC<MillerColumnsProps> = ({ searchTerm }) => {
                     <div className="mb-4">
                       <div className="flex items-center gap-2 mb-2">
                         <span className="text-gray-400 font-medium">Program Structure:</span>
-                        <SpecialTag 
-                          type="program-type" 
+                        <SpecialTag
+                          type="program-type"
                           text={selected.university.specialFeatures.programTypes.join(' & ')}
                           tooltip={getTooltipContent('program-type', selected.university, selected.university.specialFeatures.programTypes.join(' & '))}
                         />
@@ -367,9 +377,9 @@ const MillerColumns: React.FC<MillerColumnsProps> = ({ searchTerm }) => {
                     <div className="mb-4">
                       <div className="flex items-center gap-2 mb-1">
                         <span className="text-gray-400 font-medium">Co-op Requirement:</span>
-                        <SpecialTag 
-                          type="coop" 
-                          text="Required" 
+                        <SpecialTag
+                          type="coop"
+                          text="Required"
                           tooltip={getTooltipContent('coop', selected.university)}
                         />
                       </div>
