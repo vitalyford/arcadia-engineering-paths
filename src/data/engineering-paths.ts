@@ -182,7 +182,7 @@ export const partnerUniversities: PartnerUniversity[] = [
       {
         id: "architectural",
         name: "Architectural Engineering",
-        arcadiaMajorIds: ["mathematics"],
+        arcadiaMajorIds: ["mathematics", "computer-science"],
         requirements: [
           "CS 222 Introduction to Data Science with Python (with CS 222L Lab)",
           "CH 102 General Chemistry II (with CH 102L Lab)",
@@ -208,7 +208,7 @@ export const partnerUniversities: PartnerUniversity[] = [
       {
         id: "civil",
         name: "Civil Engineering",
-        arcadiaMajorIds: ["mathematics"],
+        arcadiaMajorIds: ["mathematics", "computer-science"],
         requirements: [
           "CS 222 Introduction to Data Science with Python (with CS 222L Lab)",
           "CH 102 General Chemistry II (with CH 102L Lab)",
@@ -271,7 +271,7 @@ export const partnerUniversities: PartnerUniversity[] = [
       {
         id: "mechanical",
         name: "Mechanical Engineering",
-        arcadiaMajorIds: ["mathematics"],
+        arcadiaMajorIds: ["mathematics", "computer-science", "chemistry"],
         requirements: [
           "CS 222 Introduction to Data Science with Python (with CS 222L Lab)",
           "CH 102 General Chemistry II (with CH 102L Lab)",
@@ -304,13 +304,13 @@ export const partnerUniversities: PartnerUniversity[] = [
     programs: [
       { id: "bioengineering", name: "Bioengineering", arcadiaMajorIds: ["chemistry", "mathematics"], requirements: ["BI 101 General Biology I", "BI 102 General Biology II", "BI 206 Human Physiology", "CH 201 Organic Chemistry I", "CH 202 Organic Chemistry II", "MA 341 Probability", "MA 342 Mathematical Statistics I", "PH 331 Engineering Mechanics", "Plus two elective courses in advanced life science, computer science, or mathematics."] },
       { id: "chemical-pitt", name: "Chemical Engineering", arcadiaMajorIds: ["chemistry", "mathematics"], requirements: ["CH 201 Organic Chemistry I", "CH 202 Organic Chemistry II", "CH 203 Equilibrium and Analysis", "CH 301 Physical Chemistry I", "CH 302 Physical Chemistry II", "CH 303 Biochemistry", "MA 341 Probability", "MA 342 Mathematical Statistics I", "PH 331 Engineering Mechanics", "Plus two elective courses in advanced life science, computer science, or mathematics."] },
-      { id: "civil-environmental-pitt", name: "Civil & Environmental Engineering", arcadiaMajorIds: ["mathematics", "chemistry"], requirements: ["MA 341 Probability", "MA 342 Mathematical Statistics I", "PH 325 Mathematical Physics", "PH 331 Engineering Mechanics", "PH 341 Electronic Circuit Analysis I", "ENGR 0131, 0141, 0151 (taken while at PITT)", "Plus one of the following: BI 101 General Biology I or PH 223 Essentials of Physical Geology."] },
+      { id: "civil-environmental-pitt", name: "Civil & Environmental Engineering", arcadiaMajorIds: ["mathematics", "chemistry", "computer-science"], requirements: ["MA 341 Probability", "MA 342 Mathematical Statistics I", "PH 325 Mathematical Physics", "PH 331 Engineering Mechanics", "PH 341 Electronic Circuit Analysis I", "ENGR 0131, 0141, 0151 (taken while at PITT)", "Plus one of the following: BI 101 General Biology I or PH 223 Essentials of Physical Geology."] },
       { id: "computer-pitt", name: "Computer Engineering", arcadiaMajorIds: ["computer-science", "mathematics"], requirements: ["EN 201 Thought and Expression II", "Plus two elective courses in advanced life science, computer science, or mathematics.", "Plus two elective courses in the arts and humanities."] },
       { id: "electrical-pitt", name: "Electrical Engineering", arcadiaMajorIds: ["computer-science", "mathematics"], requirements: ["MA 341 Probability", "MA 342 Mathematical Statistics I", "EN 201 Thought and Expression II", "Plus three elective courses in advanced life science, computer science, or mathematics.", "Plus one elective course in the arts and humanities."] },
       { id: "engineering-science-nano", name: "Engineering Science – Nanotechnology", arcadiaMajorIds: ["chemistry", "mathematics"], requirements: ["MATH 1560 Complex Variable (taken while at PITT)", "ENGR 0020 Materials Structures (taken while at PITT)", "MA 341 Probability", "MA 342 Mathematical Statistics I", "Plus three of the following: CH 201 Organic Chemistry I, CH 202 Organic Chemistry II, CH 301 Physical Chemistry I, CH 302 Physical Chemistry II, CH 303 Biochemistry, CH 305 Inorganic Chemistry."] },
-      { id: "industrial", name: "Industrial Engineering", arcadiaMajorIds: ["mathematics"], requirements: ["MA 341 Probability", "MA 342 Mathematical Statistics I", "PH 341 Electronic Circuit Analysis I", "Plus one course in public speaking, communications, or discussion.", "Plus two elective courses in advanced life science, computer science, or mathematics.", "PH 331 Engineering Mechanics."] },
+      { id: "industrial", name: "Industrial Engineering", arcadiaMajorIds: ["mathematics", "computer-science"], requirements: ["MA 341 Probability", "MA 342 Mathematical Statistics I", "PH 341 Electronic Circuit Analysis I", "Plus one course in public speaking, communications, or discussion.", "Plus two elective courses in advanced life science, computer science, or mathematics.", "PH 331 Engineering Mechanics."] },
       { id: "materials-science-pitt", name: "Materials Science & Engineering", arcadiaMajorIds: ["chemistry", "mathematics"], requirements: ["MA 341 Probability", "MA 342 Mathematical Statistics I", "PH 341 Electronic Circuit Analysis I", "PL 175 Introduction to Ethics", "ENGR 0131, 0141 (taken while at PITT)", "Plus one course in public speaking, communications, or discussion.", "PH 331 Engineering Mechanics."] },
-      { id: "mechanical-pitt", name: "Mechanical Engineering", arcadiaMajorIds: ["mathematics"], requirements: ["PH 331 Engineering Mechanics", "PH 341 Electronic Circuit Analysis I", "PL 175 Introduction to Ethics", "ENGR 0131, 0141, MEMS 1015 (taken while at PITT)", "Plus one course in public speaking, communications, or discussion."] },
+      { id: "mechanical-pitt", name: "Mechanical Engineering", arcadiaMajorIds: ["mathematics", "computer-science"], requirements: ["PH 331 Engineering Mechanics", "PH 341 Electronic Circuit Analysis I", "PL 175 Introduction to Ethics", "ENGR 0131, 0141, MEMS 1015 (taken while at PITT)", "Plus one course in public speaking, communications, or discussion."] },
     ],
     requirements: {
       gpa: "3.00 (3.50 for Bioengineering)",
@@ -331,7 +331,7 @@ export const partnerUniversities: PartnerUniversity[] = [
       { id: "computer-washu", name: "Computer Engineering", arcadiaMajorIds: ["computer-science", "mathematics"], requirements: ["CS 202 Problem-Solving with Algorithms and Programming II (with CS 202L Lab)"] },
       { id: "computer-science-washu", name: "Computer Science", arcadiaMajorIds: ["computer-science", "mathematics"], requirements: ["CS 202 Problem-Solving with Algorithms and Programming II (with CS 202L Lab)"] },
       { id: "electrical-washu", name: "Electrical Engineering", arcadiaMajorIds: ["computer-science", "mathematics"], requirements: [] },
-      { id: "mechanical-washu", name: "Mechanical Engineering", arcadiaMajorIds: ["mathematics"], requirements: ["One Physics course at 300 level"] },
+      { id: "mechanical-washu", name: "Mechanical Engineering", arcadiaMajorIds: ["mathematics", "computer-science"], requirements: ["One Physics course at 300 level"] },
       { id: "systems-science", name: "Systems Science and Engineering", arcadiaMajorIds: ["mathematics", "computer-science"], requirements: [] },
     ],
     requirements: {
@@ -357,7 +357,7 @@ export const partnerUniversities: PartnerUniversity[] = [
       { id: "energy", name: "Energy Engineering", arcadiaMajorIds: ["mathematics"], requirements: [] },
       { id: "environmental-dartmouth", name: "Environmental Engineering", arcadiaMajorIds: ["chemistry", "mathematics"], requirements: [] },
       { id: "materials-dartmouth", name: "Materials Engineering", arcadiaMajorIds: ["chemistry", "mathematics"], requirements: [] },
-      { id: "mechanical-dartmouth", name: "Mechanical Engineering", arcadiaMajorIds: ["mathematics"], requirements: [] },
+      { id: "mechanical-dartmouth", name: "Mechanical Engineering", arcadiaMajorIds: ["mathematics", "computer-science"], requirements: [] },
     ],
     requirements: {
       gpa: "N/A",
@@ -378,7 +378,7 @@ export const partnerUniversities: PartnerUniversity[] = [
       { id: "applied-physics", name: "Applied Physics", arcadiaMajorIds: ["mathematics"], requirements: ["PH 324 Quantum Physics", "Plus one of the following: PH 325 Mathematical Physics, PH 331 Engineering Mechanics, PH 341 Electronic Circuit Analysis I"] },
       { id: "biomedical-columbia", name: "Biomedical Engineering", arcadiaMajorIds: ["chemistry", "mathematics"], requirements: ["PH 324 Quantum Physics", "CH 102 General Chemistry II or CH 112 Conceptual Chemistry II", "BI 101 General Biology I", "BI 102 General Biology II", "ELEN E1201 Intro to Electrical Engineering (taken while at Columbia)"] },
       { id: "chemical-columbia", name: "Chemical Engineering", arcadiaMajorIds: ["chemistry", "mathematics"], requirements: ["CH 102 General Chemistry II", "CH 112 Conceptual Chemistry II", "CH 201 Organic Chemistry I", "CH 202 Organic Chemistry II", "PH 325 Mathematical Physics"] },
-      { id: "civil-columbia", name: "Civil Engineering", arcadiaMajorIds: ["mathematics"], requirements: ["PH 331 Engineering Mechanics"] },
+      { id: "civil-columbia", name: "Civil Engineering", arcadiaMajorIds: ["mathematics", "computer-science"], requirements: ["PH 331 Engineering Mechanics"] },
       { id: "computer-columbia", name: "Computer Engineering", arcadiaMajorIds: ["computer-science", "mathematics"], requirements: ["MA 230 Discrete Structures", "ELEN 1201 Intro Electrical Engineering (taken while at Columbia)"] },
       { id: "computer-science-columbia", name: "Computer Science", arcadiaMajorIds: ["computer-science", "mathematics"], requirements: ["CS 203 Data Structures and Algorithm Analysis (with CS 203L Lab)", "MA 230 Discrete Structures"] },
       { id: "earth-environmental", name: "Earth and Environmental Engineering", arcadiaMajorIds: ["chemistry", "mathematics"], requirements: ["CH 102 General Chemistry II or CH 112 Conceptual Chemistry II", "MA 341 Probability", "MA 342 Mathematical Statistics I", "Plus one of the following: BI 101 General Biology I, CH 201 Organic Chemistry I, PH 324 Quantum Physics"] },
@@ -387,7 +387,7 @@ export const partnerUniversities: PartnerUniversity[] = [
       { id: "engineering-management-systems", name: "Engineering Management Systems", arcadiaMajorIds: ["mathematics", "computer-science"], requirements: ["MA 341 Probability", "MA 342 Mathematical Statistics I", "CS 203 Data Structures and Algorithm Analysis (with CS 203L Lab)"] },
       { id: "industrial-operations-research", name: "Industrial Engineering and Operations Research", arcadiaMajorIds: ["mathematics", "computer-science"], requirements: ["MA 341 Probability", "MA 342 Mathematical Statistics I", "CS 203 Data Structures and Algorithm Analysis (with CS 203L Lab)"] },
       { id: "materials-science-columbia", name: "Materials Science and Engineering", arcadiaMajorIds: ["chemistry", "mathematics"], requirements: ["CH 102 General Chemistry II or CH 112 Conceptual Chemistry II", "PH 324 Quantum Physics"] },
-      { id: "mechanical-columbia", name: "Mechanical Engineering", arcadiaMajorIds: ["mathematics"], requirements: ["PH 331 Engineering Mechanics", "PH 324 Quantum Physics", "ELEN 1201 Intro Electrical Engineering (taken while at Columbia)"] },
+      { id: "mechanical-columbia", name: "Mechanical Engineering", arcadiaMajorIds: ["mathematics", "computer-science"], requirements: ["PH 331 Engineering Mechanics", "PH 324 Quantum Physics", "ELEN 1201 Intro Electrical Engineering (taken while at Columbia)"] },
     ],
     requirements: {
       gpa: "3.30",
