@@ -128,7 +128,7 @@ const ProgramCompare: React.FC = () => {
                                     <span className="font-semibold text-cyan-400">💡 Tip:</span> Compare programs from different universities to find the best fit
                                 </div>
                                 <div className="bg-gray-800 rounded-lg p-3 text-left">
-                                    <span className="font-semibold text-cyan-400">💡 Tip:</span> Look for white badges to identify the easiest programs
+                                    <span className="font-semibold text-cyan-400">💡 Tip:</span> Look for white badges to identify the programs with the least requirements
                                 </div>
                             </div>
                         </div>
