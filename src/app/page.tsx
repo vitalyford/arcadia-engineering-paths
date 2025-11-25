@@ -5,6 +5,7 @@ import MillerColumns from '@/components/ui/MillerColumns';
 import PreEngineeringRequirements from '@/components/ui/PreEngineeringRequirements';
 import ProgramCompare from '@/components/ui/ProgramCompare';
 import Header from '@/components/ui/Header';
+import Footer from '@/components/ui/Footer';
 import { useSearchState } from '@/hooks/useSearch';
 
 export default function Home() {
@@ -42,6 +43,7 @@ export default function Home() {
           </div>
         )}
       </div>
+      <Footer />
     </main>
   );
 }
