@@ -83,7 +83,7 @@ const MillerColumns: React.FC<MillerColumnsProps> = ({ searchTerm }) => {
             </span>
           )}
         </div>
-        <div className="flex-1 overflow-y-auto min-h-0" style={{ maxHeight: 'calc(100vh - 280px)' }}>
+        <div className="flex-1 overflow-y-auto min-h-0 custom-scrollbar" style={{ maxHeight: 'calc(100vh - 280px)' }}>
           {filteredUniversities.map((university) => (
             <div
               key={university.id}
@@ -172,7 +172,7 @@ const MillerColumns: React.FC<MillerColumnsProps> = ({ searchTerm }) => {
             </span>
           )}
         </div>
-        <div className="flex-1 overflow-y-auto min-h-0" style={{ maxHeight: 'calc(100vh - 280px)' }}>
+        <div className="flex-1 overflow-y-auto min-h-0 custom-scrollbar" style={{ maxHeight: 'calc(100vh - 280px)' }}>
           {!selected.university ? (
             <div className="h-full flex items-center justify-center text-center text-gray-400">
               <div>
@@ -220,7 +220,7 @@ const MillerColumns: React.FC<MillerColumnsProps> = ({ searchTerm }) => {
             Details
           </h2>
         </div>
-        <div className="flex-1 overflow-y-auto p-4 min-h-0" style={{ maxHeight: 'calc(100vh - 280px)' }}>
+        <div className="flex-1 overflow-y-auto p-4 min-h-0 custom-scrollbar" style={{ maxHeight: 'calc(100vh - 280px)' }}>
           {!selected.program ? (
             <div className="h-full flex items-center justify-center text-center text-gray-400">
               <div>

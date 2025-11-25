@@ -32,7 +32,14 @@ body {
   animation: fade-in 0.4s ease-out forwards;
 }
 
-/* Custom scrollbar for comparison cards */
+/* Custom scrollbar for comparison cards and miller columns */
+.custom-scrollbar {
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(96, 165, 250, 0.5) rgba(31, 41, 55, 0.5);
+}
+
+/* Chrome, Edge, Safari */
 .custom-scrollbar::-webkit-scrollbar {
   width: 6px;
 }
