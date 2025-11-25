@@ -70,6 +70,10 @@ export interface PartnerUniversity {
     coopRequired?: boolean;
     uniqueStructure?: string;
   };
+  downloadableForm?: {
+    name: string;
+    path: string;
+  };
 }
 
 export const arcadiaMajors: ArcadiaMajor[] = [
@@ -288,6 +292,10 @@ export const partnerUniversities: PartnerUniversity[] = [
       degreeInfo: "BS from Arcadia + BS from Drexel",
       coopRequired: true,
       uniqueStructure: "Includes 1 co-op (practicum) year out of the 3 years at Drexel"
+    },
+    downloadableForm: {
+      name: "Intent to Enroll Form",
+      path: "/documents/Intent to Enroll Drexel.docx"
     },
   },
   {
