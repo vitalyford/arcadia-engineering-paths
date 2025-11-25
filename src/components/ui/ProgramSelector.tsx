@@ -26,7 +26,7 @@ const ProgramSelector: React.FC<ProgramSelectorProps> = ({
 
     // Filter and search programs
     const filteredOptions = useMemo(() => {
-        let options: ProgramOption[] = [];
+        const options: ProgramOption[] = [];
 
         partnerUniversities.forEach(university => {
             university.programs.forEach(program => {
