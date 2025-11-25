@@ -360,7 +360,7 @@ export const partnerUniversities: PartnerUniversity[] = [
       { id: "mechanical-dartmouth", name: "Mechanical Engineering", arcadiaMajorIds: ["mathematics", "computer-science"], requirements: [] },
     ],
     requirements: {
-      gpa: "N/A",
+      gpa: "3.2",
       notes: "Students are encouraged to apply. No specific requirements mentioned.",
     },
     specialFeatures: {
