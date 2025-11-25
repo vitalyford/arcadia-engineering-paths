@@ -195,12 +195,12 @@ const MillerColumns: React.FC<MillerColumnsProps> = ({ searchTerm }) => {
                       {program.arcadiaMajorIds.map((majorId) => {
                         const major = arcadiaMajors.find(m => m.id === majorId);
                         return major ? (
-                          <span
+                          <SpecialTag
                             key={majorId}
-                            className="text-xs bg-cyan-600 text-white px-2 py-1 rounded"
-                          >
-                            {major.name}
-                          </span>
+                            type="major"
+                            text={major.name}
+                            tooltip={getTooltipContent('major')}
+                          />
                         ) : null;
                       })}
                     </div>

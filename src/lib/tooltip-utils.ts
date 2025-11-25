@@ -1,11 +1,16 @@
 import { PartnerUniversity } from '../data/engineering-paths';
 
+export const MAJOR_TOOLTIP = 'These are the typical Arcadia majors for students pursuing this dual degree path.';
+
 export const getTooltipContent = (
-  type: 'guaranteed-admission' | 'program-type' | 'coop',
-  university: PartnerUniversity,
+  type: 'guaranteed-admission' | 'program-type' | 'coop' | 'major',
+  university?: PartnerUniversity,
   programText?: string
 ): string => {
   switch (type) {
+    case 'major':
+      return MAJOR_TOOLTIP;
+    
     case 'guaranteed-admission':
       return 'If students satisfy the course and GPA requirements, they are automatically admitted. Other universities require application even after meeting requirements.';
     
@@ -30,7 +35,7 @@ export const getTooltipContent = (
       return descriptions.map(desc => `• ${desc}`).join('\n\n');
     
     case 'coop':
-      if (university.name === 'Drexel University') {
+      if (university?.name === 'Drexel University') {
         return 'Includes 1 co-op (practicum) year out of the 3 years at Drexel. Co-op provides hands-on work experience at companies.';
       }
       return 'Co-op (cooperative education) provides hands-on work experience at companies during studies.';

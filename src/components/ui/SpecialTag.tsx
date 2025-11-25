@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
 interface SpecialTagProps {
-  type: 'guaranteed-admission' | 'program-type' | 'coop';
+  type: 'guaranteed-admission' | 'program-type' | 'coop' | 'major';
   text: string;
   tooltip?: string;
   icon?: string;
@@ -82,6 +82,8 @@ const SpecialTag: React.FC<SpecialTagProps> = ({ type, text, tooltip, icon, clas
         return 'bg-blue-600 text-white border-blue-500';
       case 'coop':
         return 'bg-orange-600 text-white border-orange-500';
+      case 'major':
+        return 'bg-cyan-600 text-white border-cyan-500';
       default:
         return 'bg-gray-600 text-white border-gray-500';
     }
@@ -97,6 +99,8 @@ const SpecialTag: React.FC<SpecialTagProps> = ({ type, text, tooltip, icon, clas
         return '🎓';
       case 'coop':
         return '💼';
+      case 'major':
+        return '';
       default:
         return '';
     }

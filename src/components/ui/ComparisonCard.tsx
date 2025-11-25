@@ -75,12 +75,12 @@ const ComparisonCard: React.FC<ComparisonCardProps> = ({
                     <span className="text-gray-400 text-sm font-medium block mb-2">Related Arcadia Majors</span>
                     <div className="flex flex-wrap gap-1">
                         {matchingMajors.map(major => (
-                            <span
+                            <SpecialTag
                                 key={major.id}
-                                className="text-xs bg-cyan-600 text-white px-2 py-1 rounded font-medium"
-                            >
-                                {major.name}
-                            </span>
+                                type="major"
+                                text={major.name}
+                                tooltip={getTooltipContent('major')}
+                            />
                         ))}
                     </div>
                 </div>
