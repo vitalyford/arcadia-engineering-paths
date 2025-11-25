@@ -279,8 +279,8 @@ export const partnerUniversities: PartnerUniversity[] = [
       },
     ],
     requirements: {
-      gpa: "N/A",
-      notes: "No specific GPA mentioned, but a strong academic record is expected. Students must submit an Intent to Enroll form during their second year to inform the Drexel College of Engineering of their intent to transfer and indicate their engineering program of interest.",
+      gpa: "3.0",
+      notes: "A minimum GPA of 3.0 is required. Students must submit an Intent to Enroll form during their second year to inform the Drexel College of Engineering of their intent to transfer and indicate their engineering program of interest.",
     },
     specialFeatures: {
       guaranteedAdmission: true,
