@@ -14,7 +14,7 @@ const Header: React.FC<HeaderProps> = ({ searchTerm, onSearchChange, activeView,
   return (
     <header className="w-full bg-white shadow-lg border-b border-gray-200 relative">
       <BlueprintBackground />
-      <div className="container mx-auto p-4">
+      <div className="container mx-auto p-4 relative">
         {/* Title - always on top */}
         <div className="text-center mb-4">
           <h1 className="text-2xl md:text-4xl font-light text-gray-900 tracking-tight">Arcadia University Engineering Pathways</h1>
@@ -55,10 +55,10 @@ const Header: React.FC<HeaderProps> = ({ searchTerm, onSearchChange, activeView,
           </button>
         </div>
 
-        {/* Search Bar - below tabs on mobile, positioned absolutely on desktop */}
+        {/* Search Bar - below tabs on mobile/medium, positioned absolutely on large screens */}
         {activeView === 'pathways' && (
-          <div className="md:absolute md:top-4 md:right-4">
-            <div className="relative w-full md:w-64">
+          <div className="lg:absolute lg:top-4 lg:right-4">
+            <div className="relative w-full lg:w-64">
               <input
                 type="text"
                 placeholder="Search majors, universities..."
