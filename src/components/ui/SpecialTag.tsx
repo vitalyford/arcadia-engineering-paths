@@ -79,11 +79,11 @@ const SpecialTag: React.FC<SpecialTagProps> = ({ type, text, tooltip, icon, clas
       case 'guaranteed-admission':
         return 'bg-green-600 text-white border-green-500';
       case 'program-type':
-        return 'bg-blue-600 text-white border-blue-500';
+        return 'bg-primary text-white border-primary';
       case 'coop':
         return 'bg-orange-600 text-white border-orange-500';
       case 'major':
-        return 'bg-cyan-600 text-white border-cyan-500';
+        return 'bg-primary text-white border-primary';
       default:
         return 'bg-gray-600 text-white border-gray-500';
     }
@@ -146,7 +146,7 @@ const SpecialTag: React.FC<SpecialTagProps> = ({ type, text, tooltip, icon, clas
 
       {tooltip && showTooltip && typeof window !== 'undefined' && createPortal(
         <div
-          className="fixed px-3 py-2 bg-gray-900 text-white text-sm rounded-lg shadow-xl border border-gray-700 z-[9999] w-72 pointer-events-none"
+          className="fixed px-3 py-2 bg-white text-gray-800 text-sm rounded-lg shadow-xl border-2 border-gray-200 z-[9999] w-72 pointer-events-none"
           style={{
             top: `${tooltipPosition.top}px`,
             left: `${tooltipPosition.left}px`,

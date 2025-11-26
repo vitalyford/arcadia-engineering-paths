@@ -73,15 +73,15 @@ const ProgramCompare: React.FC = () => {
             <div className="mb-6">
                 <div className="flex items-center justify-between mb-4">
                     <div>
-                        <h2 className="text-3xl font-bold text-white mb-2">Compare Engineering Programs</h2>
-                        <p className="text-gray-400">
+                        <h2 className="text-3xl font-bold text-gray-900 mb-2">Compare Engineering Programs</h2>
+                        <p className="text-gray-600">
                             Select up to 3 programs to compare side-by-side
                         </p>
                     </div>
                     {selectedPrograms.length > 0 && (
                         <button
                             onClick={() => setSelectedPrograms([])}
-                            className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium transition-colors shadow-lg"
+                            className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium transition-colors shadow-sm"
                         >
                             Clear All ({selectedPrograms.length})
                         </button>
@@ -98,14 +98,14 @@ const ProgramCompare: React.FC = () => {
                 {/* Selection Info */}
                 <div className="mt-3 flex items-center gap-4 text-sm">
                     <div className="flex items-center gap-2">
-                        <div className="w-3 h-3 bg-white rounded-full"></div>
-                        <span className="text-gray-300">Best value</span>
+                        <div className="w-3 h-3 bg-white border border-gray-300 rounded-full"></div>
+                        <span className="text-gray-600">Best value</span>
                     </div>
                     <div className="flex items-center gap-2">
                         <div className="w-3 h-3 bg-amber-500 rounded-full"></div>
-                        <span className="text-gray-300">Highest requirement</span>
+                        <span className="text-gray-600">Highest requirement</span>
                     </div>
-                    <div className="flex-1 text-right text-gray-400">
+                    <div className="flex-1 text-right text-gray-500">
                         {selectedPrograms.length} / 3 programs selected
                     </div>
                 </div>
@@ -117,18 +117,18 @@ const ProgramCompare: React.FC = () => {
                     <div className="h-full flex items-center justify-center">
                         <div className="text-center">
                             <div className="text-6xl mb-4 opacity-50">🔍</div>
-                            <h3 className="text-2xl font-bold text-white mb-2">No Programs Selected</h3>
-                            <p className="text-gray-400 max-w-md">
+                            <h3 className="text-2xl font-bold text-gray-900 mb-2">No Programs Selected</h3>
+                            <p className="text-gray-600 max-w-md">
                                 Use the search bar above to add programs to compare.
                                 <br />
                                 You can compare up to 3 programs at once.
                             </p>
-                            <div className="mt-6 grid grid-cols-1 gap-3 max-w-sm mx-auto text-sm text-gray-300">
-                                <div className="bg-gray-800 rounded-lg p-3 text-left">
-                                    <span className="font-semibold text-cyan-400">💡 Tip:</span> Compare programs from different universities to find the best fit
+                            <div className="mt-6 grid grid-cols-1 gap-3 max-w-sm mx-auto text-sm text-gray-600">
+                                <div className="bg-white border border-gray-200 rounded-lg p-3 text-left shadow-sm">
+                                    <span className="font-semibold text-primary">💡 Tip:</span> Compare programs from different universities to find the best fit
                                 </div>
-                                <div className="bg-gray-800 rounded-lg p-3 text-left">
-                                    <span className="font-semibold text-cyan-400">💡 Tip:</span> Look for white badges to identify the programs with the least requirements
+                                <div className="bg-white border border-gray-200 rounded-lg p-3 text-left shadow-sm">
+                                    <span className="font-semibold text-primary">💡 Tip:</span> Look for white badges to identify the programs with the least requirements
                                 </div>
                             </div>
                         </div>

@@ -21,7 +21,7 @@ export default function Home() {
   };
 
   return (
-    <main className="h-screen flex flex-col bg-gray-900 overflow-hidden">
+    <main className="h-screen flex flex-col bg-gray-50 overflow-hidden">
       <Header
         searchTerm={searchTerm}
         onSearchChange={updateSearchTerm}

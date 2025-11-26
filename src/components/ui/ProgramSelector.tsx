@@ -95,7 +95,7 @@ const ProgramSelector: React.FC<ProgramSelectorProps> = ({
                     }}
                     onFocus={() => setIsOpen(true)}
                     disabled={isMaxSelected}
-                    className={`w-full bg-gray-700 text-white placeholder-gray-400 px-4 py-3 pr-10 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400 transition-all ${isMaxSelected ? 'opacity-50 cursor-not-allowed' : ''
+                    className={`w-full bg-white text-gray-900 placeholder-gray-500 px-4 py-3 pr-10 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary border border-gray-300 transition-all shadow-sm ${isMaxSelected ? 'opacity-50 cursor-not-allowed bg-gray-100' : ''
                         }`}
                 />
                 <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400">
@@ -113,9 +113,9 @@ const ProgramSelector: React.FC<ProgramSelectorProps> = ({
                     />
 
                     {/* Dropdown content */}
-                    <div className="absolute top-full mt-2 w-full bg-gray-700 rounded-lg shadow-2xl z-20 max-h-96 overflow-y-auto border border-gray-600">
+                    <div className="absolute top-full mt-2 w-full bg-white rounded-lg shadow-xl z-20 max-h-96 overflow-y-auto border border-gray-200">
                         {Object.keys(groupedOptions).length === 0 ? (
-                            <div className="p-4 text-center text-gray-400">
+                            <div className="p-4 text-center text-gray-500">
                                 No programs found
                             </div>
                         ) : (
@@ -123,7 +123,7 @@ const ProgramSelector: React.FC<ProgramSelectorProps> = ({
                                 {Object.entries(groupedOptions).map(([universityName, options]) => (
                                     <div key={universityName}>
                                         {/* University Header */}
-                                        <div className="px-4 py-2 bg-gray-600 text-cyan-300 font-semibold text-sm sticky top-0">
+                                        <div className="px-4 py-2 bg-gray-100 text-primary font-semibold text-sm sticky top-0 border-b border-gray-200">
                                             {universityName}
                                         </div>
 
@@ -134,23 +134,23 @@ const ProgramSelector: React.FC<ProgramSelectorProps> = ({
                                                 <div
                                                     key={`${option.university.id}-${option.program.id}`}
                                                     onClick={() => handleSelect(option)}
-                                                    className={`px-4 py-3 cursor-pointer hover:bg-gray-600 transition-colors border-b border-gray-600 ${selected ? 'bg-gray-600/50 opacity-50' : ''
+                                                    className={`px-4 py-3 cursor-pointer hover:bg-gray-50 transition-colors border-b border-gray-100 ${selected ? 'bg-gray-50 opacity-50' : ''
                                                         }`}
                                                 >
                                                     <div className="flex items-center justify-between">
                                                         <div className="flex-1">
-                                                            <p className="text-white font-medium">{option.program.name}</p>
-                                                            <p className="text-gray-400 text-xs mt-0.5">
+                                                            <p className="text-gray-900 font-medium">{option.program.name}</p>
+                                                            <p className="text-gray-500 text-xs mt-0.5">
                                                                 {option.program.requirements.length} requirement{option.program.requirements.length !== 1 ? 's' : ''}
                                                                 {option.university.requirements.gpa !== 'N/A' && (
-                                                                    <span className="ml-2 text-yellow-400">
+                                                                    <span className="ml-2 text-amber-600 font-medium">
                                                                         • GPA: {option.university.requirements.gpa}
                                                                     </span>
                                                                 )}
                                                             </p>
                                                         </div>
                                                         {selected && (
-                                                            <span className="text-green-400 ml-2">✓</span>
+                                                            <span className="text-green-600 ml-2">✓</span>
                                                         )}
                                                     </div>
                                                 </div>

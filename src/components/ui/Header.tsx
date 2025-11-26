@@ -1,6 +1,6 @@
 
+
 import React from 'react';
-import Logo from './Logo';
 
 interface HeaderProps {
   searchTerm: string;
@@ -11,30 +11,27 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ searchTerm, onSearchChange, activeView, onViewChange }) => {
   return (
-    <header className="w-full bg-gray-800 shadow-lg">
+    <header className="w-full bg-white shadow-lg border-b border-gray-200">
       <div className="container mx-auto p-4">
-        <div className="flex justify-between items-center mb-4">
-          <div className="flex items-center gap-4">
-            <Logo className="w-14 h-14 shrink-0" />
-            <div>
-              <h1 className="text-4xl font-extrabold text-white">Arcadia Engineering Pathways</h1>
-              <p className="text-gray-400 mt-1">Your guide to dual-degree engineering programs</p>
-            </div>
+        <div className="relative flex justify-center items-center mb-4">
+          <div className="text-center">
+            <h1 className="text-4xl font-light text-gray-900 tracking-tight">Arcadia University Engineering Pathways</h1>
+            <p className="text-gray-600 mt-1">Your guide to dual-degree engineering programs</p>
           </div>
           {activeView === 'pathways' && (
-            <div className="flex items-center space-x-4">
+            <div className="absolute right-0 flex items-center space-x-4">
               <div className="relative">
                 <input
                   type="text"
                   placeholder="Search majors, universities..."
                   value={searchTerm}
                   onChange={(e) => onSearchChange(e.target.value)}
-                  className="bg-gray-700 text-white placeholder-gray-400 px-4 py-2 rounded-lg w-64 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                  className="bg-gray-100 text-gray-900 placeholder-gray-500 px-4 py-2 rounded-lg w-64 focus:outline-none focus:ring-2 focus:ring-primary border border-gray-200"
                 />
                 {searchTerm && (
                   <button
                     onClick={() => onSearchChange('')}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white"
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
                   >
                     ✕
                   </button>
@@ -45,12 +42,12 @@ const Header: React.FC<HeaderProps> = ({ searchTerm, onSearchChange, activeView,
         </div>
 
         {/* Navigation Tabs */}
-        <div className="flex space-x-1 bg-gray-700 rounded-lg p-1">
+        <div className="flex space-x-1 bg-gray-100 rounded-lg p-1 border border-gray-200">
           <button
             onClick={() => onViewChange('pathways')}
             className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${activeView === 'pathways'
-              ? 'bg-cyan-600 text-white shadow-sm'
-              : 'text-gray-300 hover:text-white hover:bg-gray-600'
+              ? 'bg-primary text-white shadow-sm'
+              : 'text-gray-600 hover:text-gray-900 hover:bg-gray-200'
               }`}
           >
             Engineering Pathways
@@ -58,8 +55,8 @@ const Header: React.FC<HeaderProps> = ({ searchTerm, onSearchChange, activeView,
           <button
             onClick={() => onViewChange('requirements')}
             className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${activeView === 'requirements'
-              ? 'bg-cyan-600 text-white shadow-sm'
-              : 'text-gray-300 hover:text-white hover:bg-gray-600'
+              ? 'bg-primary text-white shadow-sm'
+              : 'text-gray-600 hover:text-gray-900 hover:bg-gray-200'
               }`}
           >
             Arcadia Course Requirements
@@ -67,8 +64,8 @@ const Header: React.FC<HeaderProps> = ({ searchTerm, onSearchChange, activeView,
           <button
             onClick={() => onViewChange('compare')}
             className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${activeView === 'compare'
-              ? 'bg-cyan-600 text-white shadow-sm'
-              : 'text-gray-300 hover:text-white hover:bg-gray-600'
+              ? 'bg-primary text-white shadow-sm'
+              : 'text-gray-600 hover:text-gray-900 hover:bg-gray-200'
               }`}
           >
             Compare Programs
