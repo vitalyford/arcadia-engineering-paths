@@ -1,6 +1,7 @@
 
 
 import React from 'react';
+import BlueprintBackground from './FloatingFormulas';
 
 interface HeaderProps {
   searchTerm: string;
@@ -11,7 +12,8 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ searchTerm, onSearchChange, activeView, onViewChange }) => {
   return (
-    <header className="w-full bg-white shadow-lg border-b border-gray-200">
+    <header className="w-full bg-white shadow-lg border-b border-gray-200 relative">
+      <BlueprintBackground />
       <div className="container mx-auto p-4">
         <div className="relative flex justify-center items-center mb-4">
           <div className="text-center">

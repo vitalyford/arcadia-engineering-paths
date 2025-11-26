@@ -6,6 +6,7 @@ import PreEngineeringRequirements from '@/components/ui/PreEngineeringRequiremen
 import ProgramCompare from '@/components/ui/ProgramCompare';
 import Header from '@/components/ui/Header';
 import Footer from '@/components/ui/Footer';
+import PhysicsBackground from '@/components/ui/PhysicsBackground';
 import { useSearchState } from '@/hooks/useSearch';
 
 export default function Home() {
@@ -21,14 +22,17 @@ export default function Home() {
   };
 
   return (
-    <main className="h-screen flex flex-col bg-gray-50 overflow-hidden">
-      <Header
-        searchTerm={searchTerm}
-        onSearchChange={updateSearchTerm}
-        activeView={activeView}
-        onViewChange={handleViewChange}
-      />
-      <div className="flex-1 flex flex-col min-h-0">
+    <main className="h-screen flex flex-col bg-gray-50 overflow-hidden relative">
+      <PhysicsBackground />
+      <div className="relative z-10">
+        <Header
+          searchTerm={searchTerm}
+          onSearchChange={updateSearchTerm}
+          activeView={activeView}
+          onViewChange={handleViewChange}
+        />
+      </div>
+      <div className="flex-1 flex flex-col min-h-0 relative z-10">
         {activeView === 'pathways' ? (
           <div className="flex-1 px-6 py-6 min-h-0">
             <MillerColumns searchTerm={searchTerm} />
@@ -43,7 +47,9 @@ export default function Home() {
           </div>
         )}
       </div>
-      <Footer />
+      <div className="relative z-10">
+        <Footer />
+      </div>
     </main>
   );
 }
