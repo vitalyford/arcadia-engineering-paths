@@ -34,15 +34,15 @@ export default function Home() {
       </div>
       <div className="flex-1 flex flex-col min-h-0 relative z-10">
         {activeView === 'pathways' ? (
-          <div className="flex-1 px-6 py-6 min-h-0">
+          <div className="flex-1 px-2 py-2 md:px-6 md:py-6 min-h-0">
             <MillerColumns searchTerm={searchTerm} />
           </div>
         ) : activeView === 'compare' ? (
-          <div className="flex-1 px-6 py-6 min-h-0 overflow-auto">
+          <div className="flex-1 px-2 py-2 md:px-6 md:py-6 min-h-0 overflow-auto">
             <ProgramCompare />
           </div>
         ) : (
-          <div className="flex-1 px-6 pb-6 min-h-0 overflow-auto">
+          <div className="flex-1 px-2 pb-2 md:px-6 md:pb-6 min-h-0 overflow-auto">
             <PreEngineeringRequirements />
           </div>
         )}

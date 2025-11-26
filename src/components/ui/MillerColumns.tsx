@@ -14,11 +14,66 @@ interface SelectedState {
   program: PartnerProgram | null;
 }
 
+// Mobile column view type
+type MobileColumn = 'universities' | 'programs' | 'details';
+
+// Reusable back button icon
+const BackIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+    <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
+  </svg>
+);
+
+// Mobile back button component
+const MobileBackButton = ({ onClick, label }: { onClick: () => void; label: string }) => (
+  <button
+    onClick={onClick}
+    className="md:hidden mr-2 p-1 text-gray-500 hover:text-gray-700"
+    aria-label={label}
+  >
+    <BackIcon />
+  </button>
+);
+
+// Breadcrumb button component
+const BreadcrumbButton = ({ 
+  isActive, 
+  isEnabled, 
+  onClick, 
+  children 
+}: { 
+  isActive: boolean; 
+  isEnabled: boolean; 
+  onClick: () => void; 
+  children: React.ReactNode;
+}) => (
+  <button
+    onClick={onClick}
+    disabled={!isEnabled}
+    className={`px-3 py-1.5 rounded-full whitespace-nowrap transition-colors ${
+      isActive
+        ? 'bg-primary text-white'
+        : isEnabled
+        ? 'bg-white text-gray-600 hover:bg-gray-50'
+        : 'bg-gray-100 text-gray-300 cursor-not-allowed'
+    }`}
+  >
+    {children}
+  </button>
+);
+
+// Helper to get column visibility classes
+const getColumnClasses = (mobileColumn: MobileColumn, targetColumn: MobileColumn, extraClasses: string = '') => 
+  `${mobileColumn === targetColumn ? 'flex' : 'hidden'} md:flex ${extraClasses}`.trim();
+
 const MillerColumns: React.FC<MillerColumnsProps> = ({ searchTerm }) => {
   const [selected, setSelected] = useState<SelectedState>({
     university: null,
     program: null,
   });
+  
+  // Track which column is visible on mobile
+  const [mobileColumn, setMobileColumn] = useState<MobileColumn>('universities');
 
   // Filter universities based on search term
   const filteredUniversities = useMemo(() => {
@@ -60,6 +115,8 @@ const MillerColumns: React.FC<MillerColumnsProps> = ({ searchTerm }) => {
       university,
       program: null, // Reset program selection when university changes
     });
+    // Auto-navigate to programs column on mobile
+    setMobileColumn('programs');
   };
 
   const handleProgramSelect = (program: PartnerProgram) => {
@@ -67,23 +124,42 @@ const MillerColumns: React.FC<MillerColumnsProps> = ({ searchTerm }) => {
       ...prev,
       program,
     }));
+    // Auto-navigate to details column on mobile
+    setMobileColumn('details');
   };
 
   return (
-    <div className="w-full h-full flex bg-white rounded-lg overflow-hidden shadow-xl border border-gray-200">
-      {/* Column 1: Universities */}
-      <div className="w-1/3 border-r border-gray-200 flex flex-col h-full">
-        <div className="bg-gray-50 px-4 py-3 border-b border-gray-200 flex items-center justify-between flex-shrink-0">
-          <h2 className="text-lg font-semibold text-gray-900 flex items-center">
-            Universities ({filteredUniversities.length})
-          </h2>
-          {searchTerm && (
-            <span className="text-xs bg-primary text-white px-2 py-1 rounded">
-              Filtered
-            </span>
-          )}
-        </div>
-        <div className="flex-1 overflow-y-auto min-h-0 custom-scrollbar" style={{ maxHeight: 'calc(100vh - 280px)' }}>
+    <div className="w-full h-full flex flex-col bg-white rounded-lg overflow-hidden shadow-xl border border-gray-200">
+      {/* Mobile Navigation Breadcrumb */}
+      <div className="md:hidden bg-gray-100 border-b border-gray-200 px-2 py-2 flex items-center gap-1 text-sm overflow-x-auto">
+        <BreadcrumbButton isActive={mobileColumn === 'universities'} isEnabled={true} onClick={() => setMobileColumn('universities')}>
+          Universities
+        </BreadcrumbButton>
+        <span className="text-gray-400">›</span>
+        <BreadcrumbButton isActive={mobileColumn === 'programs'} isEnabled={!!selected.university} onClick={() => setMobileColumn('programs')}>
+          {selected.university ? selected.university.name.split(' ').slice(0, 2).join(' ') : 'Programs'}
+        </BreadcrumbButton>
+        <span className="text-gray-400">›</span>
+        <BreadcrumbButton isActive={mobileColumn === 'details'} isEnabled={!!selected.program} onClick={() => setMobileColumn('details')}>
+          Details
+        </BreadcrumbButton>
+      </div>
+      
+      {/* Columns Container */}
+      <div className="flex-1 flex min-h-0 overflow-hidden">
+        {/* Column 1: Universities */}
+        <div className={getColumnClasses(mobileColumn, 'universities', 'w-full md:w-1/3 border-r border-gray-200 flex-col h-full')}>
+          <div className="bg-gray-50 px-4 py-3 border-b border-gray-200 flex items-center justify-between flex-shrink-0">
+            <h2 className="text-lg font-semibold text-gray-900 flex items-center">
+              Universities ({filteredUniversities.length})
+            </h2>
+            {searchTerm && (
+              <span className="text-xs bg-primary text-white px-2 py-1 rounded">
+                Filtered
+              </span>
+            )}
+          </div>
+          <div className="flex-1 overflow-y-auto min-h-0 custom-scrollbar" style={{ maxHeight: 'calc(100vh - 280px)' }}>
           {filteredUniversities.map((university) => (
             <div
               key={university.id}
@@ -161,9 +237,10 @@ const MillerColumns: React.FC<MillerColumnsProps> = ({ searchTerm }) => {
       </div>
 
       {/* Column 2: Programs */}
-      <div className="w-1/3 border-r border-gray-200 flex flex-col h-full">
+      <div className={getColumnClasses(mobileColumn, 'programs', 'w-full md:w-1/3 border-r border-gray-200 flex-col h-full')}>
         <div className="bg-gray-50 px-4 py-3 border-b border-gray-200 flex items-center justify-between flex-shrink-0">
-          <h2 className="text-lg font-semibold text-gray-900 flex items-center">
+          <MobileBackButton onClick={() => setMobileColumn('universities')} label="Back to universities" />
+          <h2 className="text-lg font-semibold text-gray-900 flex items-center flex-1">
             Programs {selected.university ? `(${filteredPrograms.length})` : ''}
           </h2>
           {selected.university && searchTerm && (
@@ -214,8 +291,9 @@ const MillerColumns: React.FC<MillerColumnsProps> = ({ searchTerm }) => {
       </div>
 
       {/* Column 3: Details */}
-      <div className="flex-1 flex flex-col bg-white h-full">
-        <div className="bg-gray-50 px-4 py-3 border-b border-gray-200 flex-shrink-0">
+      <div className={getColumnClasses(mobileColumn, 'details', 'flex-1 flex-col bg-white h-full')}>
+        <div className="bg-gray-50 px-4 py-3 border-b border-gray-200 flex-shrink-0 flex items-center">
+          <MobileBackButton onClick={() => setMobileColumn('programs')} label="Back to programs" />
           <h2 className="text-lg font-semibold text-gray-900 flex items-center">
             Details
           </h2>
@@ -426,6 +504,7 @@ const MillerColumns: React.FC<MillerColumnsProps> = ({ searchTerm }) => {
             </div>
           )}
         </div>
+      </div>
       </div>
     </div>
   );

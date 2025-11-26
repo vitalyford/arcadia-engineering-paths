@@ -84,3 +84,10 @@ body {
 .animate-float-gentle {
   animation: float-gentle ease-in-out infinite;
 }
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .custom-scrollbar {
+    -webkit-overflow-scrolling: touch;
+  }
+}
