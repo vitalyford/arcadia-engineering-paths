@@ -84,7 +84,11 @@ const MillerColumns: React.FC<MillerColumnsProps> = ({
     return partnerUniversities.filter(university =>
       university.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       university.programs.some(program =>
-        program.name.toLowerCase().includes(searchTerm.toLowerCase())
+        program.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        program.arcadiaMajorIds.some(majorId => {
+          const major = arcadiaMajors.find(m => m.id === majorId);
+          return major && major.name.toLowerCase().includes(searchTerm.toLowerCase());
+        })
       )
     );
   }, [searchTerm]);
@@ -93,6 +97,13 @@ const MillerColumns: React.FC<MillerColumnsProps> = ({
   const filteredPrograms = useMemo(() => {
     if (!selected.university) return [];
     if (!searchTerm) return selected.university.programs;
+    
+    // If the university name matches the search term, show all programs
+    if (selected.university.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+      return selected.university.programs;
+    }
+    
+    // Otherwise, filter programs based on program name or related majors
     return selected.university.programs.filter(program => {
       // Check program name
       const matchesProgramName = program.name.toLowerCase().includes(searchTerm.toLowerCase());
