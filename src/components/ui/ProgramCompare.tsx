@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { PartnerUniversity, PartnerProgram } from '@/data/engineering-paths';
 import ProgramSelector from './ProgramSelector';
 import ComparisonCard from './ComparisonCard';
@@ -10,18 +10,17 @@ interface ProgramOption {
     program: PartnerProgram;
 }
 
-const ProgramCompare: React.FC = () => {
-    const [selectedPrograms, setSelectedPrograms] = useState<ProgramOption[]>([]);
+interface ProgramCompareProps {
+    selectedPrograms: ProgramOption[];
+    onProgramSelect: (option: ProgramOption) => void;
+    onProgramRemove: (index: number) => void;
+}
 
-    const handleProgramSelect = (option: ProgramOption) => {
-        if (selectedPrograms.length < 3) {
-            setSelectedPrograms([...selectedPrograms, option]);
-        }
-    };
-
-    const handleProgramRemove = (index: number) => {
-        setSelectedPrograms(selectedPrograms.filter((_, i) => i !== index));
-    };
+const ProgramCompare: React.FC<ProgramCompareProps> = ({
+    selectedPrograms,
+    onProgramSelect,
+    onProgramRemove,
+}) => {
 
     // Calculate comparison metrics
     const comparisonMetrics = useMemo(() => {
@@ -80,7 +79,9 @@ const ProgramCompare: React.FC = () => {
                     </div>
                     {selectedPrograms.length > 0 && (
                         <button
-                            onClick={() => setSelectedPrograms([])}
+                            onClick={() => {
+                                selectedPrograms.forEach((_, index) => onProgramRemove(index));
+                            }}
                             className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium transition-colors shadow-sm"
                         >
                             Clear All ({selectedPrograms.length})
@@ -91,7 +92,7 @@ const ProgramCompare: React.FC = () => {
                 {/* Program Selector */}
                 <ProgramSelector
                     selectedPrograms={selectedPrograms}
-                    onProgramSelect={handleProgramSelect}
+                    onProgramSelect={onProgramSelect}
                     maxSelections={3}
                 />
 
@@ -147,7 +148,7 @@ const ProgramCompare: React.FC = () => {
                                 <ComparisonCard
                                     university={option.university}
                                     program={option.program}
-                                    onRemove={() => handleProgramRemove(index)}
+                                    onRemove={() => onProgramRemove(index)}
                                     isLowestGPA={comparisonMetrics?.lowestGPAIndex === index}
                                     isHighestGPA={comparisonMetrics?.highestGPAIndex === index}
                                     hasFewestRequirements={comparisonMetrics?.fewestReqsIndex === index}
