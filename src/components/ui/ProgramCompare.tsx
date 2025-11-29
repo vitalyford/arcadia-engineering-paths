@@ -84,7 +84,7 @@ const ProgramCompare: React.FC<ProgramCompareProps> = ({
                             }}
                             className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium transition-colors shadow-sm"
                         >
-                            Clear All ({selectedPrograms.length})
+                            Remove last ({selectedPrograms.length})
                         </button>
                     )}
                 </div>
