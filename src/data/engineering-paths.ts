@@ -391,7 +391,7 @@ export const partnerUniversities: PartnerUniversity[] = [
     ],
     requirements: {
       gpa: "3.30",
-      notes: "A GPA of 3.30 or higher in both prerequisite and overall GPA. Each common required curriculum course must be taken at Arcadia with a grade of B or higher on the first attempt. Three letters of recommendation (program adviser, mathematics professor, and science professor) are also required. Students entering Arcadia after the 2017-2018 academic year are no longer eligible for guaranteed admission.",
+      notes: "A GPA of 3.30 or higher in both prerequisite and overall GPA. Each common required curriculum course must be taken at Arcadia with a grade of B or higher on the first attempt. Three letters of recommendation (program adviser, mathematics professor, and science professor) are also required.",
     },
     specialFeatures: {
       guaranteedAdmission: false,
