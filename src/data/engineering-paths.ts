@@ -184,7 +184,7 @@ export const partnerUniversities: PartnerUniversity[] = [
         name: "Architectural Engineering",
         arcadiaMajorIds: ["mathematics", "computer-science"],
         requirements: [
-          "CS 222 Introduction to Data Science with Python (with CS 222L Lab)",
+          "CS 202 Problem-Solving with Algorithms and Programming II (with CS 202L Lab)",
           "CH 102 General Chemistry II (with CH 102L Lab)",
           "BI 101 General Biology I (with BI 101L Lab)",
           "PH 331 Engineering Mechanics",
@@ -196,7 +196,7 @@ export const partnerUniversities: PartnerUniversity[] = [
         name: "Chemical Engineering",
         arcadiaMajorIds: ["chemistry", "mathematics"],
         requirements: [
-          "CS 222 Introduction to Data Science with Python (with CS 222L Lab)",
+          "CS 202 Problem-Solving with Algorithms and Programming II (with CS 202L Lab)",
           "CH 102 General Chemistry II (with CH 102L Lab)",
           "CH 201 Organic Chemistry I (with CH 201L Lab)",
           "CH 202 Organic Chemistry II (with CH 202L Lab)",
@@ -210,7 +210,7 @@ export const partnerUniversities: PartnerUniversity[] = [
         name: "Civil Engineering",
         arcadiaMajorIds: ["mathematics", "computer-science"],
         requirements: [
-          "CS 222 Introduction to Data Science with Python (with CS 222L Lab)",
+          "CS 202 Problem-Solving with Algorithms and Programming II (with CS 202L Lab)",
           "CH 102 General Chemistry II (with CH 102L Lab)",
           "BI 101 General Biology I (with BI 101L Lab)",
           "PH 331 Engineering Mechanics",
@@ -222,10 +222,10 @@ export const partnerUniversities: PartnerUniversity[] = [
         name: "Computer Engineering",
         arcadiaMajorIds: ["computer-science", "mathematics"],
         requirements: [
-          "CS 222 Introduction to Data Science with Python (with CS 222L Lab)",
+          "CS 202 Problem-Solving with Algorithms and Programming II (with CS 202L Lab)",
           "CS 203 Data Structures and Algorithm Analysis (with CS 203L Lab)",
           "PH 341 Electronic Circuit Analysis I",
-          "CM 110 Speech Communications OR CS 225 Research Writing",
+          "CM 110 Speech Communications",
           "27 credits Free Electives in any subject (excluding MATH 100, MATH 110)"
         ]
       },
@@ -234,10 +234,10 @@ export const partnerUniversities: PartnerUniversity[] = [
         name: "Electrical Engineering",
         arcadiaMajorIds: ["computer-science", "mathematics"],
         requirements: [
-          "CS 222 Introduction to Data Science with Python (with CS 222L Lab)",
+          "CS 202 Problem-Solving with Algorithms and Programming II (with CS 202L Lab)",
           "CS 203 Data Structures and Algorithm Analysis (with CS 203L Lab)",
           "PH 341 Electronic Circuit Analysis I",
-          "CM 110 Speech Communications OR CS 225 Research Writing",
+          "CM 110 Speech Communications",
           "27 credits Free Electives in any subject (excluding MA 100, MA 110, MA 117)"
         ]
       },
@@ -246,7 +246,7 @@ export const partnerUniversities: PartnerUniversity[] = [
         name: "Environmental Engineering",
         arcadiaMajorIds: ["chemistry", "mathematics"],
         requirements: [
-          "CS 222 Introduction to Data Science with Python (with CS 222L Lab)",
+          "CS 202 Problem-Solving with Algorithms and Programming II (with CS 202L Lab)",
           "CH 102 General Chemistry II (with CH 102L Lab)",
           "CH 201 Organic Chemistry I (with CH 201L Lab)",
           "CH 202 Organic Chemistry II (with CH 202L Lab)",
@@ -261,7 +261,7 @@ export const partnerUniversities: PartnerUniversity[] = [
         name: "Materials Science & Engineering",
         arcadiaMajorIds: ["chemistry", "mathematics"],
         requirements: [
-          "CS 222 Introduction to Data Science with Python (with CS 222L Lab)",
+          "CS 202 Problem-Solving with Algorithms and Programming II (with CS 202L Lab)",
           "CH 102 General Chemistry II (with CH 102L Lab)",
           "CH 201 Organic Chemistry I (with CH 201L Lab)",
           "BI 101 General Biology I (with BI 101L Lab)",
@@ -273,7 +273,7 @@ export const partnerUniversities: PartnerUniversity[] = [
         name: "Mechanical Engineering",
         arcadiaMajorIds: ["mathematics", "computer-science", "chemistry"],
         requirements: [
-          "CS 222 Introduction to Data Science with Python (with CS 222L Lab)",
+          "CS 202 Problem-Solving with Algorithms and Programming II (with CS 202L Lab)",
           "CH 102 General Chemistry II (with CH 102L Lab)",
           "PH 212 Physics II (with PH 212L Lab)",
           "PH 331 Engineering Mechanics",
