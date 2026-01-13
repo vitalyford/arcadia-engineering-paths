@@ -295,7 +295,7 @@ export const partnerUniversities: PartnerUniversity[] = [
     },
     downloadableForm: {
       name: "Intent to Enroll Form",
-      path: "/documents/Intent to Enroll Drexel.docx"
+      path: "https://drexel.edu/admissions/undergrad/transfer/dual-admission/dual-admission-intent-to-enroll"
     },
   },
   {
