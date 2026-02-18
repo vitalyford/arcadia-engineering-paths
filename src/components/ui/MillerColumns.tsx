@@ -162,7 +162,7 @@ const MillerColumns: React.FC<MillerColumnsProps> = ({
       <div className="flex-1 flex min-h-0 overflow-hidden">
         {/* Column 1: Universities */}
         <div className={getColumnClasses(mobileColumn, 'universities', 'w-full md:w-1/3 border-r border-gray-200 flex-col h-full')}>
-          <div className="bg-gray-50 px-4 py-3 border-b border-gray-200 flex items-center justify-between flex-shrink-0">
+          <div className="bg-gray-50 px-4 py-3 border-b border-gray-200 flex items-center justify-between shrink-0">
             <h2 className="text-lg font-semibold text-gray-900 flex items-center">
               Universities ({filteredUniversities.length})
             </h2>
@@ -242,7 +242,7 @@ const MillerColumns: React.FC<MillerColumnsProps> = ({
                       )}
                     </p>
                   </div>
-                  <span className="text-gray-400 ml-2 flex-shrink-0">→</span>
+                  <span className="text-gray-400 ml-2 shrink-0">→</span>
                 </div>
               </div>
             ))}
@@ -251,7 +251,7 @@ const MillerColumns: React.FC<MillerColumnsProps> = ({
 
         {/* Column 2: Programs */}
         <div className={getColumnClasses(mobileColumn, 'programs', 'w-full md:w-1/3 border-r border-gray-200 flex-col h-full')}>
-          <div className="bg-gray-50 px-4 py-3 border-b border-gray-200 flex items-center justify-between flex-shrink-0">
+          <div className="bg-gray-50 px-4 py-3 border-b border-gray-200 flex items-center justify-between shrink-0">
             <MobileBackButton onClick={() => onMobileColumnChange('universities')} label="Back to universities" />
             <h2 className="text-lg font-semibold text-gray-900 flex items-center flex-1">
               Programs {selected.university ? `(${filteredPrograms.length})` : ''}
@@ -305,7 +305,7 @@ const MillerColumns: React.FC<MillerColumnsProps> = ({
 
         {/* Column 3: Details */}
         <div className={getColumnClasses(mobileColumn, 'details', 'flex-1 flex-col bg-white h-full')}>
-          <div className="bg-gray-50 px-4 py-3 border-b border-gray-200 flex-shrink-0 flex items-center">
+          <div className="bg-gray-50 px-4 py-3 border-b border-gray-200 shrink-0 flex items-center">
             <MobileBackButton onClick={() => onMobileColumnChange('programs')} label="Back to programs" />
             <h2 className="text-lg font-semibold text-gray-900 flex items-center">
               Details
@@ -335,7 +335,7 @@ const MillerColumns: React.FC<MillerColumnsProps> = ({
                 {selected.university?.id === 'drexel-university' && (
                   <div className="bg-red-50 border-l-4 border-primary rounded-lg p-4 shadow-sm mb-4">
                     <div className="flex items-start gap-3">
-                      <div className="text-2xl flex-shrink-0">📋</div>
+                      <div className="text-2xl shrink-0">📋</div>
                       <div className="flex-1">
                         <h4 className="text-lg font-semibold text-primary mb-2">Important: Intent to Enroll Form Required</h4>
                         <p className="text-gray-700 text-sm leading-relaxed mb-3">
@@ -421,7 +421,7 @@ const MillerColumns: React.FC<MillerColumnsProps> = ({
                     <ul className="space-y-2">
                       {selected.program.requirements.map((requirement, index) => (
                         <li key={index} className="text-gray-700 text-sm flex items-start">
-                          <span className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 shrink-0"></span>
                           {requirement}
                         </li>
                       ))}

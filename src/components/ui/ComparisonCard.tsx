@@ -154,7 +154,7 @@ const ComparisonCard: React.FC<ComparisonCardProps> = ({
                             <ul className="space-y-1.5">
                                 {program.requirements.map((req, idx) => (
                                     <li key={idx} className="text-gray-700 text-xs flex items-start">
-                                        <span className="w-1.5 h-1.5 bg-primary rounded-full mt-1.5 mr-2 flex-shrink-0"></span>
+                                        <span className="w-1.5 h-1.5 bg-primary rounded-full mt-1.5 mr-2 shrink-0"></span>
                                         <span>{req}</span>
                                     </li>
                                 ))}

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { createPortal } from 'react-dom';
 
 interface SpecialTagProps {
@@ -11,68 +11,16 @@ interface SpecialTagProps {
   className?: string;
 }
 
-const SpecialTag: React.FC<SpecialTagProps> = ({ type, text, tooltip, icon, className = "" }) => {
-  const [isHovered, setIsHovered] = useState(false);
+const SpecialTag: React.FC<SpecialTagProps> = ({
+  type,
+  text,
+  tooltip,
+  icon,
+  className = '',
+}) => {
   const [showTooltip, setShowTooltip] = useState(false);
-  const [mousePosition, setMousePosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
-  const [tooltipPosition, setTooltipPosition] = useState<{
-    top: number;
-    left: number;
-    placement: 'above' | 'below';
-  }>({
-    top: 0,
-    left: 0,
-    placement: 'above'
-  });
-  const tagRef = useRef<HTMLDivElement>(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-
-  useEffect(() => {
-    if (isHovered && tooltip && mousePosition.x > 0 && mousePosition.y > 0) {
-      const viewportHeight = window.innerHeight;
-      const viewportWidth = window.innerWidth;
-      const tooltipHeight = 120;
-      const tooltipWidth = 288;
-      const offset = 15; // Distance from mouse cursor
-      const margin = 10; // Margin from viewport edges
-
-      // Calculate initial position relative to mouse
-      let top = mousePosition.y + offset;
-      let left = mousePosition.x - (tooltipWidth / 2);
-      let placement: 'above' | 'below' = 'below';
-
-      // Check if tooltip would go below viewport
-      if (top + tooltipHeight > viewportHeight - margin) {
-        // Show above mouse instead
-        top = mousePosition.y - tooltipHeight - offset;
-        placement = 'above';
-      }
-
-      // Ensure tooltip stays within horizontal viewport bounds
-      if (left < margin) {
-        left = margin;
-      } else if (left + tooltipWidth > viewportWidth - margin) {
-        left = viewportWidth - tooltipWidth - margin;
-      }
-
-      // Ensure tooltip doesn't go above viewport
-      if (top < margin) {
-        top = margin;
-        placement = 'below';
-      }
-
-      setTooltipPosition({ top, left, placement });
-    }
-  }, [isHovered, tooltip, mousePosition]);
-
-  // Cleanup timeouts on unmount
-  useEffect(() => {
-    return () => {
-      if (hoverTimeoutRef.current) {
-        clearTimeout(hoverTimeoutRef.current);
-      }
-    };
-  }, []);
 
   const getTagStyles = () => {
     switch (type) {
@@ -99,65 +47,110 @@ const SpecialTag: React.FC<SpecialTagProps> = ({ type, text, tooltip, icon, clas
         return '🎓';
       case 'coop':
         return '💼';
-      case 'major':
-        return '';
       default:
         return '';
     }
   };
 
+  const calculateTooltipPosition = () => {
+    if (!tooltip || !showTooltip) {
+      return { top: 0, left: 0 };
+    }
+
+    const viewportHeight = window.innerHeight;
+    const viewportWidth = window.innerWidth;
+
+    const tooltipHeight = 120;
+    const tooltipWidth = 288;
+    const offset = 15;
+    const margin = 10;
+
+    let top = mousePosition.y + offset;
+    let left = mousePosition.x - tooltipWidth / 2;
+
+    // Prevent bottom overflow
+    if (top + tooltipHeight > viewportHeight - margin) {
+      top = mousePosition.y - tooltipHeight - offset;
+    }
+
+    // Prevent horizontal overflow
+    if (left < margin) {
+      left = margin;
+    } else if (left + tooltipWidth > viewportWidth - margin) {
+      left = viewportWidth - tooltipWidth - margin;
+    }
+
+    // Prevent top overflow
+    if (top < margin) {
+      top = margin;
+    }
+
+    return { top, left };
+  };
+
+  const tooltipPosition =
+    typeof window !== 'undefined' ? calculateTooltipPosition() : { top: 0, left: 0 };
+
+  const handleMouseEnter = (e: React.MouseEvent<HTMLSpanElement>) => {
+    if (!tooltip) return;
+
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+    }
+
+    setMousePosition({ x: e.clientX, y: e.clientY });
+
+    hoverTimeoutRef.current = setTimeout(() => {
+      setShowTooltip(true);
+    }, 100);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLSpanElement>) => {
+    if (!tooltip || !showTooltip) return;
+    setMousePosition({ x: e.clientX, y: e.clientY });
+  };
+
+  const handleMouseLeave = () => {
+    if (!tooltip) return;
+
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+    }
+
+    setShowTooltip(false);
+  };
+
   return (
-    <div ref={tagRef} className="relative inline-block">
+    <div className="relative inline-block">
       <span
         className={`inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded border cursor-help ${getTagStyles()} ${className}`}
-        onMouseEnter={(e) => {
-          if (tooltip) {
-            // Clear any existing timeout
-            if (hoverTimeoutRef.current) {
-              clearTimeout(hoverTimeoutRef.current);
-            }
-            setMousePosition({ x: e.clientX, y: e.clientY });
-            setIsHovered(true);
-            // Small delay before showing tooltip to prevent flicker
-            hoverTimeoutRef.current = setTimeout(() => {
-              setShowTooltip(true);
-            }, 100);
-          }
-        }}
-        onMouseMove={(e) => {
-          if (tooltip && isHovered) {
-            setMousePosition({ x: e.clientX, y: e.clientY });
-          }
-        }}
-        onMouseLeave={() => {
-          if (tooltip) {
-            // Clear any existing timeout
-            if (hoverTimeoutRef.current) {
-              clearTimeout(hoverTimeoutRef.current);
-            }
-            setIsHovered(false);
-            setShowTooltip(false);
-          }
-        }}
+        onMouseEnter={handleMouseEnter}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
       >
         {getIcon() && <span className="text-xs">{getIcon()}</span>}
         {text}
       </span>
 
-      {tooltip && showTooltip && typeof window !== 'undefined' && createPortal(
-        <div
-          className="fixed px-3 py-2 bg-white text-gray-800 text-sm rounded-lg shadow-xl border-2 border-gray-200 z-[9999] w-72 pointer-events-none"
-          style={{
-            top: `${tooltipPosition.top}px`,
-            left: `${tooltipPosition.left}px`,
-            maxWidth: 'min(18rem, 90vw)',
-            minWidth: '12rem'
-          }}
-        >
-          <div className="text-left whitespace-normal leading-relaxed">{tooltip}</div>
-        </div>,
-        document.body
-      )}
+      {tooltip &&
+        showTooltip &&
+        typeof window !== 'undefined' &&
+        createPortal(
+          <div
+            className="fixed px-3 py-2 bg-white text-gray-800 text-sm rounded-lg shadow-xl border-2 border-gray-200 z-50 w-72 pointer-events-none"
+            style={{
+              top: `${tooltipPosition.top}px`,
+              left: `${tooltipPosition.left}px`,
+              maxWidth: 'min(18rem, 90vw)',
+              minWidth: '12rem',
+            }}
+          >
+            <div className="text-left whitespace-normal leading-relaxed">
+              {tooltip}
+            </div>
+          </div>,
+          document.body
+        )}
     </div>
   );
 };

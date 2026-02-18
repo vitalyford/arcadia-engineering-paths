@@ -301,16 +301,16 @@ const PreEngineeringRequirements: React.FC = () => {
 
       {/* Credit Summary */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-        <div className="bg-gradient-to-r from-primary to-primary-hover p-4 rounded-lg text-center shadow-sm">
+        <div className="bg-linear-to-r from-primary to-primary-hover p-4 rounded-lg text-center shadow-sm">
           <div className="text-2xl font-bold text-white">{preEngineeringRequirements.totalTechnicalCredits}</div>
           <div className="text-red-100">Technical Credits</div>
         </div>
-        <div className="bg-gradient-to-r from-green-600 to-green-700 p-4 rounded-lg text-center shadow-sm">
+        <div className="bg-linear-to-r from-green-600 to-green-700 p-4 rounded-lg text-center shadow-sm">
           <div className="text-2xl font-bold text-white">{preEngineeringRequirements.nonTechnicalCredits}</div>
           <div className="text-green-100">Non-Technical Credits</div>
         </div>
         {preEngineeringRequirements.aucRequirements && (
-          <div className="bg-gradient-to-r from-primary to-primary-hover p-4 rounded-lg text-center shadow-sm">
+          <div className="bg-linear-to-r from-primary to-primary-hover p-4 rounded-lg text-center shadow-sm">
             <div className="text-2xl font-bold text-white">
               {preEngineeringRequirements.aucRequirements.acceleratedPrograms.length}
             </div>
@@ -447,7 +447,7 @@ const PreEngineeringRequirements: React.FC = () => {
                       <button
                         key={index}
                         onClick={() => handleAucClick(req.code)}
-                        className="bg-gradient-to-br from-primary to-primary-hover p-3 rounded-lg text-center hover:from-primary-light hover:to-primary transition-all duration-200 shadow-md cursor-pointer transform hover:scale-105"
+                        className="bg-linear-to-br from-primary to-primary-hover p-3 rounded-lg text-center hover:from-primary-light hover:to-primary transition-all duration-200 shadow-md cursor-pointer transform hover:scale-105"
                       >
                         <div className="text-red-100 font-semibold text-sm">{req.code} (x{req.count})</div>
                         <div className="text-red-200 text-xs mt-1 leading-tight">{req.name}</div>
