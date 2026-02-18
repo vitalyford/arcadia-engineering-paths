@@ -22,6 +22,7 @@ export const getTooltipContent = (
         '4+2': '4 years at Arcadia + 2 years at partner university\n(All AUCs apply - 20+)',
         '4+3': '4 years at Arcadia + 3 years at partner university\n(All AUCs apply - 20+)', 
         '3+3': '3 years at Arcadia + 3 years at partner university\n(Reduced AUCs apply - only 10)',
+        '4+1': '4 years at Arcadia + 1 year at partner university\n(Accelerated Master\'s Pathway)',
         '2+1+1+1': '2 years at Arcadia + 1 year at partner\n+ 1 year at Arcadia + 1 final year at partner\n(All AUCs apply - 20+)'
       };
       
