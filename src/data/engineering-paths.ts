@@ -134,7 +134,54 @@ export const arcadiaMajors: ArcadiaMajor[] = [
     id: "data-science",
     name: "Data Science",
     description: "A multidisciplinary field that uses scientific methods, processes, algorithms and systems to extract knowledge and insights from structured and unstructured data.",
-    courses: []
+    courses: [
+      "CS 101 Problem-Solving with Algorithms and Programming I",
+      "CS 202 Problem-Solving with Algorithms and Programming II",
+      "MA 201 Calculus I",
+      "MA 202 Calculus II",
+      "MA 341 Probability",
+      "MA 342 Mathematical Statistics I"
+    ]
+  },
+  {
+    id: "physics",
+    name: "Physics",
+    description: "Study of matter, energy, and the fundamental forces of nature, providing a strong base for various engineering fields.",
+    courses: [
+      "PH 211 Conceptual Physics I",
+      "PH 212 Physics II",
+      "PH 224 Introductory Astronomy and Astrophysics",
+      "PH 235 Modern Physics",
+      "PH 331 Engineering Mechanics",
+      "MA 201 Calculus I",
+      "MA 202 Calculus II",
+      "MA 203 Calculus III",
+      "MA 352 Differential Equations"
+    ]
+  },
+  {
+    id: "economics",
+    name: "Economics",
+    description: "The study of how societies use scarce resources to produce valuable commodities and distribute them among different people.",
+    courses: [
+      "EC 210 Principles of Macroeconomics",
+      "EC 211 Principles of Microeconomics",
+      "MA 141 Elementary Statistics",
+      "MA 242 Intermediate Statistics",
+      "MA 201 Calculus I",
+      "MA 202 Calculus II"
+    ]
+  },
+  {
+    id: "business",
+    name: "Business",
+    description: "Provides a broad understanding of the functional areas of business and the environment in which business operates.",
+    courses: [
+      "BA 101 Organization and Management",
+      "BA 201 Financial Accounting",
+      "MA 141 Elementary Statistics",
+      "EC 210 Principles of Macroeconomics"
+    ]
   },
   {
     id: "chemistry",
@@ -308,9 +355,9 @@ export const partnerUniversities: PartnerUniversity[] = [
       { id: "computer-pitt", name: "Computer Engineering", arcadiaMajorIds: ["computer-science", "mathematics"], requirements: ["EN 201 Thought and Expression II", "Plus two elective courses in advanced life science, computer science, or mathematics.", "Plus two elective courses in the arts and humanities."] },
       { id: "electrical-pitt", name: "Electrical Engineering", arcadiaMajorIds: ["computer-science", "mathematics"], requirements: ["MA 341 Probability", "MA 342 Mathematical Statistics I", "EN 201 Thought and Expression II", "Plus three elective courses in advanced life science, computer science, or mathematics.", "Plus one elective course in the arts and humanities."] },
       { id: "engineering-science-nano", name: "Engineering Science – Nanotechnology", arcadiaMajorIds: ["chemistry", "mathematics"], requirements: ["MATH 1560 Complex Variable (taken while at PITT)", "ENGR 0020 Materials Structures (taken while at PITT)", "MA 341 Probability", "MA 342 Mathematical Statistics I", "Plus three of the following: CH 201 Organic Chemistry I, CH 202 Organic Chemistry II, CH 301 Physical Chemistry I, CH 302 Physical Chemistry II, CH 303 Biochemistry, CH 305 Inorganic Chemistry."] },
-      { id: "industrial", name: "Industrial Engineering", arcadiaMajorIds: ["mathematics", "computer-science"], requirements: ["MA 341 Probability", "MA 342 Mathematical Statistics I", "PH 341 Electronic Circuit Analysis I", "Plus one course in public speaking, communications, or discussion.", "Plus two elective courses in advanced life science, computer science, or mathematics.", "PH 331 Engineering Mechanics."] },
+      { id: "industrial", name: "Industrial Engineering", arcadiaMajorIds: ["chemistry", "mathematics", "computer-science"], requirements: ["MA 341 Probability", "MA 342 Mathematical Statistics I", "PH 341 Electronic Circuit Analysis I", "Plus one course in public speaking, communications, or discussion.", "Plus two elective courses in advanced life science, computer science, or mathematics.", "PH 331 Engineering Mechanics."] },
       { id: "materials-science-pitt", name: "Materials Science & Engineering", arcadiaMajorIds: ["chemistry", "mathematics"], requirements: ["MA 341 Probability", "MA 342 Mathematical Statistics I", "PH 341 Electronic Circuit Analysis I", "PL 175 Introduction to Ethics", "ENGR 0131, 0141 (taken while at PITT)", "Plus one course in public speaking, communications, or discussion.", "PH 331 Engineering Mechanics."] },
-      { id: "mechanical-pitt", name: "Mechanical Engineering", arcadiaMajorIds: ["mathematics", "computer-science"], requirements: ["PH 331 Engineering Mechanics", "PH 341 Electronic Circuit Analysis I", "PL 175 Introduction to Ethics", "ENGR 0131, 0141, MEMS 1015 (taken while at PITT)", "Plus one course in public speaking, communications, or discussion."] },
+      { id: "mechanical-pitt", name: "Mechanical Engineering", arcadiaMajorIds: ["chemistry", "mathematics", "computer-science"], requirements: ["PH 331 Engineering Mechanics", "PH 341 Electronic Circuit Analysis I", "PL 175 Introduction to Ethics", "ENGR 0131, 0141, MEMS 1015 (taken while at PITT)", "Plus one course in public speaking, communications, or discussion."] },
     ],
     requirements: {
       gpa: "3.00 (3.50 for Bioengineering)",
@@ -331,8 +378,8 @@ export const partnerUniversities: PartnerUniversity[] = [
       { id: "computer-washu", name: "Computer Engineering", arcadiaMajorIds: ["computer-science", "mathematics"], requirements: ["CS 202 Problem-Solving with Algorithms and Programming II (with CS 202L Lab)"] },
       { id: "computer-science-washu", name: "Computer Science", arcadiaMajorIds: ["computer-science", "mathematics"], requirements: ["CS 202 Problem-Solving with Algorithms and Programming II (with CS 202L Lab)"] },
       { id: "electrical-washu", name: "Electrical Engineering", arcadiaMajorIds: ["computer-science", "mathematics"], requirements: [] },
-      { id: "mechanical-washu", name: "Mechanical Engineering", arcadiaMajorIds: ["mathematics", "computer-science"], requirements: ["One Physics course at 300 level"] },
-      { id: "systems-science", name: "Systems Science and Engineering", arcadiaMajorIds: ["mathematics", "computer-science"], requirements: [] },
+      { id: "mechanical-washu", name: "Mechanical Engineering", arcadiaMajorIds: ["chemistry", "mathematics", "computer-science"], requirements: ["One Physics course at 300 level"] },
+      { id: "systems-science", name: "Systems Science and Engineering", arcadiaMajorIds: ["chemistry", "mathematics", "computer-science"], requirements: [] },
     ],
     requirements: {
       gpa: "3.25",
@@ -346,6 +393,142 @@ export const partnerUniversities: PartnerUniversity[] = [
     },
   },
   {
+    id: "rensselaer-polytechnic-institute",
+    name: "Rensselaer Polytechnic Institute",
+    programs: [
+      {
+        id: "applied-mathematics-rpi",
+        name: "Applied Mathematics (M.S.)",
+        arcadiaMajorIds: ["mathematics", "computer-science", "chemistry"],
+        requirements: []
+      },
+      {
+        id: "business-administration-rpi",
+        name: "Business Administration (M.B.A.)",
+        arcadiaMajorIds: ["chemistry", "mathematics", "computer-science", "data-science"],
+        requirements: [
+          "Prior coursework or experience in quantitative methods, statistics, or programming is recommended",
+          "Prospective applicants are strongly encouraged to contact the RPI Graduate Program Director prior to applying"
+        ]
+      },
+      {
+        id: "business-analytics-rpi",
+        name: "Business Analytics (M.S.)",
+        arcadiaMajorIds: ["chemistry", "mathematics", "computer-science", "data-science"],
+        requirements: [
+          "Prior coursework or experience in quantitative methods, statistics, or programming is recommended",
+          "Prospective applicants are strongly encouraged to contact the RPI Graduate Program Director prior to applying"
+        ]
+      },
+      {
+        id: "astronomy-rpi",
+        name: "Astronomy (M.S.)",
+        arcadiaMajorIds: ["chemistry", "mathematics"],
+        requirements: [
+          "Physics: PH 224, PH 235",
+          "Math: MA 201, MA 202, MA 203, MA 352",
+          "Completion of at least one lower division course in introductory astronomy and astrophysics is required"
+        ]
+      },
+      {
+        id: "biomedical-data-science-rpi",
+        name: "Biomedical Data Science (M.Eng.)",
+        arcadiaMajorIds: ["chemistry", "mathematics", "computer-science", "data-science"],
+        requirements: [
+          "Math: MA 201, MA 202, MA 203, MA 341, MA 342, and MA 352",
+          "CS: CS 101/CS 101L, CS 222/CS 222L"
+        ]
+      },
+      {
+        id: "chemical-engineering-rpi",
+        name: "Chemical Engineering (M.Eng. or M.S.)",
+        arcadiaMajorIds: ["chemistry"],
+        requirements: [
+          "Math: MA 352",
+          "Must have background in differential equations, thermo, and fluids; otherwise, must take CHME 2010, 4010, 4020 at RPI",
+          "Chemistry majors will need 3 semesters to complete the RPI master's program"
+        ]
+      },
+      {
+        id: "chemistry-rpi",
+        name: "Chemistry (M.S.)",
+        arcadiaMajorIds: ["chemistry"],
+        requirements: []
+      },
+      {
+        id: "communication-and-rhetoric-rpi",
+        name: "Communication and Rhetoric (M.S.)",
+        arcadiaMajorIds: ["chemistry", "mathematics", "computer-science", "data-science"],
+        requirements: []
+      },
+      {
+        id: "industrial-management-engineering-rpi",
+        name: "Industrial and Management Engineering (M.S. or M.Eng.)",
+        arcadiaMajorIds: ["chemistry", "mathematics"],
+        requirements: [
+          "Math: MA 201, MA 202, MA 203, MA 221, MA 341, MA 342",
+          "CS: CS 101/CS 101L, CS 222/CS 222L",
+          "ISYE 4140 - Statistical Analysis and ISYE 6610 - Systems Modeling in Decision Sciences (taken at RPI)"
+        ]
+      },
+      {
+        id: "information-technology-rpi",
+        name: "Information Technology (M.S.)",
+        arcadiaMajorIds: ["computer-science", "data-science"],
+        requirements: []
+      },
+      {
+        id: "quantitative-finance-rpi",
+        name: "Quantitative Finance and Risk Analytics (M.S.)",
+        arcadiaMajorIds: ["chemistry", "mathematics", "computer-science", "data-science"],
+        requirements: [
+          "Math: MA 201, MA 202, MA 203, MA 341, MA 342, MA 343, MA 344, MA 352"
+        ]
+      },
+      {
+        id: "critical-game-design-rpi",
+        name: "Critical Game Design (M.S.)",
+        arcadiaMajorIds: ["computer-science"],
+        requirements: []
+      },
+      {
+        id: "economics-rpi",
+        name: "Economics (M.S.)",
+        arcadiaMajorIds: ["chemistry", "mathematics", "computer-science", "data-science"],
+        requirements: [
+          "MA 201, MA 202, MA 203, MA 221, MA 141, MA 242",
+          "EC 210, EC 211"
+        ]
+      },
+      {
+        id: "geology-rpi",
+        name: "Geology (M.S.)",
+        arcadiaMajorIds: ["chemistry", "mathematics", "computer-science", "data-science"],
+        requirements: [
+          "Prospective applicants are strongly encouraged to contact the RPI Graduate Program Director prior to applying"
+        ]
+      },
+      {
+        id: "supply-chain-management-rpi",
+        name: "Supply Chain Management (M.S.)",
+        arcadiaMajorIds: ["chemistry", "mathematics", "computer-science", "data-science"],
+        requirements: [
+          "Mainly for Business, Economics, and Engineering. Other STEM degrees are considered, thus you may be eligible if you have a strong background in quantitative analysis."
+        ]
+      }
+    ],
+    requirements: {
+      gpa: "3.3",
+      notes: "A minimum GPA of 3.3 is required. Students admitted through this partnership receive a Merit Scholarship (up to 50% tuition), an Expedited Application with fee waiver, and can transfer up to 6 unused credits toward their RPI master's degree. Early advising with RPI graduate advisors is also available.",
+    },
+    specialFeatures: {
+      guaranteedAdmission: false,
+      programTypes: ["4+1"],
+      degreeInfo: "BA from Arcadia + MS from RPI",
+      uniqueStructure: "Pipeline Partnership Program for accelerated graduate study."
+    }
+  },
+  {
     id: "dartmouth-college",
     name: "Dartmouth College",
     programs: [
@@ -354,10 +537,10 @@ export const partnerUniversities: PartnerUniversity[] = [
       { id: "chemical-dartmouth", name: "Chemical Engineering", arcadiaMajorIds: ["chemistry", "mathematics"], requirements: [] },
       { id: "computer-dartmouth", name: "Computer Engineering", arcadiaMajorIds: ["computer-science", "mathematics"], requirements: [] },
       { id: "electrical-dartmouth", name: "Electrical Engineering", arcadiaMajorIds: ["computer-science", "mathematics"], requirements: [] },
-      { id: "energy", name: "Energy Engineering", arcadiaMajorIds: ["mathematics"], requirements: [] },
+      { id: "energy", name: "Energy Engineering", arcadiaMajorIds: ["chemistry", "mathematics"], requirements: [] },
       { id: "environmental-dartmouth", name: "Environmental Engineering", arcadiaMajorIds: ["chemistry", "mathematics"], requirements: [] },
       { id: "materials-dartmouth", name: "Materials Engineering", arcadiaMajorIds: ["chemistry", "mathematics"], requirements: [] },
-      { id: "mechanical-dartmouth", name: "Mechanical Engineering", arcadiaMajorIds: ["mathematics", "computer-science"], requirements: [] },
+      { id: "mechanical-dartmouth", name: "Mechanical Engineering", arcadiaMajorIds: ["chemistry", "mathematics", "computer-science"], requirements: [] },
     ],
     requirements: {
       gpa: "3.2",
@@ -375,19 +558,19 @@ export const partnerUniversities: PartnerUniversity[] = [
     name: "Columbia University",
     programs: [
       { id: "applied-mathematics", name: "Applied Mathematics", arcadiaMajorIds: ["mathematics"], requirements: ["PH 324 Quantum Physics", "Plus one of the following: PH 325 Mathematical Physics, PH 331 Engineering Mechanics, PH 341 Electronic Circuit Analysis I"] },
-      { id: "applied-physics", name: "Applied Physics", arcadiaMajorIds: ["mathematics"], requirements: ["PH 324 Quantum Physics", "Plus one of the following: PH 325 Mathematical Physics, PH 331 Engineering Mechanics, PH 341 Electronic Circuit Analysis I"] },
+      { id: "applied-physics", name: "Applied Physics", arcadiaMajorIds: ["chemistry", "mathematics"], requirements: ["PH 324 Quantum Physics", "Plus one of the following: PH 325 Mathematical Physics, PH 331 Engineering Mechanics, PH 341 Electronic Circuit Analysis I"] },
       { id: "biomedical-columbia", name: "Biomedical Engineering", arcadiaMajorIds: ["chemistry", "mathematics"], requirements: ["PH 324 Quantum Physics", "CH 102 General Chemistry II or CH 112 Conceptual Chemistry II", "BI 101 General Biology I", "BI 102 General Biology II", "ELEN E1201 Intro to Electrical Engineering (taken while at Columbia)"] },
       { id: "chemical-columbia", name: "Chemical Engineering", arcadiaMajorIds: ["chemistry", "mathematics"], requirements: ["CH 102 General Chemistry II", "CH 112 Conceptual Chemistry II", "CH 201 Organic Chemistry I", "CH 202 Organic Chemistry II", "PH 325 Mathematical Physics"] },
-      { id: "civil-columbia", name: "Civil Engineering", arcadiaMajorIds: ["mathematics", "computer-science"], requirements: ["PH 331 Engineering Mechanics"] },
+      { id: "civil-columbia", name: "Civil Engineering", arcadiaMajorIds: ["chemistry", "mathematics", "computer-science"], requirements: ["PH 331 Engineering Mechanics"] },
       { id: "computer-columbia", name: "Computer Engineering", arcadiaMajorIds: ["computer-science", "mathematics"], requirements: ["MA 230 Discrete Structures", "ELEN 1201 Intro Electrical Engineering (taken while at Columbia)"] },
       { id: "computer-science-columbia", name: "Computer Science", arcadiaMajorIds: ["computer-science", "mathematics"], requirements: ["CS 203 Data Structures and Algorithm Analysis (with CS 203L Lab)", "MA 230 Discrete Structures"] },
       { id: "earth-environmental", name: "Earth and Environmental Engineering", arcadiaMajorIds: ["chemistry", "mathematics"], requirements: ["CH 102 General Chemistry II or CH 112 Conceptual Chemistry II", "MA 341 Probability", "MA 342 Mathematical Statistics I", "Plus one of the following: BI 101 General Biology I, CH 201 Organic Chemistry I, PH 324 Quantum Physics"] },
       { id: "electrical-columbia", name: "Electrical Engineering", arcadiaMajorIds: ["computer-science", "mathematics"], requirements: ["PH 324 Quantum Physics", "CS 202 Problem-Solving with Algorithms and Programming II (with CS 202L Lab)", "ELEN 1201 Intro Electrical Engineering (taken while at Columbia)"] },
-      { id: "engineering-mechanics", name: "Engineering Mechanics", arcadiaMajorIds: ["mathematics"], requirements: ["PH 331 Engineering Mechanics"] },
-      { id: "engineering-management-systems", name: "Engineering Management Systems", arcadiaMajorIds: ["mathematics", "computer-science"], requirements: ["MA 341 Probability", "MA 342 Mathematical Statistics I", "CS 203 Data Structures and Algorithm Analysis (with CS 203L Lab)"] },
-      { id: "industrial-operations-research", name: "Industrial Engineering and Operations Research", arcadiaMajorIds: ["mathematics", "computer-science"], requirements: ["MA 341 Probability", "MA 342 Mathematical Statistics I", "CS 203 Data Structures and Algorithm Analysis (with CS 203L Lab)"] },
+      { id: "engineering-mechanics", name: "Engineering Mechanics", arcadiaMajorIds: ["chemistry", "mathematics"], requirements: ["PH 331 Engineering Mechanics"] },
+      { id: "engineering-management-systems", name: "Engineering Management Systems", arcadiaMajorIds: ["chemistry", "mathematics", "computer-science"], requirements: ["MA 341 Probability", "MA 342 Mathematical Statistics I", "CS 203 Data Structures and Algorithm Analysis (with CS 203L Lab)"] },
+      { id: "industrial-operations-research", name: "Industrial Engineering and Operations Research", arcadiaMajorIds: ["chemistry", "mathematics"], requirements: ["MA 341 Probability", "MA 342 Mathematical Statistics I", "CS 203 Data Structures and Algorithm Analysis (with CS 203L Lab)"] },
       { id: "materials-science-columbia", name: "Materials Science and Engineering", arcadiaMajorIds: ["chemistry", "mathematics"], requirements: ["CH 102 General Chemistry II or CH 112 Conceptual Chemistry II", "PH 324 Quantum Physics"] },
-      { id: "mechanical-columbia", name: "Mechanical Engineering", arcadiaMajorIds: ["mathematics", "computer-science"], requirements: ["PH 331 Engineering Mechanics", "PH 324 Quantum Physics", "ELEN 1201 Intro Electrical Engineering (taken while at Columbia)"] },
+      { id: "mechanical-columbia", name: "Mechanical Engineering", arcadiaMajorIds: ["chemistry", "mathematics", "computer-science"], requirements: ["PH 331 Engineering Mechanics", "PH 324 Quantum Physics", "ELEN 1201 Intro Electrical Engineering (taken while at Columbia)"] },
     ],
     requirements: {
       gpa: "3.30",
@@ -472,7 +655,7 @@ export const preEngineeringRequirements: PreEngineeringRequirements = {
   ],
   totalTechnicalCredits: 44,
   nonTechnicalCredits: 28,
-  majorRequirements: "All students must satisfy the requirements for a major, typically Mathematics, Computer Science, Data Science, or Chemistry at Arcadia University, as well as those of the Undergraduate Curriculum. However, students accepted into an engineering program after three years need fulfill only those parts of the Undergraduate Curriculum required for transfer students entering with 57 or more credits.",
+  majorRequirements: "All students must satisfy the requirements for a major, typically Mathematics, Computer Science, Data Science, Chemistry, Physics, or Economics at Arcadia University, as well as those of the Undergraduate Curriculum. However, students accepted into an engineering program after three years need fulfill only those parts of the Undergraduate Curriculum required for transfer students entering with 57 or more credits.",
   transferRequirements: "These courses should include 3 different academic disciplines, two courses from the same department, and at least one should be a non-introductory course.",
   aucRequirements: {
     acceleratedPrograms: [
@@ -487,7 +670,7 @@ export const preEngineeringRequirements: PreEngineeringRequirements = {
       { code: "W", name: "Writing", count: 1 },
       { code: "CABR", name: "Combatting Anti-Black Racism", count: 1 }
     ],
-    acceleratedNote: "Students in 3+2 and 3+3 programs need to complete only these reduced AUC requirements during their time at Arcadia.",
-    fourYearNote: "Students who decide to stay at Arcadia for 4 years must complete the full AUC requirements as required for all Arcadia students."
+    acceleratedNote: "Students in 3+2 and 3+3 programs need to complete only these reduced AUC requirements during their time at Arcadia. Students in 4+1 programs (like RPI) or other 4-year tracks must complete the full AUC requirements.",
+    fourYearNote: "Students who decide to stay at Arcadia for 4 years (including 4+1 tracks) must complete the full AUC requirements as required for all Arcadia students."
   }
 };
