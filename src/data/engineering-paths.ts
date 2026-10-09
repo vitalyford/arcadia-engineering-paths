@@ -374,6 +374,7 @@ export const partnerUniversities: PartnerUniversity[] = [
     name: "Washington University in St. Louis",
     programs: [
       { id: "biochemical", name: "Biochemical Engineering", arcadiaMajorIds: ["chemistry", "mathematics"], requirements: ["BI 101 General Biology I", "BI 102 General Biology II", "CH 102 General Chemistry II or CH 112 Conceptual Chemistry II"] },
+      { id: "biomedical", name: "Biomedical Engineering", arcadiaMajorIds: ["chemistry", "mathematics"], requirements: ["CS 101/CS 101L Problem-Solving with Algorithms/Prog I", "CS 222/CS 222L Introduction to Data Science with Python (recommended)", "BI 101 General Biology I"] },
       { id: "chemical-washu", name: "Chemical Engineering", arcadiaMajorIds: ["chemistry", "mathematics"], requirements: ["BI 101 General Biology I", "CH 102 General Chemistry II or CH 112 Conceptual Chemistry II", "CH 201 Organic Chemistry I"] },
       { id: "computer-washu", name: "Computer Engineering", arcadiaMajorIds: ["computer-science", "mathematics"], requirements: ["CS 202 Problem-Solving with Algorithms and Programming II (with CS 202L Lab)"] },
       { id: "computer-science-washu", name: "Computer Science", arcadiaMajorIds: ["computer-science", "mathematics"], requirements: ["CS 202 Problem-Solving with Algorithms and Programming II (with CS 202L Lab)"] },
